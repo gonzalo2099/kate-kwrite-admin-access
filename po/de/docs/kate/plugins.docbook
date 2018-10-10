@@ -1,0 +1,3416 @@
+<chapter id="plugins">
+
+<chapterinfo>
+<authorgroup>
+<author
+>&Anders.Lund; &Anders.Lund.mail;</author>
+<othercredit role="translator"
+> <firstname
+>Thomas</firstname
+> <surname
+>Diehl</surname
+> <affiliation
+> <address
+><email
+>thd@kde.org</email
+></address
+> </affiliation
+> <contrib
+>GUI-Übersetzung</contrib
+></othercredit
+> <othercredit role="translator"
+> <firstname
+>Matthias</firstname
+><surname
+>Schulz</surname
+> <affiliation
+> <address
+><email
+>matthias.schulz@kdemail.net</email
+></address
+> </affiliation
+> <contrib
+>Deutsche Übersetzung</contrib
+></othercredit
+> 
+</authorgroup>
+</chapterinfo>
+
+<title
+>Arbeiten mit Erweiterungen</title>
+
+<para
+>Es gibt einige Typen von Erweiterungen für &kate;. Da sind Erweiterungen für die Editorkomponente von &kate;, die dann in allen Anwendungen, die die Editorkomponente verwenden, benutzt werden können. Das sind zum Beispiel KDevelop, Quanta, Kile, &kwrite;, aber auch noch einige andere. Außerdem gibt es Erweiterungen, die nur im Editor von &kate; selbst verwendet werden können, diese können in nativem C++ oder in Python geschrieben sein. Zwischen diesen gibt es Unterschiede, die anschließend beschrieben werden.</para>
+
+<para
+>Im <link linkend="configuring-kate-configdialog"
+>Einrichtungsdialog</link
+> können Sie beide Arten von Erweiterungen auswählen. Hier finden Sie auch die Einstellungen für einzelne Erweiterungen, bei denen das nötig ist.</para>
+
+<para
+>Es gibt viele Erweiterungen für unterschiedliche Anwendungsbereiche. Einige Erweiterungen wie zum Beispiel automatisches Einfügen von Klammern, Einfügen von Dateien und Textexport als &HTML; sind in der Editorkomponente enthalten. Im Internet finden Sie aber noch weitere Erweiterungen.</para>
+
+<sect1 id="editor-component-plugins">
+<title
+>Erweiterungen der Editorkomponente</title>
+
+<para
+>Weitere Informationen über die verfügbaren Module finden Sie im Abschnitt <ulink url="help:/katepart/editor-component-plugins.html"
+>Erweiterungen der Editorkomponente im Handbuch zu &katepart;</ulink
+>.</para>
+
+</sect1>
+
+<sect1 id="kate-application-plugins">
+<title
+>&kate;-Programmerweiterungen</title>
+
+<!-- from doc/kate-addons/index.docbook -->
+<para
+>&kate;-Programmerweiterungen enthalten zusätzliche Funktionen für den Editor &kate;. Diese Erweiterungen können zusätzliche Menüs und Kurzbefehle einfügen und erweitern die Fähigkeiten von &kate;. Sie können eine beliebige Anzahl von Erweiterungen in einem geöffneten &kate;- Programm installieren. Öffnen Sie den Einrichtungsdialog für &kate; mit <menuchoice
+><guimenu
+>Einstellungen</guimenu
+><guimenuitem
+>&kate; einrichten ...</guimenuitem
+></menuchoice
+> und wählen Sie unter <menuchoice
+><guimenu
+>Programm</guimenu
+><guimenuitem
+>Erweiterungen</guimenuitem
+></menuchoice
+> die gewünschten Erweiterungen aus. </para>
+
+<para
+>Folgende Programmerweiterungen sind verfügbar: </para>
+<itemizedlist>
+<listitem>
+<para
+>Backtrace-Browser - Ansicht zur Navigation in Backtraces</para>
+</listitem>
+<listitem>
+<para
+><link linkend="kate-application-plugin-build"
+>Erstellen-Modul</link
+> - Kompilieren oder Make aufrufen und Fehlermeldungen ausgeben</para>
+</listitem>
+<listitem>
+<para
+>Bedingtes Schließen - Eine Gruppe von Dokumenten auf der Basis eines gemeinsamen Pfades oder einer Dateierweiterung schließen</para>
+</listitem>
+<listitem>
+<para
+>CTags - Definition/Deklaration mit CTags nachschauen</para>
+</listitem>
+<listitem>
+<para
+>Dokumentumschalter - Schnellwechsler für Dokumente mit <keycombo action="simul"
+>&Alt;&Tab;</keycombo
+></para>
+</listitem>
+<listitem>
+<para
+><link linkend="kate-application-plugin-fsbrowser"
+>Dateisystem-Browser</link
+> - Werkzeugansicht für Dateisystem-Browser</para>
+</listitem>
+<listitem>
+<para
+><link linkend="kate-application-plugin-gdb"
+>&gdb;</link
+> - Stellt eine einfache &gdb;-Oberfläche zur Verfügung.</para>
+</listitem>
+<listitem>
+<para
+>Symbol-Auswahl - Öffnet die Symbol-Auswahl von Cuttlefish</para>
+</listitem>
+<listitem>
+<para
+>Lumen - Lumen ist ein Modul zur automatischen Vervollständigung für D und benutzt den DCD-Auto-Vervollständigungs-Server</para>
+</listitem>
+<listitem>
+<para
+>Header öffnen - Öffnet die zusammengehörigen .h/[.cpp|.c]-Dateien</para>
+</listitem>
+<listitem>
+<para
+>Projekterweiterung - Ein Projektmodul für Kate</para>
+</listitem>
+<listitem>
+<para
+>Replicode</para>
+</listitem>
+<listitem>
+<para
+>Rust-Quelltext-Vervollständigung - Vervollständigung für Rust-Quelltext</para>
+</listitem>
+<listitem>
+<para
+><link linkend="kate-application-plugin-searchinfiles"
+>Suchen und Ersetzen</link
+> - Werkzeugansicht, die es erlaubt, alle geöffneten Dateien oder Dateien im Dateisystem zu durchsuchen</para>
+</listitem>
+<listitem>
+<para
+>Werkzeugansicht für Textbausteine - Werkzeugansicht für die einbettete Verwaltung von Textbausteinen</para>
+</listitem>
+<listitem>
+<para
+><link linkend="kate-application-plugin-sql"
+>SQL-Erweiterung</link
+> - Anfragen an SQL-Datenbanken ausführen</para>
+</listitem>
+<listitem>
+<para
+>Symbolbetrachter - Referenzsymbole aus Quelldateien extrahieren und anzeigen</para>
+</listitem>
+<listitem>
+<para
+>Werkzeugansicht für Terminal - Werkzeugansicht, die ein Terminal-Element einbettet</para>
+</listitem>
+<listitem>
+<para
+>Textfilter - Einfacher Textfilter</para>
+</listitem>
+<listitem>
+<para
+><link linkend="kate-application-plugin-xmltools"
+>&XML;-Vervollständigung</link
+> - Zeigt &XML;-Elemente, Attribute, Attributwerte und Entitäten an, die von der DTD definiert werden</para>
+</listitem>
+
+<!-- not in 4.10
+<listitem>
+<para
+>Text Snippets - Configurable Text Snippets</para>
+</listitem-->
+<!--listitem>
+<para
+>Kate Python Browser Plugin - A Python browser plugin for Kate</para>
+</listitem-->
+<!--<listitem>
+<para
+><link linkend="kate-application-plugin-exttools"
+>External Tools</link
+></para>
+</listitem>
+<listitem>
+<para
+><link linkend="kate-application-plugin-snippets"
+>Kate Snippets</link
+> - Snippets plugin with code completion support</para>
+</listitem>
+<para
+>Tabify - Adds a tab bar to Kate's main window</para>
+http://kate-editor.org/2011/04/25/kates-tab-bar-plugins/
+</listitem>
+-->
+</itemizedlist>
+</sect1>
+
+<!-- from doc/kate-addons/xmlcheck.docbook -->
+<sect1 id="kate-application-plugin-xmltools">
+<sect1info>
+<authorgroup
+><author
+>&Daniel.Naber; &Daniel.Naber.mail; </author
+></authorgroup>
+</sect1info>
+<title
+>&XML;-Vervollständigung</title>
+
+<para
+>Diese Erweiterung gibt Hinweise, was an einer bestimmten Stelle einer &XML;-Datei gemäß der zugehörigen DTD erlaubt ist. Es zeigt, abhängig von der Cursor-Position, mögliche Elemente, Attribute, Attributwerte oder Entitäten an (&eg; werden alle Entitäten angezeigt, wenn das Zeichen links vom Cursor <quote
+>&amp;</quote
+> ist). Es ist außerdem möglich, die nächste linksseitige nicht-geschlossene Marke zu schließen.</para>
+
+<para
+>Die <acronym
+>DTD</acronym
+> muss im &XML;-Format vorliegen, wie es das Perl-Programm <command
+>dtdparse</command
+> liefert. Eine DTD mit diesem Format wird als <quote
+>Meta-DTD</quote
+> bezeichnet. Einige Meta-DTDs werden mitgeliefert. Sie befinden sich im Ordner <filename class="directory"
+>$KDEDIR/share/apps/katexmltools/</filename
+>, der auch Standardordner für den Menü-Befehl <guimenuitem
+>Meta-DTD zuweisen ...</guimenuitem
+> ist. Um eigene Meta-DTDs zu erzeugen, benötigen Sie <command
+>dtdparse</command
+> von <ulink url="http://dtdparse.sourceforge.net"
+>http://dtdparse.sourceforge.net</ulink
+>.</para>
+
+<sect2 id="xmltools-how-to-use">
+<title
+>Anwendung</title>
+
+<para
+>Starten Sie &kate; und öffnen Sie den Einrichtungsdialog mit <menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>&kate; einrichten  ...</guimenuitem
+></menuchoice
+>. Dann wählen Sie <guilabel
+>&XML;-Vervollständigung</guilabel
+> im Abschnitt <guilabel
+>Programm</guilabel
+> / <guilabel
+>Erweiterungen</guilabel
+>. Danach wählen Sie <menuchoice
+><guimenu
+>&XML;</guimenu
+><guimenuitem
+>Meta-DTD zuweisen ...</guimenuitem
+></menuchoice
+>. Wenn Ihr Dokument keinen <quote
+>DOCTYPE</quote
+> enthält oder dieser unbekannt ist, wählen Sie eine Meta-DTD aus Ihrem Dateisystem. Ansonsten wird die passende Meta-DTD für Ihr aktuelles Dokument automatisch geladen.</para>
+
+<para
+>Jetzt können Sie die Erweiterung während der Texteingabe benutzen.</para>
+
+<variablelist>
+
+<varlistentry>
+<term
+><keycap
+>&lt;</keycap
+> (kleiner als)</term>
+<listitem
+><para
+>Damit wird eine Liste mit möglichen Elementen angezeigt, solange sich der Cursor nicht schon in einer Marke befindet. Beachten Sie, dass Sie dies derzeitig noch nicht benutzen können, um ein Element aus der obersten Ebene einzufügen (&eg; <quote
+>&lt;html&gt;</quote
+>).</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><keycap
+>&lt;</keycap
+><keycap
+>/</keycap
+>(Zeichen "kleiner als" und Schr&auml;gstrich)</term>
+<listitem
+><para
+>Die Eingabe dieser Zeichen schl&auml;gt das Schlie&szlig;en des aktuellen Elements vor (das n&auml;chste offene links vom Cursor). Dr&uuml;cken Sie die &Enter;-Taste, um den Vorschlag zu akzeptieren. Anders als der Men&uuml;punkt <guimenuitem
+>Element schlie&szlig;en</guimenuitem
+>, funktioniert dies nur mit einer zugewiesenen DTD.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><keycap
+>"</keycap
+> (Anführungszeichen)</term>
+<listitem
+><para
+>Die Eingabe des Anführungszeichens innerhalb einer Marke wird eine Liste mit möglichen Attributwerten anzeigen, wenn es welche gibt.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><keycap
+>&nbsp;</keycap
+> (Leertaste)</term>
+<listitem
+><para
+>Diese Taste wird eine Liste mit möglichen Attributen für das aktuelle Element anzeigen, wenn die Taste innerhalb einer Marke gedrückt wird.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><keycap
+>&amp;</keycap
+> (Kaufmanns-Und)</term>
+<listitem
+><para
+>Diese Taste wird eine Liste mit definierten Entitäten anzeigen.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2 id="xmltools-features-and-limitations">
+<title
+>Funktionen und Einschränkungen</title>
+
+<para
+>Sie können alle Funktionen und Einschränkungen testen, indem Sie die Datei <filename
+>$KDEDIR/share/apps/katexmltools/testcases.xml</filename
+> in &kate; laden und den Anweisungen folgen.</para>
+
+</sect2>
+
+
+<sect2 id="xmltools-menu">
+<title
+>Menüstruktur</title>
+
+<variablelist>
+<varlistentry>
+<term>
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Eingabe</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>&XML;</guimenu
+> <guimenuitem
+>Element einfügen ...</guimenuitem
+> </menuchoice>
+</term>
+<listitem
+><para
+>Damit öffnen Sie einen Dialog zum Einfügen eines &XML;-Elementes. Die &lt;,&gt;-Zeichen und die schließende Marke werden automatisch eingefügt. Wenn vorher Text markiert war, wird dieser mit einer öffnenden und einer schließenden Marke umgeben. Mit dem Dialog ist es auch möglich, alle an der Cursor-Position eingegebenen Elemente zu vervollständigen, wenn eine Meta-DTD mittels <guimenuitem
+>Meta-DTD zuweisen ...</guimenuitem
+> zugewiesen wurde. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>&lt;</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>&XML;</guimenu
+> <guimenuitem
+>Element schließen</guimenuitem
+> </menuchoice>
+</term>
+<listitem
+><para
+>Sucht im Text nach einer Marke, die noch nicht geschlossen wurde und schließt diese durch Einfügen der entsprechenden schließenden Marke. Die Suche erfolgt von der Cursor-Position aus nach links. Falls keine offene Marke gefunden wird, hat dieser Befehl keine Auswirkungen.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice
+><guimenu
+>&XML;</guimenu
+> <guimenuitem
+>Meta-DTD zuweisen ...</guimenuitem
+> </menuchoice>
+</term>
+<listitem
+><para
+>Bestimmt die Meta-DTD für das aktuelle Dokument. Beachten Sie, dass diese Zuordnung nicht gespeichert wird. Sie muss beim nächsten Programmstart von &kate; wiederholt werden.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2 id="xmltools-thanks-and-acknowledgements">
+<title
+>Danksagungen</title>
+<para
+>&kate;-Erweiterung <quote
+>XML-Vervollständigung</quote
+> Copyright 2001, 2002 &Daniel.Naber; &Daniel.Naber.mail;. </para>
+<para
+>KDE SC 4 Version Copyright 2010 Tomáš Trnka</para>
+<para
+>Copyright der Dokumentation 2001, 2002 &Daniel.Naber;</para>
+</sect2>
+
+</sect1>
+<!--FIXME this belongs to Extensions, it is an editor plugin-->
+<sect1 id="kate-editor-plugin-exporter">
+<!--<sect1info>
+<authorgroup
+><author>
+&TC.Hollingsworth; &TC.Hollingsworth.mail;
+</author
+></authorgroup>
+</sect1info
+>-->
+<title
+>Exporter</title>
+
+<sect2 id="exporter-menu">
+<title
+>Menüstruktur</title>
+
+<variablelist>
+<varlistentry>
+<term>
+<menuchoice
+><guimenu
+>Datei</guimenu
+> <guimenuitem
+>Als &HTML; exportieren ...</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Exportiert die Datei im &HTML;-Format, sodass diese als Webseite betrachtet werden kann. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice
+><guimenu
+>Bearbeiten</guimenu
+><guimenuitem
+>Als &HTML; kopieren ...</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Kopiert den ausgewählten Text mit der Syntaxhervorhebung &HTML;-Format.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect2>
+</sect1>
+
+<sect1 id="kate-application-plugin-searchinfiles">
+<sect1info>
+<authorgroup
+><author
+>&TC.Hollingsworth; &TC.Hollingsworth.mail; </author
+></authorgroup>
+</sect1info>
+<title
+>Suchen und Ersetzen</title>
+
+<sect2 id="searchinfiles-intro">
+<title
+>Einleitung</title>
+<para
+>Mit &kappname;'s Erweiterung „Suchen &amp; Ersetzen“ können Sie nach einfachem Text oder <ulink url="help:/katepart/regular-expressions.html"
+>regulären Ausdrücken</ulink
+> in mehreren Dateien auf einmal suchen. Sie können alle geöffneten Dateien, alle Dateien in einem Ordner und je nach Einstellung auch in den Unterordnern suchen. Auch das Filtern nach Dateinamen ist möglich, um zum Beispiel nur in Dateien mit einer bestimmten Erweiterung zu suchen.</para>
+
+</sect2>
+
+<sect2 id="searchinfiles-ui">
+<title
+>Oberfläche</title>
+
+<sect3 id="searchinfiles-ui-query">
+<title
+>Such-Anfrage</title>
+
+<para
+>Die folgenden Einstellungen werden immer oben in der Ansicht „In Dateien suchen“ angezeigt.</para>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guiicon
+>Neues Unterfenster</guiicon
+></term>
+<listitem
+><para
+>Sie können beliebig viele Suchvorgänge auf einmal öffnen. Klicken Sie dazu auf den Knopf <guibutton
+>Neues Unterfenster</guibutton
+> oben links in der Ansicht <guilabel
+>In Dateien suchen</guilabel
+>, dann können Sie eine weitere Suche starten. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guiicon
+>Ergebnisse umschalten</guiicon
+></term>
+<listitem
+><para
+>Mit dem nach unten gerichteten grünen Pfeil rechts oben in der Ansicht „In Dateien suchen“ schalten Sie den unteren Anzeigebereich zwischen den zusätzlichen Einstellungen für die Suche und der Anzeige der Ergebnisse Ihrer Suche um.  </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Suchen</guilabel
+></term>
+<listitem
+><para
+>In das Eingabefeld oben tragen Sie Text ein, den Sie suchen möchten. Sie können entweder einfachen Text oder einen regulären Ausdruck eingeben, wenn diese Einstellung aktiviert wurde. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Ersetzen</guilabel
+> (Textfeld)</term>
+<listitem
+><para
+>Text, der anstelle des Textes im Eingabefeld <guilabel
+>Suchen</guilabel
+> in die geöffneten Dokumente eingefügt wird. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Suchen</guibutton
+></term>
+<listitem
+><para
+>Haben Sie alle Einstellungen richtig vorgenommen, dann drücken Sie zum Start auf den Knopf <guibutton
+>Suchen</guibutton
+>. Sie können auch die Taste &Enter; im Eingabefeld drücken, um eine Suche zu starten. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Ersetzen</guibutton
+></term>
+<listitem
+><para
+>Haben Sie alle Einstellungen richtig vorgenommen, dann drücken Sie zum Start auf den Knopf <guibutton
+>Ersetzen</guibutton
+>, um den Text im Eingabefeld <guilabel
+>Suchen</guilabel
+> mit dem Text im Eingabefeld <guilabel
+>Ersetzen</guilabel
+> zu ersetzen. Sie können auch die Taste &Enter; im Eingabefeld <guilabel
+>Ersetzen</guilabel
+> drücken. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Weiter</guibutton
+></term>
+<listitem
+><para
+>Geht zur nächsten Fundstelle der Suche. Wenn nötig, wird zum nächsten Dokument umgeschaltet. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Markierte ersetzen</guibutton
+></term>
+<listitem
+><para
+>Macht dasselbe wie Ersetzen, aber nur in den Dokumenten, die unten markiert sind. </para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</sect3>
+
+<sect3 id="searchinfiles-ui-folder">
+<title
+>Einstellungen für die Suche in Ordnern</title>
+
+<para
+>Diese Einstellungen erscheinen unter den vorher genannten Einstellungen für die Abfrage. Werden stattdessen die Ergebnisse einer Suche angezeigt, wechseln Sie mit dem Knopf <guiicon
+>Ergebnisse umschalten</guiicon
+> zur Anzeige der zusätzlichen Einstellungen.</para>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Groß-/Kleinschreibung beachten</guilabel
+></term>
+<listitem
+><para
+>Beschränkt Sie die Suche auf Ausdrücke, die mit der gleichen Groß- und Kleinschreibung wie im Suchfeld auch in den Dateien vorhanden sind. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Reguläre Ausdrücke</guilabel
+></term>
+<listitem
+><para
+>Erlaubt die Verwendung eines <ulink url="help:/katepart/regular-expressions.html"
+>Regulären Ausdrucks</ulink
+> anstatt eines einfachen Textes für die Suche. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Ergebnisse erweitern</guilabel
+></term>
+<listitem
+><para
+>Zeigt alle Suchergebnisse in jedem Dokument an, nicht nur eine Liste  der Dokumente, in denen die Suche erfolgreich war. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Suchen</guilabel
+></term>
+<listitem
+><para
+>In diesem Auswahlfeld gibt es drei Einstellungen. Wählen Sie <guilabel
+>In offenen Dateien</guilabel
+>, um in allen gerade in &kappname; geöffneten Dateien oder <guilabel
+>in Ordner</guilabel
+>, um in einem Ordner und dessen Unterordnern zu suchen. Wählen Sie <guilabel
+>im Projekt</guilabel
+>, um in allen Dokumenten, die im offenen Projekt gelistet sind, zu suchen. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Ordner</guilabel
+></term>
+<listitem
+><para
+>Hier können Sie den Ordner eingeben, in dem die Suche starten soll. Sie können zum Beispiel <userinput
+>~/development/kde/kate/</userinput
+>, eingeben, wenn Sie im Quelltext von &kate; suchen möchten. Diese Option steht nur dann zur Verfügung, wenn der Modus <guilabel
+>in Ordner</guilabel
+> benutzt wird. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guiicon
+>Dateiauswahl-Dialog</guiicon
+></term>
+<listitem
+><para
+>Drücken Sie diesen Knopf, um den Ordner im Dateiauswahldialog zu öffnen. Diese Option steht nur dann zur Verfügung, wenn der Modus <guilabel
+>in Ordner</guilabel
+> benutzt wird. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guiicon
+>Nach oben</guiicon
+></term>
+<listitem
+><para
+>Drücken Sie diesen Knopf, um in den übergeordneten <guilabel
+>Ordner</guilabel
+> des aktuellen Ordners zu wechseln. Diese Option steht nur dann zur Verfügung, wenn der Modus <guilabel
+>in Ordner</guilabel
+> benutzt wird. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guiicon
+>Aktuellen Dokumentpfad verwenden</guiicon
+></term>
+<listitem
+><para
+>Mit diesem Knopf setzen Sie den Eintrag für den <guilabel
+>Ordner</guilabel
+> auf den Ordner, in der die gerade geöffnete Datei gespeichert ist. Diese Option steht nur dann zur Verfügung, wenn der Modus <guilabel
+>in Ordner</guilabel
+> benutzt wird. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Filter</guilabel
+></term>
+<listitem
+><para
+>Mit dem Filter können Sie nur nach Dateien mit einem bestimmten Namensmuster suchen. Um zum Beispiel nur nach C++-Dateien zu suchen, geben Sie <userinput
+>*.cpp</userinput
+>. Alle Dateien, deren Namen mit <literal
+>kate</literal
+> beginnt, finden Sie mit der Eingabe <userinput
+>kate*</userinput
+>. Sie können mehrere Filter getrennt durch Komma  (<userinput
+>,</userinput
+>) eingeben. Diese Option steht nicht zur Verfügung, wenn der Modus <guilabel
+>in offenen Dateien</guilabel
+> benutzt wird. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Ausschließen</guilabel
+></term>
+<listitem
+><para
+>Diese Option ermöglicht, Dateien von der Suche auszuschließen. Wie im <guilabel
+>Filter</guilabel
+> können Sie mehrere Namensmuster, durch ein Komma getrennt, eingeben (<userinput
+>,</userinput
+>). Diese Option steht nicht zur Verfügung, wenn der Modus <guilabel
+>in offenen Dateien</guilabel
+> benutzt wird. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Rekursiv</guilabel
+></term>
+<listitem
+><para
+>Ist diese Einstellung aktiviert, sucht &kappname; auch in allen Unterordnern des ausgewählten Ordners. Diese Option ist nur verfügbar, wenn der Modus <guilabel
+>im Ordner</guilabel
+> benutzt wird. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Versteckte Dateien einbeziehen</guilabel
+></term>
+<listitem
+><para
+>Ist diese Einstellung aktiviert, sucht &kappname; auch in Dateien und Ordner, die normalerweise durch das &OS; versteckt werden. Diese Option steht nur zur Verfügung, wenn der Modus <guilabel
+>in Ordner</guilabel
+> benutzt wird. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Symbolischen Verknüpfungen folgen</guilabel
+></term>
+<listitem
+><para
+>Normalerweise durchsucht diese Erweiterung keine <ulink url="http://de.wikipedia.org/wiki/Symbolische_Verknüpfung"
+>symbolischen Verknüpfungen</ulink
+>. Ist diese Einstellung aktiv, folgt die Erweiterung bei der Suche stattdessen symbolischen Verknüpfungen und sucht in Ordnern oder Dateien, auf die sie verweisen. Diese Option steht nur zur Verfügung, wenn der Modus <guilabel
+>in Ordner</guilabel
+> benutzt wird. </para>
+<warning
+><para
+>Eine symbolische Verknüpfung verweist möglicherweise auf einen Ordner, der der übergeordnete Ordner des gerade durchsuchten Ordners ist, oder andere Ordner, die symbolische Verknüpfungen zu übergeordneten Ordnern enthalten. Gibt es in einem der durchsuchten Ordner eine derartige Verknüpfung, dann folgt &kappname; bei aktivierter Einstellung diesen Verknüpfungen und durchsucht die Ordner. Dann wird die Suche niemals abgeschlossen.</para
+></warning>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Einschließlich Binärdateien</guilabel
+></term>
+<listitem
+><para
+>Ist diese Einstellung aktiviert, sucht &kappname; auch in Dateien, die keine Textdateien zu sein scheinen. </para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</sect3>
+
+<sect3 id="searchinfiles-ui-results">
+<title
+>Suchergebnisse</title>
+
+<para
+>Die Ergebnisse Ihrer Suche werden unterhalb der Einstellungen zur Abfrage angezeigt. Werden die Einstellungen zum Suchmodus <guilabel
+>In Ordner</guilabel
+> angezeigt, drücken Sie auf das Symbol <guiicon
+>Ergebnisse umschalten</guiicon
+>, um die Suchergebnisse anzuzeigen. Diese Ergebnisse werden auch automatisch angezeigt, wenn die Suche beendet ist.</para>
+
+<para
+>Das Suchergebnis ist eine Liste der Dateien, die Text enthalten, der gesucht wurde. Zu jeder Datei wird die Anzahl der Fundstellen angegeben. </para>
+
+<para
+>Wenn Sie eine Liste der Fundstellen in der Datei sehen wollen, klicken Sie einfach auf den Pfeil links vom Dateinamen. Wenn Sie die Option <guilabel
+>Ergebnisse erweitern</guilabel
+> eingeschaltet hatten, wird die Liste sofort ausführlich angezeigt. Die Zeilennummer jeder Fundstelle wird angezeigt, danach sehen Sie den Inhalt der Zeile mit dem Suchtext hervorgehoben.</para>
+
+<para
+>Um eine Datei mit gefundenen Treffern der Suche zu öffnen, klicken Sie zweimal drauf. &kappname; öffnet die Datei, falls erforderlich, und setzt den Cursor an den Anfang des gefundenen Suchtexts. Sie können auch sofort an eine bestimmte Fundstelle springen, indem Sie auf diese Fundstelle in der Liste doppelklicken. </para>
+
+</sect3>
+</sect2>
+
+<sect2 id="searchinfiles-menu">
+<title
+>Menüstruktur</title>
+
+<variablelist>
+
+<varlistentry>
+<term>
+<menuchoice
+><guimenu
+>Bearbeiten</guimenu
+> <guimenuitem
+>In Dateien suchen ...</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Öffnet das Werkzeug Suchen und Ersetzen</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice
+><guimenu
+>Bearbeiten</guimenu
+><guimenuitem
+>Zum nächsten Treffer springen</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Springt zur nächsten Fundstelle.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice
+><guimenu
+>Bearbeiten</guimenu
+><guimenuitem
+>Zum vorherigen Treffer springen ...</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Springt zur vorherigen Fundstelle.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice
+><guimenu
+>Ansicht</guimenu
+><guisubmenu
+>Werkzeugansichten</guisubmenu
+> <guimenuitem
+>Suchen und Ersetzen anzeigen</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Schaltet die Anzeige des Werkzeugs <guilabel
+>Suchen und Ersetzen</guilabel
+> ein und aus </para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect2>
+</sect1>
+
+<sect1 id="kate-application-plugin-fsbrowser">
+<!--<sect1info>
+<authorgroup
+><author>
+&TC.Hollingsworth; &TC.Hollingsworth.mail;
+</author
+></authorgroup>
+</sect1info
+>-->
+<title
+>Der Dateisystem-Browser</title>
+
+<para
+>Der Dateisystem-Browser ist ein Verzeichnisanzeiger, von dem aus Sie Dateien im aktuell angezeigten Verzeichnis öffnen können.</para>
+
+<sect2 id="fsbrowser-menu">
+<title
+>Menüstruktur</title>
+<variablelist>
+
+<varlistentry>
+<term>
+<anchor id="view-toolviews-show-fileselector"/>
+<menuchoice
+><guimenu
+>Ansicht</guimenu
+><guisubmenu
+>Werkzeugansichten</guisubmenu
+> <guimenuitem
+>Dateisystem-Browser anzeigen</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Schaltet die Anzeige des Dateisystem-Browsers von &kate; ein und aus.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect2>
+
+<sect2 id="fsbrowser-interface">
+<title
+>Oberfläche</title>
+
+<para
+>Von oben nach unten besteht der Dateisystem-Browser aus folgenden Elementen:</para>
+
+<variablelist>
+<varlistentry>
+<term
+>Eine Werkzeugleiste</term>
+<listitem>
+<para
+>Diese enthält Standardnavigationsknöpfe:</para>
+<variablelist>
+<varlistentry>
+<term
+><guibutton
+>Zurück</guibutton
+></term>
+<listitem
+><para
+>Drücken dieses Knopfes schaltet die Anzeige zu dem vorher angezeigtem Verzeichnis in der Verlaufsliste um. Wenn es keine Eintragung in der Liste gibt, ist dieser Knopf deaktiviert.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Vorwärts</guibutton
+></term>
+<listitem
+><para
+>Drücken dieses Knopfes schaltet die Anzeige zu dem nächsten Verzeichnis in der Verlaufsliste um. Wenn es keine nächste Eintragung in der Liste gibt, ist dieser Knopf deaktiviert.</para
+></listitem>
+</varlistentry>
+<!--varlistentry>
+<term
+><guibutton
+>Parent Folder</guibutton
+></term>
+<listitem
+><para
+>This will cause the folder view to <command
+>cd</command
+> to the immediate parent of the currently displayed
+folder if possible.</para
+></listitem>
+</varlistentry-->
+<varlistentry>
+<term
+><guibutton
+>Lesezeichen</guibutton
+></term>
+<listitem
+><para
+>Öffnet ein Untermenü zum Ändern oder Hinzufügen von Lesezeichen. Hier können Sie auch ein neues Lesezeichenverzeichnis hinzufügen.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Aktueller Dokumentordner</guibutton
+></term>
+<listitem
+><para
+>Drücken dieses Knopfes schaltet die Anzeige zu dem Verzeichnis des aktuellen Dokuments im Editorfenster um. Dieser Knopf ist deaktiviert, wenn das aktive Dokument neu und ungesichert ist oder wenn nicht entschieden werden kann, aus welchem Ordner die Datei stammt.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guibutton
+>Optionen</guibutton
+></term>
+<listitem>
+<variablelist>
+<varlistentry>
+<term
+><guimenuitem
+>Kurzdarstellung</guimenuitem
+></term>
+<listitem
+><para
+>Zeigt nur die Namen der Dateien.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guimenuitem
+>Ausführliche Ansicht</guimenuitem
+></term>
+<listitem
+><para
+>Zeigt <guilabel
+>Name</guilabel
+>, <guilabel
+>Datum</guilabel
+>, <guilabel
+>Größe</guilabel
+> und <guilabel
+>Typ</guilabel
+> der Dateien an.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guimenuitem
+>Baumansicht</guimenuitem
+></term>
+<listitem
+><para
+>Wie die Kurzansicht, aber die Ordner können ein- und ausgeklappt werden, um die Unterordner oder Dateien darin anzuzeigen.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guimenuitem
+>Ausführliche Baumansicht</guimenuitem
+></term>
+<listitem
+><para
+>In dieser Ansicht können die Ordner ebenfalls ein- und ausgeklappt werden, zusätzlich werden die Spalten wie in der Ausführlichen Ansicht angezeigt.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guimenuitem
+>Versteckte Dateien anzeigen</guimenuitem
+></term>
+<listitem
+><para
+>Zeigt auch die normalerweise ausgeblendeten Dateien des Betriebssystems an.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guimenuitem
+>Automatisch mit dem aktuellen Dokument abgleichen</guimenuitem
+></term>
+<listitem
+><para
+>Ist diese Einstellung aktiviert, wechselt der Dateisystem-Browser automatisch mit dem Befehl <command
+>cd</command
+> in den Ordner des aktuell geöffneten Dokuments im Editorbereich, wenn das aktuell geöffnete Dokument gewechselt wird.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Eine Adressleiste</term>
+<listitem>
+<para
+>Die Adressleiste zeigt den Pfad zum aktuell geöffneten Ordner als Verknüpfungsansicht wie zum Beispiel in &dolphin;. Klicken Sie auf einen Ordner in dieser Ansicht, um ihn zu öffnen, oder Klicken Sie auf einen der Pfeile, um einen Unterordner in dem Ordner zu öffnen. Mit dem ersten Pfeil öffnen Sie den Basisordner Ihres Dateiverzeichnisses.</para>
+
+<para
+>Klicken Sie rechts in der Verknüpfungsansicht, dann können Sie direkt den Pfad des Verzeichnisses angeben, das angezeigt werden soll. Dieses &URL;-Feld unterhält eine Liste von vorher eingegebenen Verzeichnissen, die durch Klick auf den kleinen Pfeil rechts aufgerufen werden kann.</para>
+<tip
+><para
+>Das &URL;-Feld hat eine automatische Vervollständigung, die Vervollständigungsmethode kann durch das mit der rechten Maustaste aufzurufende Kontextmenü eingestellt werden.</para
+></tip>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Eine Verzeichnisansicht</term>
+<listitem
+><para
+>Dies ist eine Standard-&kde;-Verzeichnisansicht.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Ein Filtereintrag</term>
+<listitem>
+<para
+>Der Filtereintrag gestattet die Verwendung von Filtern für die Verzeichnisansicht. Der Filter benutzt Standardausdrücke, die einzelnen Einträge müssen durch Leerzeichen getrennt sein. Beispiel: <userinput
+>*.cpp *.h *.moc</userinput
+></para>
+<para
+>Um alle Dateien anzuzeigen, geben Sie einen einzelnen Stern (<userinput
+>*</userinput
+>) ein.</para>
+<para
+>Der Filtereintrag speichert die letzten zehn benutzten Filter. Um darauf zuzugreifen, klicken Sie auf den kleinen Pfeil rechts im Filtereintrag. Um das Filtern auszuschalten, klicken Sie auf das Symbol <guibutton
+>Text löschen</guibutton
+> links neben dem Pfeil für die automatische Vervollständigung.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect2>
+
+
+<sect2 id="fsbrowser-config">
+<title
+>Einstellungen</title>
+
+<para
+>Die Einstellungen für diese Erweiterung finden Sie auf der Seite <guilabel
+>Dateisystem-Browser</guilabel
+> in &kate;s <link linkend="configuring-kate-configdialog"
+>Einrichtungsdialog</link
+>.</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Werkzeugleiste</guilabel
+></term>
+<listitem
+><para
+>Hier können Sie festlegen, welche Knöpfe die Werkzeugleiste Dateisystem-Browser enthalten soll, indem Sie diese mit den Pfeilknöpfen in der Mitte in den Bereich <guilabel
+>Ausgewählte Aktionen:</guilabel
+> befördern (oder daraus). Sie können die ausgewählten Aktionen dann mit den Knöpfen rechts ordnen.</para>
+ </listitem>
+</varlistentry>
+
+</variablelist>
+</sect2>
+</sect1>
+
+<!--some material from mdi.docbook needs to be migrated here too-->
+<!--<sect1 id="kate-application-plugin-exttools">
+<sect1info>
+<authorgroup
+><author>
+&TC.Hollingsworth; &TC.Hollingsworth.mail;
+</author
+></authorgroup>
+</sect1info>
+<title
+>External Tools</title>
+
+<para
+>In the <guimenu
+>Tools</guimenu
+> menu you will find a submenu labeled
+<guisubmenu
+>External Tools</guisubmenu
+>, if you have enabled them in &kate; settings.
+These tools invoke external applications with data related to the current document,
+for example its URL, directory, text or selection.</para>
+
+<para
+>External tools are user defined, you can add, edit or remove tools using
+the <link linkend="exttools-config"
+>External Tools</link
+> configuration panel.
+</para>
+
+<sect2 id="exttools-menu">
+<title
+>Menu Structure</title>
+<variablelist>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Tools</guimenu
+><guisubmenu
+>External
+Tools</guisubmenu
+></menuchoice
+></term>
+<listitem
+><para
+>This submenu contains all the external tools you have
+configured.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</sect2>
+
+<sect2 id="exttools-config">
+<title
+>Configuration</title>
+
+<para
+>External tools are configured on the <guilabel
+>External Tools</guilabel
+> page
+of <link linkend="configuring-kate-configdialog"
+>&kate;'s configuration</link
+>. These tools invoke external
+applications with data related to the current document, for example its URL,
+directory, text or selection. This page allows you to manage the menu and edit,
+remove or add new tools.</para>
+
+<para
+>Each external tool is a shell command which contains macros representing
+the document data. When activated, the macros are substituted with data from the
+active document.</para>
+
+<variablelist>
+<title
+>Available Commands</title>
+
+<varlistentry>
+<term
+><guibutton
+>New</guibutton
+></term>
+<listitem
+><para
+>Add a new external tool to the list.  This will launch the property
+sheet described below where you can configure an external tool.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Edit</guibutton
+></term>
+<listitem
+><para
+>Edit the currently selected external tool, using the property
+sheet described below.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Insert Separator</guibutton
+></term>
+<listitem
+><para
+>Adds a separator line that appears in the menu below the currently
+selected item.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Up Arrow</guibutton
+></term>
+<listitem
+><para
+>Moves the currently selected item above the previous
+one.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Down Arrow</guibutton
+></term>
+<listitem
+><para
+>Moves the currently selected item below the subsequent
+one.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<variablelist>
+<title
+>External Tools Properties</title>
+<varlistentry>
+<term
+><guilabel
+>Label</guilabel
+></term>
+<listitem
+><para
+>A friendly label that will appear in the <guisubmenu
+>External Tools</guisubmenu
+> menu.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Icon</guibutton
+></term>
+<listitem
+><para
+>Allows you to select an icon that appears next to the label in the
+<guisubmenu
+>External Tools</guisubmenu
+> menu.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Script</guilabel
+></term>
+<listitem
+><para
+>The script to execute when the tool is activated. Before passing
+the script to the shell, the following macros are substituted:
+
+<variablelist>
+<varlistentry>
+<term
+><userinput
+>%URL</userinput
+></term>
+<listitem
+><para
+>The full URL of the current document, or an empty string if the
+document is unsaved.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><userinput
+>%URLs</userinput
+></term>
+<listitem
+><para
+>A space separated list of the URLs of all open documents
+(except unsaved ones).</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><userinput
+>%directory</userinput
+></term>
+<listitem
+><para
+>The directory part of the current documents URL or an empty
+string if the current document is unsaved.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><userinput
+>%filename</userinput
+></term>
+<listitem
+><para
+>The filename of the current document without the path, or an
+empty string if the current document is unsaved.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><userinput
+>%line</userinput
+></term>
+<listitem
+><para
+>The line number of the insertion cursor is in the current
+document.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><userinput
+>%column</userinput
+></term>
+<listitem
+><para
+>The column number of the insertion cursor in the current
+document.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><userinput
+>%selection</userinput
+></term>
+<listitem
+><para
+>The selected text in the current document, or an empty string
+if no text is selected</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><userinput
+>%text</userinput
+></term>
+<listitem
+><para
+>The full text of the current document. Beware that this may
+potentially exceed the maximum command length allowed on your system.
+Use with care.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Executable</guilabel
+></term>
+<listitem
+><para
+>The main executable in the script. This is mandatory, and is used
+to test if the command can be run at all. A fully qualified path is allowed
+in case the executable is not in your <envar
+>PATH</envar
+> variable.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Mime types</guilabel
+></term>
+<listitem
+><para
+>A semicolon separated list of mimetypes for which this command
+should be enabled.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Save</guilabel
+></term>
+<listitem
+><para
+>You can optionally select to have the current or all documents
+saved prior to executing the script. This is handy if your script reads the file
+from disk.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Command line name</guilabel
+></term>
+<listitem
+><para
+>If you fill this, the tool will be available in the
+<link linkend="advanced-editing-tools-commandline"
+>editors command line</link
+> as
+<command
+>exttool-<replaceable
+>Command Line Name</replaceable
+></command>
+(the string you enter here prepended <quote
+>exttool-</quote
+>).</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</sect2>
+</sect1
+>-->
+
+ <!--
+ FIXME: replaced by built-in functionality in 4.12
+        lots of this is wrong, other parts need to be moved somewhere else
+<sect1 id="kate-application-plugin-snippets">
+<sect1info>
+<authorgroup>
+<author
+><firstname
+>Martin</firstname
+> <surname
+>Gergov</surname
+></author>
+<author
+>&TC.Hollingsworth; &TC.Hollingsworth.mail;</author>
+</authorgroup>
+</sect1info>
+<title
+>Kate Snippets</title>
+
+<sect2 id="snippets-intro">
+<title
+>Introduction</title
+>       
+<para
+>Kate Snippets is a plugin used to save you some time by adding support for
+so-called <quote
+>snippets</quote
+> (re-usable source code, machine code or text). The plugin
+also supports code completion and QtScript.</para>
+</sect2>
+
+<sect2 id="snippets-menu">
+<title
+>Menu Structure</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>View</guimenu
+><guisubmenu
+>Tool Views</guisubmenu>
+<guimenuitem
+>Show Snippets</guimenuitem
+></menuchoice
+></term>
+<listitem
+><para
+>Shows snippets panel containing all snippets in your repository
+that are for the currently opened file type.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2 id="snippets-panel">
+<title
+>Snippets panel</title>
+
+<screenshot id="screenshot-snippets-panel">
+<screeninfo
+>Kate Snippets Panel</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="snippets-panel.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>The &kate; snippets panel.</phrase
+></textobject>
+<caption
+><para
+>The panel for &kate; Snippets.</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>In the panel you should see a list of snippet repositories,
+along with options to create your own, get them from the Internet or load
+them from a local file.  Each repository has a checkbox that can be used to
+activate or deactivate it.  There are also buttons to edit and delete existing
+repositories.</para>
+
+<sect3 id="snippets-repo-internet">
+<title
+>Loading Snippet Repository Files</title>
+<para
+>You can download snippet repositories from the Internet.  Just click 
+<guibutton
+>Get New Snippets</guibutton
+> and a window with a list of snippet 
+repositories will open.  After downloading the desired snippet, make sure that
+you have activated it.</para>
+<!- -FIXME no way to load a local file ?- ->
+<para
+>You can also load snippet repositories from a local file using the file
+browser at the bottom of the panel.  Click <guibutton
+>Copy to repository</guibutton>
+when finished.</para>
+</sect3>
+
+<sect3 id="snippets-repo-editor">
+<title
+>Creating and Editing Snippets</title>
+
+<screenshot id="screenshot-snippets-form">
+<screeninfo
+>Snippet Editor</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="snippets-form.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>The snippet editor.</phrase
+></textobject>
+<caption
+><para
+>The snippet editor interface.</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>To create a new snippet repository, click <guibutton
+>New Snippet File</guibutton
+>.
+You should now see a dialog that asks for the name of the snippet file, license and
+author.  After choosing the desired options, click <guibutton
+>Create</guibutton
+>,
+and the snippet editor will open.</para>
+
+<para
+>The snippet editor contains the following options:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>File Type</guilabel
+></term>
+<listitem
+><para
+>Select the file type(s) you want the snippet repository to apply
+to.  It is set to <quote
+>*</quote
+> by default, so the repository applies to all files.  You 
+can change it to something like <userinput
+>C++</userinput
+> for instance, or select
+from a list by hitting the <guibutton
+>Edit</guibutton
+>.  You can specify more
+than one file type by separating them with <userinput
+>;</userinput
+>.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Authors</guilabel
+></term>
+<listitem
+><para
+>Enter the name(s) of the author(s) of the snippet file.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Snippets List</term>
+<listitem
+><para
+>Contains all snippets defined in the snippet file.  You can
+simply click on a snippet listed there to edit it.</para
+></listitem>
+</varlistentry>
+    
+<varlistentry>
+<term
+>Add (<guibutton
+>+</guibutton
+>)</term>
+<listitem
+><para
+>Used to add a new snippet.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Delete (<guibutton
+>-</guibutton
+>)</term>
+<listitem
+><para
+>Used to delete a snippet.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Match/Name</guilabel
+></term>
+<listitem
+><para
+>Appears in the list of snippets in the tool view and is also
+searched when using the code completion feature.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Display Prefix</guilabel
+>, <guilabel
+>Display Postfix</guilabel
+>,
+and <guilabel
+>Display Arguments</guilabel
+></term>
+<listitem
+><para
+>Used to display helpful information while using code completion.
+The prefix and postfix are displayed before and after the name, while the arguments
+are displayed in parenthesis immediately after the name.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Snippet Content</guilabel
+></term>
+<listitem
+><para
+>Reusable text or code.  This is what appears in your document
+when the snippet is used.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>In <guilabel
+>Snippet Content</guilabel
+> you can specify variables with 
+<userinput
+>${<replaceable
+>name</replaceable
+>}</userinput
+> or
+<userinput
+>%{<replaceable
+>name</replaceable
+>}</userinput
+>.  These can be filled
+by QtScript or when the snippet is used.  There is a special variable - 
+${cursor} or %{cursor} - which automatically sets the cursor to its first 
+occurrence.</para>
+
+</sect3>
+</sect2>
+
+<sect2 id="snippets-using">
+<title
+>Using Snippets</title>
+
+<screenshot id="screenshot-snippets-usage">
+<screeninfo
+>Kate Snippets in Action</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="snippets-usage.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Accessing &kate; Snippets from a tool view and a drop down menu.</phrase
+></textobject>
+<caption
+><para
+>Selecting from a list of snippets.</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>You can call snippets in two ways:</para>
+
+<itemizedlist>
+<listitem
+><para
+>By choosing the snippet from the tool view.</para
+></listitem>
+<listitem
+><para
+>While writing, you can press <keycombo action="simul"
+>&Ctrl;
+<keysym
+>Space</keysym
+></keycombo
+>, which will display all the snippets in a
+convenient window from which you can choose.  You may enter the beginning
+of the snippets name before or after pressing this key combination, which provides
+functionality similar to code completion.</para
+></listitem>
+</itemizedlist>
+
+<para
+>If the snippet contains variables (besides <literal
+>${cursor}</literal
+>)
+the cursor will automatically go to the first occurrence of a variable and will
+wait for you to write something. When you are done, you can press &Tab; to move
+to the next variable, and so on.</para>
+
+</sect2>
+
+<sect2 id="snippets-ack">
+<title
+>Thanks and Acknowledgments</title>
+<para
+>&kate; Snippets was written by Joseph Wenninger.</para>
+<para
+>Special thanks to Google Code-In 2011 participant Martin Gergov for
+writing much of this section.</para>
+</sect2>
+
+</sect1>
+-->
+
+<sect1 id="kate-application-plugin-build">
+<!--http://kate-editor.org/2011/06/21/kate-plugin-updates-part-1/ -->
+<sect1info>
+<authorgroup>
+<author
+><firstname
+>Salma</firstname
+> <surname
+>Sultana</surname
+></author>
+<author
+>&TC.Hollingsworth; &TC.Hollingsworth.mail;</author>
+</authorgroup>
+</sect1info>
+<title
+>Erstellen-Modul</title>
+
+<sect2 id="build-intro">
+<title
+>Einleitung</title>
+
+<para
+>Mit dem Erstellen-Modul können Sie ein Projekt erstellen, dessen Konfiguration zurücksetzen und es kompilieren.</para>
+
+<!--When you first install Kate, you need to enable the plugin:
+
+Click `Settings → Configure Kate`
+
+In the tree on the left of the screen, click `Plugins`.
+
+In the `Plugin Manager` panel on the right, select `Build plugin`, and then click `OK`.-->
+
+</sect2>
+
+<sect2 id="build-using">
+<title
+>Das Erstellen-Modul benutzen</title>
+
+<para
+>Aktivieren Sie das Erstellen-Modul, dann wird eine Anzeige für die <guilabel
+>Ausgabe beim Erstellen</guilabel
+> unten im Fenster und ein Menü <guimenu
+>Erstellen</guimenu
+> in der Menüleiste eingefügt. Mit der <guilabel
+>Ausgabe beim Erstellen</guilabel
+> können Sie Einstellungen der Ziele angeben und im Menü Aktionen zum Erstellen, Aufräumen und Kompilieren aufrufen.</para>
+
+
+<para
+>Die <guilabel
+>Ausgabe beim Erstellen</guilabel
+> zeigt drei Karteikarten an:</para>
+
+<itemizedlist>
+<listitem
+><para
+><guilabel
+>Ziel-Einstellungen</guilabel
+></para
+></listitem>
+<listitem
+><para
+><guilabel
+>Ausgabe</guilabel
+></para
+></listitem>
+<listitem
+><para
+><guilabel
+>Fehler und Warnungen</guilabel
+></para
+></listitem>
+</itemizedlist>
+
+<sect3 id="build-using-target-settings">
+<title
+>Die Karteikarte „Ziel-Einstellungen“</title>
+
+<para
+>Auf dieser Karteikante können Sie mehrere Ziele für das Erstellen angeben.</para>
+
+<para
+>Für jedes Ziel gibt es vier Einstellungsmöglichkeiten:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Arbeitsordner</guilabel
+></term>
+<listitem
+><para
+>Hier können Sie den Pfad für das Projekt eintragen. Wenn Sie dieses Feld leer lassen wird das Verzeichnis verwendet, in dem die aktuelle Datei gespeichert ist.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Erstellen</guilabel
+></term>
+<listitem
+><para
+>Mit dieser Einstellung legen Sie den Befehl zum Erstellen fest. Die Voreinstellung ist <command
+>make</command
+>.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Aufräumen</guilabel
+></term>
+<listitem
+><para
+>Mit dieser Einstellung legen Sie den Befehl zum Löschen der Konfiguration fest. Die Voreinstellung ist <command
+>make clean</command
+>.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Schnellkompilieren</guilabel
+></term>
+<listitem
+><para
+>Mit dieser Einstellung legen Sie den Befehl zum Schnellkompilieren fest. Die Voreinstellung ist <command
+>gcc -Wall -g %f</command
+>.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Sie können mit dem Knopf <guibutton
+>Neu</guibutton
+> ein neues Ziel erstellen.Mit <guibutton
+>Kopieren</guibutton
+> wird ein vorhandenes Ziel kopiert. Um ein Ziel zu löschen, verwenden Sie den Knopf <guibutton
+>Löschen</guibutton
+> entfernen Sie ein Ziel.</para>
+
+</sect3>
+
+<sect3 id="build-using-output">
+<title
+>Die Karteikarte „Ausgabe“</title>
+
+<para
+>Die Karteikarte <guilabel
+>Ausgabe</guilabel
+> zeigt die Konsolenausgabe des letzten Befehls an.</para>
+
+</sect3>
+
+<sect3 id="buiid-using-errors">
+<title
+>Fehler und Warnungen</title>
+
+<para
+>Die Karteikarte <guilabel
+>Fehler und Warnungen</guilabel
+> zeigt die Ausgabe der Fehler und Warnungen des letzten Befehls an.</para>
+
+<para
+>Jede Zeile enthält eine Nachricht mit dem Namen der Datei und - wenn vorhanden - mit der Zeilennummer Klicken Sie auf eine Zeile mit Fehlern oder Warnungen, dann wird die zugehörige Datei geöffnet und der Cursor auf die angegebene Zeilennummer gesetzt..</para>
+
+<para
+>Es gibt Knöpfe für <guibutton
+>Fehler</guibutton
+>, <guibutton
+>Warnungen</guibutton
+>, und <guibutton
+>Andere</guibutton
+> oben im Werkzeug, mit denen Sie die entsprechenden Kategorien zeigen oder verstecken können.</para>
+
+<!--FIXME: These shortcuts now seem to be used by the Project plugin in 4.11.
+            https://bugs.kde.org/show_bug.cgi?id=328170 -->
+<para
+>Zum vorherigen Fehler oder der vorherigen Warnung gehen Sie mit <keycombo action="simul"
+>&Ctrl;&Alt;<keysym
+>Pfeil links</keysym
+></keycombo
+>, zum nächsten Fehler oder der nächsten Warnung mit <keycombo action="simul"
+>&Ctrl;&Alt;<keysym
+>Pfeil rechts</keysym
+></keycombo
+>.</para>
+
+</sect3>
+</sect2>
+
+<sect2 id="build-menu">
+<title
+>Menüstruktur</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Erstellen</guimenu
+> <guimenuitem
+>Erstellen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Führt den Befehl <guilabel
+>Erstellen</guilabel
+> für das aktuell ausgewählte Ziel aus.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Erstellen</guimenu
+> <guimenuitem
+>Aufräumen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Führt den Befehl <guilabel
+>Aufräumen</guilabel
+> für das aktuell ausgewählte Ziel aus.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Erstellen</guimenu
+> <guimenuitem
+>Schnellkompilieren</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Führt den Befehl <guilabel
+>Schnellkompilieren</guilabel
+> für das aktuell ausgewählte Ziel aus.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Alt;<keysym
+>Pfeil links</keysym
+></keycombo
+></shortcut
+> <guimenu
+>Erstellen</guimenu
+><guimenuitem
+>Vorheriger Fehler</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Verschiebt den Cursor zum vorherigen Fehler im Dokument.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Alt;<keysym
+>Pfeil rechts</keysym
+></keycombo
+></shortcut
+> <guimenu
+>Erstellen</guimenu
+><guimenuitem
+>Nächster Fehler</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Verschiebt den Cursor zum nächsten Fehler im Dokument.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Erstellen</guimenu
+><guisubmenu
+>Ziele</guisubmenu
+> </menuchoice
+></term>
+<listitem
+><para
+>Ermöglicht die Auswahl aus einer Liste von benutzerdefinierten Zielen.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Erstellen</guimenu
+><guimenuitem
+>Nächstes Ziel</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Wechselt zum nächsten vom Benutzer definierten Ziel.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</sect2>
+
+<sect2 id="build-ack">
+<title
+>Danksagungen</title>
+<para
+>Das Erstellen-Modul für &kate; wurde von Kåre Särs geschrieben.</para>
+<para
+>Besonderer Dank geht an den „Google Code-In 2011“-Teilnehmer Salma Sultana,der den Hauptteil diese Abschnitts geschrieben hat.</para>
+</sect2>
+</sect1>
+
+<sect1 id="kate-application-plugin-sql">
+<sect1info>
+<authorgroup>
+<author
+><firstname
+>Ömer</firstname
+> <othername
+>Faruk</othername
+> <surname
+>ORUÇ</surname
+></author>
+<author
+>&TC.Hollingsworth; &TC.Hollingsworth.mail;</author>
+</authorgroup>
+</sect1info>
+<title
+>SQL-Modul</title>
+
+<sect2 id="sql-intro">
+<title
+>Einleitung</title>
+
+<para
+>Die Datenbanksprache SQL (Structured Query Language) ist eine spezialisierte Sprache zur Aktualisierung, Löschung und Abfrage von Informationen von Datenbanken.</para>
+
+<para
+>Mit dem SQL-Modul von &kate; können Sie: </para>
+
+<itemizedlist>
+<listitem
+><para
+>Eine Datenbank erstellen</para
+></listitem>
+<listitem
+><para
+>Eine Verbindung zu einer vorhandenen Datenbank erstellen</para
+></listitem>
+<listitem
+><para
+>Daten in eine Datenbank einfügen und löschen</para
+></listitem>
+<listitem
+><para
+>Abfragen ausführen</para
+></listitem>
+<listitem
+><para
+>Ergebnisse in einer Tabelle anzeigen</para
+></listitem>
+</itemizedlist>
+
+<!--If Kate is installed on your computer, at first open Kate.
+If Kate isn't installed on your computer, download and install it.
+
+Using SQL Plugin
+After opening the Kate;
+Click Settings→ Configure Kate
+and then;
+Click Application → Select Plugins in the tree widget
+
+In the Plugin Manager panel on the right, check SQL Plugin and click OK.
+-->
+
+</sect2>
+
+<sect2 id="sql-connecting">
+<title
+>Verbindung zu einer Datenbank</title>
+
+<para
+>Wählen Sie <guibutton
+>Verbindung hinzufügen</guibutton
+> aus dem Menü <guimenu
+>SQL</guimenu
+> oder der Werkzeugleiste und dann einen Qt-Datenbanktreiber (QSQLITE, QMYSQL3, QMYSQL, QODBC3, QODBC, QPSQL7, und QPSQL). Fehlt ein gewünschter Treiber, dann müssen Sie ihn installieren. Drücken Sie dann den Knopf <guibutton
+>Weiter</guibutton
+>. </para>
+
+<para
+>Wenn die ausgewählte Datenbank eine Datei verwendet, geben Sie nur den Ordner der Datenbank an und drücken dann den Knopf <guibutton
+>Weiter</guibutton
+>. Zur Verbindung zu einer Datenbank auf einem Server, müssen Sie den Rechnernamen des Servers, Ihren Benutzernamen, das Passwort und alle sonstigen erforderlichen Informationen für den ausgewählten Treiber angeben. Drücken Sie dann den Knopf <guibutton
+>Weiter</guibutton
+>.</para>
+
+<para
+>Zum Abschluß geben Sie einen eindeutigen Namen für die Verbindung an und drücken auf <guibutton
+>Fertigstellen</guibutton
+>.</para>
+
+</sect2>
+
+<sect2 id="sql-querying">
+<title
+>Abfragen ausführen</title>
+
+<sect3 id="sql-querying-insert-delete-update">
+<title
+>INSERT/DELETE/UPDATE</title>
+
+<para
+>Mit dem SQL-Modul können Sie genau wie von der Befehlszeile oder aus einem Programm Daten einfügen. löschen oder aktualisieren. Geben Sie die Abfrage eine und drücken Sie den Knopf <guibutton
+>Abfrage ausführen</guibutton
+>.</para>
+
+<example>
+<title
+>Einige Beispiel-Abfragen</title>
+<variablelist>
+
+<varlistentry>
+<term
+><command
+>INSERT</command
+></term>
+<listitem
+><para
+><programlisting
+>INSERT INTO <replaceable
+>table_name</replaceable
+> ("<replaceable
+>feature1</replaceable
+>", "<replaceable
+>feature2</replaceable
+>", "<replaceable
+>feature3</replaceable
+>", "<replaceable
+>feature4</replaceable
+>", "<replaceable
+>feature5</replaceable
+>")
+VALUES ("<replaceable
+>value1</replaceable
+>", "<replaceable
+>value2</replaceable
+>", "<replaceable
+>value3</replaceable
+>", "<replaceable
+>value4</replaceable
+>", "<replaceable
+>value5</replaceable
+>" )
+</programlisting
+></para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><command
+>DELETE</command
+></term>
+<listitem
+><para
+><programlisting
+>DELETE FROM <replaceable
+>table_name</replaceable
+> WHERE name = "<replaceable
+>text</replaceable
+>"
+</programlisting
+></para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><command
+>UPDATE</command
+></term>
+<listitem
+><para
+><programlisting
+>UPDATE <replaceable
+>table_name</replaceable
+> SET "<replaceable
+>feature1</replaceable
+>" = "<replaceable
+>text</replaceable
+>", "<replaceable
+>feature2</replaceable
+>" = "<replaceable
+>text</replaceable
+>", "<replaceable
+>feature3</replaceable
+>" = "<replaceable
+>text</replaceable
+>", "<replaceable
+>feature4</replaceable
+>" = "<replaceable
+>text</replaceable
+>", "<replaceable
+>feature5</replaceable
+>" = "<replaceable
+>text</replaceable
+>"
+</programlisting
+></para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</example>
+
+</sect3>
+
+<sect3 id="sql-querying-select">
+<title
+>SELECT</title>
+
+<para
+>Nach der Ausführung einer <command
+>SELECT</command
+>-Abfrage wird das Ergebnis als Tabelle in der Ansicht <guilabel
+>SQL-Datenausgabe</guilabel
+> oder als Text in der <guilabel
+>SQL-Textausgabe</guilabel
+> unten im Fenster von &kappname; angezeigt. Fehlermeldungen erscheinen ebenfalls in der Textausgabe.</para>
+
+<example>
+<title
+>Beispiel einer <command
+>SELECT</command
+>-Abfrage</title>
+<para
+><programlisting
+>SELECT * FROM <replaceable
+>table_name</replaceable
+>
+</programlisting
+></para>
+</example>
+
+<para
+>In der Ansicht <guilabel
+>SQL-Datenausgabe</guilabel
+> gibt es mehrere Knöpfe:</para>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guibutton
+>Spaltengröße an Inhalte anpassen</guibutton
+></term>
+<listitem
+><para
+>Ändert die Größe der Spalten, so dass der Inhalt vollständig angezeigt wird.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Zeilengröße an Inhalte anpassen</guibutton
+></term>
+<listitem
+><para
+>Ändert die Größe der Zeilen, so dass der Inhalt vollständig angezeigt wird.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Kopieren</guibutton
+></term>
+<listitem
+><para
+>Wählt den gesamten Inhalt der Tabelle und kopiert ihn in die Zwischenablage.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Exportieren</guibutton
+></term>
+<listitem
+><para
+>Exportiert die gesamte Tabelle in eine Datei, in die Zwischenablage oder das aktuelle Dokument als durch Komma getrennte Werte.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guibutton
+>Zurücksetzen</guibutton
+></term>
+<listitem
+><para
+>Löscht die gesamte Tabellenansicht.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Die in der Tabelle verwendeten Farben können Sie im Einrichtungsdialog auf der Seite <guilabel
+>SQL</guilabel
+> einstellen.</para>
+
+</sect3>
+</sect2>
+
+<sect2 id="sql-browsing">
+<title
+>Datenbank durchsuchen</title>
+
+<para
+>Ihre Datenbank können Sie mit der Ansicht <guilabel
+>SQL-Schema-Browser</guilabel
+> links im Hauptfenster durchsuchen. Die darin angezeigten Informationen hängen vom verwendeten Datenbanktreiber ab.</para>
+
+<para
+>Um die Liste zu aktualisieren, klicken Sie mit der &RMBn; irgendwo in die Ansicht und wählen <guimenuitem
+>Aktualisieren</guimenuitem
+>. Um eine Abfrage für einen Eintrag in der Liste auszuführen, klicken mit der &RMBn; darauf und wählen <guisubmenu
+>Erzeugen</guisubmenu
+> und die Art der Abfrage (<guimenuitem
+>SELECT</guimenuitem
+>, <guimenuitem
+>UPDATE</guimenuitem
+>, <guimenuitem
+>INSERT</guimenuitem
+>, und <guimenuitem
+>DELETE</guimenuitem
+>) aus dem Kontextmenü.</para>
+
+</sect2>
+
+<sect2 id="sql-menus">
+<title
+>Menüstruktur</title>
+<variablelist>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>SQL</guimenu
+><guimenuitem
+>Verbindung hinzufügen ...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Fügt eine neue Verbindung mit einem beliebigen Datenbanktreiber hinzu. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>SQL</guimenu
+><guimenuitem
+>Verbindung entfernen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Entfernt die ausgewählte Verbindung. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>SQL</guimenu
+><guimenuitem
+>Verbindung bearbeiten ...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Öffnet den Dialog <guilabel
+>Verbindungsassistent</guilabel
+>, in dem Sie die Einstellungen der Verbindung ändern können. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Verbindungen</term>
+<listitem
+><para
+>Alle von Ihnen erstellten Datenbankverbindungen werden im Menü <guimenu
+>SQL</guimenu
+> zwischen den Einträgen <guimenuitem
+>Verbindung bearbeiten</guimenuitem
+> und <guimenuitem
+>Abfrage ausführen</guimenuitem
+> angezeigt. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>E</keycap
+></keycombo
+></shortcut
+> <guimenu
+>SQL</guimenu
+><guimenuitem
+>Abfrage ausführen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Startet Ihre SQL-Abfrage. </para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</sect2>
+
+<sect2 id="sql-ack">
+<title
+>Danksagungen</title>
+
+<para
+>Das SQL-Modul wurde von Marco Mentasti geschrieben.</para>
+<para
+>Besonderer Dank geht an den „Google Code-In 2011“-Teilnehmer Ömer Faruk ORUÇ, der den Hauptteil diese Abschnitts geschrieben hat.</para>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="kate-application-plugin-gdb">
+<!--http://kate-editor.org/2011/06/23/kate-plugin-updates-part-2/-->
+<sect1info>
+<authorgroup>
+<author
+><firstname
+>Martin</firstname
+> <surname
+>Gergov</surname
+></author>
+<author
+>&TC.Hollingsworth; &TC.Hollingsworth.mail;</author>
+</authorgroup>
+</sect1info>
+<title
+>&gdb;-Erweiterung</title>
+
+<sect2 id="gdb-intro">
+<title
+>Einleitung</title>
+
+<para
+>&kappname;s &gdb;-Erweiterung stellt eine einfache Oberfläche für den Debugger des &GNU;-Projekts zur Verfügung.</para>
+
+<important>
+<para
+>Erfahrung im Umgang mit &gdb; wird für diese Erweiterung dringend empfohlen. Weitere Informationen über die Anwendung von &gdb; finden Sie auf der <ulink url="http://www.gnu.org/s/gdb/"
+>&gdb;-Webseite</ulink
+>.</para>
+</important>
+
+<para
+>Sie können die &gdb;-Erweiterung im Abschnitt <link linkend="config-dialog-plugins"
+>Erweiterungen</link
+> des Einrichtungsdialogs von &kappname; aktivieren.</para>
+
+<para
+>Damit die Erweiterung richtig funktioniert, brauchen Sie eine Quelltextdatei, deren Typ von &gdb; unterstützt wird, und die ausführbare Programmdatei.</para>
+
+<tip>
+<para
+>Wenn Sie den Compiler &gcc;/<command
+>g++</command
+> verwenden, benötigen Sie das Befehlszeilenargument <command
+><parameter
+>-ggdb</parameter
+></command
+>. </para>
+</tip>
+
+<para
+>Nach diesen Vorbereitungen öffnen Sie die Quelltextdatei in &kappname;, geben den Pfad zum ausführbaren Programm auf der Karteikarte <guilabel
+>Einstellungen</guilabel
+> der <guilabel
+>Debug-Ansicht</guilabel
+> ein und wählen zum Start <menuchoice
+><guimenu
+>Debuggen</guimenu
+><guimenuitem
+>Debuggen starten</guimenuitem
+></menuchoice
+> aus dem Menü.</para>
+
+</sect2>
+
+<sect2 id="gdb-menus">
+<title
+>Menü- und Werkzeugleistenstruktur</title>
+
+<para
+>Alle Aktionen finden Sie in &kappname;s Menüs, viele dieser Aktionen auch in der Werkzeugleiste <guilabel
+>GDB-Erweiterung</guilabel
+>.</para>
+
+<variablelist>
+
+<varlistentry id="gdb-menus-show-debug-view">
+<term
+><menuchoice
+><guimenu
+>Ansicht</guimenu
+><guisubmenu
+>Werkzeugansichten</guisubmenu
+> <guimenuitem
+>Debug-Ansicht anzeigen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Zeigt eine Werkzeugansicht mit der &gdb;-Ausgabe, einer &gdb;-Befehlszeile und weiteren Einstellungen.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="gdb-menus-show-locals">
+<term
+><menuchoice
+><guimenu
+>Ansicht</guimenu
+><guisubmenu
+>Werkzeugansichten</guisubmenu
+> <guimenuitem
+>Lokale Variablen anzeigen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Zeigt eine Liste aller aktuell geladenen Variablen und deren Werte. </para
+></listitem>
+</varlistentry>
+
+<varlistentry id="gdb-menus-show-call-stack">
+<term
+><menuchoice
+><guimenu
+>Ansicht</guimenu
+><guisubmenu
+>Werkzeugansichten</guisubmenu
+> <guimenuitem
+>Aufrufstapel anzeigen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Zeigt einen &gdb;-Backtrace.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="gdb-menus-targets">
+<term
+><menuchoice
+><guimenu
+>Debuggen</guimenu
+><guisubmenu
+>Ziele</guisubmenu
+> </menuchoice
+></term>
+<listitem
+><para
+>Ein Untermenü mit einer Liste von Zielen (ausführbaren Programmen). </para
+></listitem>
+</varlistentry>
+
+<varlistentry id="gdb-menus-arg-lists">
+<term
+><menuchoice
+><guimenu
+>Debuggen</guimenu
+><guisubmenu
+>Argumentlisten</guisubmenu
+> </menuchoice
+></term>
+<listitem
+><para
+>Ein Untermenü mit allen Argumentlisten.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="gdb-menus-start">
+<term
+><menuchoice
+><guimenu
+>Debuggen</guimenu
+> <guimenuitem
+>Debuggen starten</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Startet &gdb; mit einem Ziel.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="gdb-menus-kill">
+<term
+><menuchoice
+><guimenu
+>Debuggen</guimenu
+> <guimenuitem
+>Debuggen beenden/abbrechen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Beendet &gdb;.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="gdb-menus-restart">
+<term
+><menuchoice
+><guimenu
+>Debuggen</guimenu
+> <guimenuitem
+>Debuggen neustarten</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Startet &gdb; erneut.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="gdb-menus-break">
+<term
+><menuchoice
+><guimenu
+>Debuggen</guimenu
+> <guimenuitem
+>Haltepunkt ein-/ausschalten</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Setzt einen Haltepunkt an der aktuellen Cursor-Position. </para
+></listitem>
+</varlistentry>
+
+<varlistentry id="gdb-menus-step-in">
+<term
+><menuchoice
+><guimenu
+>Debuggen</guimenu
+> <guimenuitem
+>Einzelschritt</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Führt die aktuelle Anweisung aus und untersucht die Funktion. </para
+></listitem>
+</varlistentry>
+
+<varlistentry id="gdb-menus-step-over">
+<term
+><menuchoice
+><guimenu
+>Debuggen</guimenu
+> <guimenuitem
+>Funktionsschritt</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Führt die aktuelle Anweisung aus und überspringt die Funktion.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="gdb-menus-step-out">
+<term
+><menuchoice
+><guimenu
+>Debuggen</guimenu
+> <guimenuitem
+>Ausführen bis Rücksprung</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Startet die Ausführung des Programms wieder bis zum Ende der Programmausführung.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="gdb-menus-move-pc">
+<term
+><menuchoice
+><guimenu
+>Debuggen</guimenu
+> <guimenuitem
+>Programmzähler verschieben</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Verschiebt den Programmzähler zur nächsten Ausführung.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="gdb-menus-run-to-cursor">
+<term
+><menuchoice
+><guimenu
+>Debuggen</guimenu
+> <guimenuitem
+>Bis zum Cursor ausführen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Führt das Programm bis zur aktuellen Cursor-Position aus. </para
+></listitem>
+</varlistentry>
+
+<varlistentry id="gdb-menus-continue">
+<term
+><menuchoice
+><guimenu
+>Debug</guimenu
+> <guimenuitem
+>Fortsetzen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Ignoriert alle Haltepunkte und führt das Programm bis zum erfolgreichen Ende oder zum Absturz aus.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="gdb-menus-print-value">
+<term
+><menuchoice
+><guimenu
+>Debuggen</guimenu
+> <guimenuitem
+>Wert anzeigen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Gibt den Wert der Variablen unter der aktuellen Cursor-Position.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="gdb-menus-toolbar">
+<term
+><menuchoice
+><guimenu
+>Einstellungen</guimenu
+><guisubmenu
+>Angezeigte Werkzeugansichten</guisubmenu
+> <guimenuitem
+>&gdb;-Erweiterung</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Blendet die Werkzeugleiste der GDB-Erweiterung ein oder aus.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect2>
+
+<sect2 id="gdb-debug-view">
+<title
+>Debug-Ansicht</title>
+
+<para
+>Die <guilabel
+>Debug-Ansicht</guilabel
+> besteht aus mehreren Karteikarten: </para>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>&gdb;-Ausgabe</guilabel
+></term>
+<listitem>
+<para
+>Enthält die Ausgaben von &gdb; und eine &gdb;-Befehlszeile.</para>
+
+<screenshot id="screenshot-gdb-output">
+<screeninfo
+>Die Karteikarte „GDB-Ausgabe“</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="gdb-output.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Die Karteikarte „GDB-Ausgabe“</phrase
+></textobject>
+<caption
+><para
+>Die Karteikarte <guilabel
+>GDB-Ausgabe</guilabel
+> zeigt die Ausgabe einer Debuggersitzung an.</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Einstellungen</guilabel
+></term>
+<listitem>
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Ziel</guilabel
+></term>
+<listitem
+><para
+>Pfad zum Ziel (ausführbares Programm) zum Debuggen.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Arbeitsordner</guilabel
+></term>
+<listitem
+><para
+>Der aktuelle Arbeitsordner des Ziels. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Argumentliste</guilabel
+></term>
+<listitem
+><para
+>Argumente, die an das Programm übergeben werden.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Aktiviert halten</guilabel
+></term>
+<listitem
+><para
+>Behält den Fokus auf der &gdb;-Befehlszeile.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>E/A umleiten</guilabel
+></term>
+<listitem
+><para
+>Öffnet eine neue Karteikarte <guilabel
+>E/A</guilabel
+> in der <guilabel
+>Debug-Ansicht</guilabel
+>, die die Ausgabe des laufenden Programms zeigt und Eingaben für das Programm ermöglicht.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+<screenshot id="screenshot-gdb-settings">
+<screeninfo
+>Die Karteikarte „Einstellungen“</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="gdb-settings.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Die Karteikarte „Einstellungen“</phrase
+></textobject>
+<caption
+><para
+>Die Karteikarte <guilabel
+>Einstellungen</guilabel
+> zeigt die Einstellungen einer Debuggersitzung an.</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>E/A</guilabel
+></term>
+<listitem>
+<para
+>Enthält eine Karteikarte für die Ausgabe des laufenden Programms und eine Befehlszeile für Eingaben zum Programm.</para>
+
+<screenshot id="screenshot-gdb-io">
+<screeninfo
+>Die Karteikarte „E/A“</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="gdb-io.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Die Karteikarte „E/A“</phrase
+></textobject>
+<caption
+><para
+>Die Karteikarte <guilabel
+>E/A</guilabel
+> mit der Ausgabe eines einfachen Testprogramms.</para
+></caption>
+</mediaobject>
+</screenshot>
+
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect2>
+
+<sect2 id="gdb-other">
+<title
+>Aufrufstapel und lokale Variablen</title>
+
+<para
+>Die Ansicht <guilabel
+>Aufrufstapel</guilabel
+> enthält einen formatierten Backtrace (Rückverfolgung), der von &gdb; ausgegeben wurde.</para>
+
+<screenshot id="screenshot-gdb-call-stack">
+<screeninfo
+>Die Ansicht des &gdb;-Aufrufstapels</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="gdb-call-stack.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Die Ansicht des Aufrufstapels.</phrase
+></textobject>
+<caption
+><para
+>Die Ansicht <guilabel
+>Aufrufstapel</guilabel
+> der &gdb;-Erweiterung. </para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Die Ansicht <guilabel
+>Lokale Variablen</guilabel
+> enthält eine Liste aller zurzeit geladenen Variablen des Programms und die Werte dieser Variablen.</para>
+
+<screenshot id="screenshot-gdb-locals">
+<screeninfo
+>Die Ansicht „Lokale Variablen“ der &gdb;-Erweiterung</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="gdb-locals.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Die Ansicht „Lokale Variablen“ der &gdb;-Erweiterung.</phrase
+></textobject>
+<caption
+><para
+>Die Ansicht <guilabel
+>Lokale Variablen</guilabel
+> der &gdb;-Erweiterung. </para
+></caption>
+</mediaobject>
+</screenshot>
+
+</sect2>
+
+<sect2 id="gdb-ack">
+<title
+>Danksagungen</title>
+
+<para
+>Besonderer Dank geht an den „Google Code-In 2011“-Teilnehmer Martin Gergov, der den Hauptteil diese Abschnitts geschrieben hat.</para>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="kate-application-plugin-konsole">
+<title
+>Werkzeugansicht für Terminal - Werkzeugansicht, die ein Terminal-Element einbettet</title>
+
+<para
+><indexterm
+><primary
+>Terminal-Emulator</primary
+></indexterm
+> Der eingebaute Terminal-Emulator ist eine Kopie der &kde;-Anwendung &konsole;, er ist durch Wählen von <menuchoice
+><guimenu
+>Ansicht</guimenu
+><guisubmenu
+>Werkzeugansichten</guisubmenu
+><guimenuitem
+>Terminal anzeigen</guimenuitem
+></menuchoice
+> aufrufbar und bekommt beim Einschalten den Fokus. Wenn die Option  <link linkend="konsole-config"
+>erminal mit aktuellem Dokument abgleichen</link
+> eingeschaltet ist, wird das Verzeichnis des Terminal-Emulators in das Herkunftsverzeichnis der aktuellen Datei umgeschaltet, wenn dies möglich ist.</para>
+
+<para
+>Die Standardposition ist unten im &kate;-Fenster, unterhalb des Editorfensters.</para>
+
+<para
+>Sie können die Einstellungen des Terminal-Emulators durch das mit der rechten Maustaste aufrufbare Kontextmenü erreichen, sehen Sie im <ulink url="help:/konsole/index.htm"
+>Handbuch zur &konsole;</ulink
+> für weitere Informationen hierzu nach.</para>
+
+<para
+>Der eingebaute Terminal-Emulator wird vom Terminal-Modul bereit gestellt. Als Voreinstellung ist dieses Modul aktiviert. </para>
+
+<sect2 id="konsole-menus">
+<title
+>Menüstruktur</title>
+
+<variablelist>
+
+<varlistentry>
+<term>
+<anchor id="view-toolviews-show-konsole"/>
+<menuchoice
+><guimenu
+>Ansicht</guimenu
+><guisubmenu
+>Werkzeugansichten</guisubmenu
+> <guimenuitem
+>Terminal anzeigen</guimenuitem
+> </menuchoice>
+</term>
+<listitem>
+<para
+>Schaltet die Anzeige des eingebauten Terminal-Emulators ein und aus.</para>
+<para
+>Wenn dieser zum ersten Mal aktiviert wird, dann wird ein neuer Terminal-Emulator erzeugt.</para>
+<para
+>Wenn der Terminal-Emulator gestartet wird, erhält bekommt er den Fokus, damit Sie sofort mit dem Eingeben von Befehlen beginnen können. Wenn die Option <link linkend="konsole-config"
+>Terminal-Ordner automatisch mit aktuellem Dokument abgleichen (wenn möglich)</link
+> auf  der Seite <guilabel
+>Terminal</guilabel
+> des <link linkend="config-dialog"
+>Enrichtungsdialogs</link
+> eingeschaltet ist, wird der Pfad des Terminal-Emulators auf den Pfad des aktiven Dokuments gesetzt, wenn es sich um ein lokales Dokument handelt.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Extras</guimenu
+><guimenuitem
+>An Terminal weitergeben</guimenuitem
+></menuchoice
+></term>
+<listitem
+><para
+>Gibt den aktuell markierten Text an den eingebauten Terminalemulator. An das Ende des Textes wird kein Zeilenendezeichen angehängt.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="tools-sync-terminal-document"/><menuchoice
+><guimenu
+>Extras</guimenu
+> <guimenuitem
+>Terminal mit aktuellem Dokument abgleichen</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Diese Option bewirkt, dass der eingebaute Terminal-Emulator mit <command
+>cd</command
+> zum Ordner des aktuellen Dokuments wechselt,</para>
+
+<para
+>Alternativ können Sie &kappname; so einstellen, dass das Terminal immer in den Ordner des aktuellen Dokuments wechselt. Weitere Informationen finden Sie unter <xref linkend="konsole-config"/>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="tools-focus-terminal"/><menuchoice
+><guimenu
+>Extras</guimenu
+> <guimenuitem
+>Terminal den Fokus geben/entziehen</guimenuitem
+></menuchoice
+></term>
+<listitem>
+<para
+>Schaltet den Fokus vom aktuellen Dokument zum Terminal und zurück. </para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect2>
+
+<sect2 id="konsole-config">
+<title
+>Einstellungen</title>
+
+<para
+>Die Einstellungen für den Terminal-Emulator auf der Seite <guilabel
+>Terminal </guilabel
+> des <link linkend="configuring-kate"
+>Einstellungsdialoges</link
+> vornehmen.</para>
+
+<para
+>Die folgenden Einstellungen können ausgewählt werden:</para>
+
+<variablelist>
+<varlistentry>
+<term>
+<guilabel
+>Terminal-Ordner automatisch mit aktuellem Dokument abgleichen (sofern möglich)</guilabel
+></term>
+<listitem
+><para
+>Diese Option bewirkt, dass der eingebaute Terminal-Emulator  immer mit <command
+>cd</command
+> zum Verzeichnis des aktuellen Dokuments wechselt, wenn ein neues Dokument geöffnet wird oder zu einem anderen Dokument umgeschaltet wird. Wenn ausgeschaltet, müssen Sie alle Wechsel selbst vornehmen. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Die EDITOR-Umgebungsvariable auf „kate -b“ einstellen</guilabel
+></term>
+<listitem
+><para
+>Dies setzt die <envar
+>EDITOR</envar
+>-Umgebungsvariable, so dass Programme im eingebauten Terminal, die automatisch eine Datei in einem Editor öffnen, dafür &kate; anstatt des in der Shell definierten Editors verwenden. Sie können das Terminal erst dann weiter benutzen, wenn Sie die in &kate; geöffnete Datei schließen. Bis dahin wartet das aufrufende Programm auf das Ende der Dateibearbeitung.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</sect2>
+
+</sect1>
+
+<!--
+Missing (according to config docs)
+Additional pages for enabled plugins:
+Backtrace Browser
+Symbol Viewer
+-->
+</chapter>

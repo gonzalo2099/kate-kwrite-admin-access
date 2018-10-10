@@ -1,0 +1,5082 @@
+<!-- auto-generate scripting documentation (kwrite-devel@kde.org Re: [kate] doc/kate: document most of the new scripts in 4.10) -->
+<chapter id="dev">
+<chapterinfo>
+<authorgroup>
+<author
+>&TC.Hollingsworth; &TC.Hollingsworth.mail;</author>
+&Freek.de.Kruijf; 
+</authorgroup>
+</chapterinfo>
+<title
+>&katepart; uitbreiden</title>
+
+<sect1 id="dev-intro">
+<title
+>Inleiding</title>
+
+<para
+>Zoals elke geavanceerde tekstbewerkercomponent biedt &katepart; een aantal manieren om zijn functionaliteit uit te breiden. U kunt <link linkend="dev-scripting"
+>eenvoudige scripts schrijven om functionaliteit toe te voegen met JavaScript</link
+>. Tenslotte, wanneer u &kate;, hebt uitgebreid, bent u welkom om <ulink url="http://kate-editor.org/join-us/"
+>met ons mee te doen</ulink
+> en uw verbeteringen te delen met de wereld!</para>
+
+</sect1>
+
+<sect1 id="highlight">
+<title
+>Werken met syntaxisaccentuering</title>
+
+<sect2 id="highlight-overview">
+
+<title
+>Overzicht</title>
+
+<para
+>Accentuering van syntaxis zorgt er voor dat de tekstbewerker automatisch tekst in verschillende stijlen/kleuren laat zien, afhankelijk van de functie van de tekenreeks in relatie tot het doel van het bestand. In broncode voor programma's bijvoorbeeld, kunnen besturingsstatements vet worden weergegeven, terwijl typen gegevens en commentaar een andere kleur krijgen dan de rest van de tekst. Dit verbetert de leesbaarheid van de tekst enorm en helpt de auteur dus om efficiënter en productiever te zijn.</para>
+
+<mediaobject>
+<imageobject
+><imagedata format="PNG" fileref="highlighted.png"/></imageobject>
+<textobject
+><phrase
+>Een Perl-functie, weergegeven met syntaxisaccentuering.</phrase
+></textobject>
+<caption
+><para
+>Een Perl-functie, weergegeven met syntaxisaccentuering.</para>
+</caption>
+</mediaobject>
+
+<mediaobject>
+<imageobject
+><imagedata format="PNG" fileref="unhighlighted.png"/></imageobject>
+<textobject
+><phrase
+>Dezelfde Perl-functie, weergegeven zonder accentuering.</phrase
+></textobject>
+<caption
+><para
+>Dezelfde Perl-functie, weergegeven zonder accentuering.</para
+></caption>
+</mediaobject>
+
+<para
+>Welke van de twee voorbeelden is gemakkelijker te lezen?</para>
+
+<para
+>&kappname; komt met een flexibel, te configureren en capabel systeem voor accentuering van de syntaxis en de standaard distributie levert definities voor een brede reeks van programmeer-, script- en markup-talen en andere formaten van tekstbestanden. Bovendien kunt u uw eigen definities leveren in eenvoudige &XML;-bestanden.</para>
+
+<para
+>&kappname; zal automatisch de juiste syntaxisregels detecteren wanneer u een bestand opent, gebaseerd op het &MIME;-type van het bestand, bepaald door zijn extensie of, als deze er geen heeft, de inhoud. Ervaart u een foute keuze, dan kunt u handmatig de te gebruiken syntaxis instellen uit het menu <menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guisubmenu
+>Accentuering</guisubmenu
+></menuchoice
+>.</para>
+
+<para
+>De stijlen en kleuren die door elke definitie voor syntaxisaccentuering kan worden ingesteld met het tabblad <link linkend="prefcolors-highlighting-text-styles"
+>Accentuering van tekststijlen</link
+> van de <link linkend="config-dialog"
+>Instellingendialoog</link
+>, terwijl de &MIME;-types en bestandsextensies waarvoor ze gebruikt zouden moeten worden, worden behandeld door het tabblad <link linkend="pref-open-save-modes-filetypes"
+>Modi &amp; bestandstypen</link
+>.</para>
+
+<note>
+<para
+>Syntaxisaccentuering is er om de leesbaarheid van correcte tekst te verhogen, maar u kunt het niet vertrouwen om uw tekst te valideren. Tekst markeren voor syntaxis is moeilijk, afhankelijk van het formaat dat u gebruikt en in sommige gevallen zullen de auteurs van de syntaxisregels trots zijn als 98% van de tekst juist wordt weergegeven, hoewel u meestal een zeldzame stijl nodig hebt om de onjuiste 2% tegen te komen.</para>
+</note>
+
+<tip>
+<para
+>U kunt bijgewerkte of extra definities voor syntaxisaccentuering downloaden van de &kappname;-website door op de knop <guibutton
+>Accentueringsbestanden downloaden...</guibutton
+> te klikken in het tabblad <link linkend="pref-open-save-modes-filetypes"
+>Modi &amp; bestandstypen</link
+> van de <link linkend="config-dialog"
+>Instellingendialoog</link
+>.</para>
+</tip>
+
+</sect2>
+
+<sect2 id="katehighlight-system">
+
+<title
+>Het systeem voor syntaxisaccentuering van &kappname;</title>
+
+<para
+>Deze sectie zal het mechanisme voor syntaxisaccentuering van &kappname; in meer detail laten zien. Het is er voor u als u er iets over wilt weten of als u syntaxis-definities wilt veranderen of aanmaken.</para>
+
+<sect3 id="katehighlight-howitworks">
+
+<title
+>Hoe het werkt</title>
+
+<para
+>Wanneer u een bestand opent, is een van de eerste dingen die de tekstbewerker &kappname; doet, het detecteren van welke syntaxis-definitie voor het bestand moet worden gebruikt. Terwijl de tekst van het bestand wordt ingelezen en terwijl u het intypt, zal het systeem voor syntaxisaccentuering de tekst analyseren met de regels gedefinieerd door de syntaxis-definitie en het markeren waar verschillende contexten en stijlen beginnen en eindigen.</para>
+
+<para
+>Tijdens het typen van het document wordt de nieuwe tekst geanalyseerd en direct gemarkeerd, zodat wanneer u een teken verwijdert die is gemarkeerd als het begin van einde van een context, de stijl van de tekst er omheen overeenkomstig wijzigt.</para>
+
+<para
+>De syntaxis-definities die door het systeem voor syntaxisaccentuering van &kappname; wordt gebruikt zijn &XML;-bestanden, bevattende <itemizedlist>
+<listitem
+><para
+>Regels voor detecteren van de rol van tekst, georganiseerd in contextblokken</para
+></listitem>
+<listitem
+><para
+>Lijsten met sleutelwoorden</para
+></listitem>
+<listitem
+><para
+>Definities van stijl-items</para
+></listitem>
+</itemizedlist>
+</para>
+
+<para
+>Bij het analyseren van de tekst worden de detectieregels geëvalueerd in de volgorde waarin ze zijn gedefinieerd en, als het begin van de huidige tekenreeks overeenkomt met een regel, wordt de gerelateerde context gebruikt. Het beginpunt in de tekst wordt verplaatst naar het eindpunt waarop die regel overeenkomt en een nieuwe ronde van de regels begint, beginnend in de context ingesteld door de overeenkomende regel.</para>
+
+</sect3>
+
+<sect3 id="highlight-system-rules">
+<title
+>Regels</title>
+
+<para
+>De detectieregels zijn het hart van het detectiesysteem voor accentuering. Een regel is een tekenreeks, teken of <link linkend="regular-expressions"
+>reguliere expressie</link
+> waartegen de tekst die wordt geanalyseerd wordt vergeleken. Het bevat informatie over welke stijl te gebruiken voor het overeenkomende deel van de tekst. Het kan de in werking zijnde context van het system omschakelen ofwel naar een expliciet genoemde context of naar de vorige context in gebruik bij de tekst.</para>
+
+<para
+>Regels zijn georganiseerd in contextgroepen. Een contextgroep wordt gebruikt voor hoofdtekstconcepten in het formaat, bijvoorbeeld tekenreeksen tussen aanhalingstekens of commentaarblokken in broncode van programma's. Dit zorgt ervoor dat het accentueringssysteem niet door alle regels hoeft te doorlopen wanneer het niet noodzakelijk is en dat sommige tekenreeksen in de tekst anders kan worden behandeld afhankelijk van de huidige context. </para>
+
+<para
+>Contexts kunnen dynamisch worden gegenereerd om het gebruik van specifieke gegevens bij toestanden in regels toe te staan.</para>
+
+</sect3>
+
+<sect3 id="highlight-context-styles-keywords">
+<title
+>Contextstijlen en sleutelwoorden</title>
+
+<para
+>In sommige programmeertalen worden door de compiler (het programma dat de broncode vertaald in een binair uitvoerbaar programma) gehele getallen anders behandeld dan drijvendekommagetallen en er kunnen tekens zijn met een speciale betekenis in een tekenreeks tussen aanhalingsteken. In zulke gevallen, is het zinvol om ze verschillend weer te geven in hun omgeving zodat ze gemakkelijk zijn te identificeren bij het lezen van de tekst. Dus zelfs als ze speciale contexts representeren, kunnen ze als zodanig door het systeem voor accentuering van syntaxis worden gezien, zodat ze gemarkeerd kunnen worden voor een anders weergeven.</para>
+
+<para
+>Een syntaxis-definitie kan zoveel stijlen bevatten als nodig is om de concepten van het formaat te dekken waarvoor het wordt gebruikt.</para>
+
+<para
+>In vele formaten zijn er lijsten woorden die een specifiek concept representeren. Bijvoorbeeld in programmeertalen, zijn controlstatements een concept, namen van gegevenstypen een andere en ingebouwde functies van de taal een derde. Het accentueringssysteem voor syntaxis van &kappname; kan zulke lijsten gebruiken om woorden in de tekst te detecteren en te markeren om concepten te accentueren van de tekstformaten.</para>
+
+</sect3>
+
+<sect3 id="kate-highlight-system-default-styles">
+<title
+>Standaard stijlen</title>
+
+<para
+>Als u in &kappname; een C++ bronbestand, een &Java; bronbestand en een <acronym
+>HTML</acronym
+> document opent, dan zult u zien dat zelfs wanneer de formaten verschillend zijn en dus verschillende woorden voor een speciale behandeling worden gekozen, de gebruikte kleuren hetzelfde zijn. Dit komt omdat &kappname; een voorgedefinieerde lijst met standaard stijlen heeft die worden gebruikt bij de individuele definities van syntaxis.</para>
+
+<para
+>Dit maakt het gemakkelijk om gelijkvormige concepten in verschillende tekstformaten te herkennen. Bijvoorbeeld: commentaar is in bijna elk programma, script of markup-language aanwezig en wanneer ze in alle talen op dezelfde manier worden weergegeven, dan hoeft u niet meer na te denken om ze in de tekst te herkennen.</para>
+
+<tip>
+<para
+>Alle stijlen in een syntaxisdefinitie gebruiken een van de standaard stijlen. Een paar syntaxisdefinities gebruiken meer stijlen dan er standaarden zijn, dus als u een format vaak gebruikt kan het het waard zijn om de instellingendialoog te starten om te zien of sommige concepten dezelfde stijl gebruiken. Er is bijvoorbeeld slechts één standaard stijl voor tekenreeksen, maar de Perl programmeertaal werkt met twee typen tekenreeksen, u kunt het accentueren verbeteren door ze enigszins verschillend in te stellen. Alle <link linkend="kate-highlight-default-styles"
+>beschikbare standaard stijlen</link
+> zullen later worden verklaard.</para>
+</tip>
+
+</sect3>
+
+</sect2>
+
+<sect2 id="katehighlight-xml-format">
+<title
+>Het &XML;-formaat voor definitie van accentuering</title>
+
+<sect3>
+<title
+>Overzicht</title>
+
+<para
+>&kappname; gebruikt het framework  voor accentuering van sysntaxis uit &kde-frameworks;. De standaard xml-bestanden voor accentuering geleverd met &kappname; zijn standaard gecompileerd in de bibliotheek voor accentuering van syntaxis. </para>
+
+<para
+>Deze sectie is een overzicht van het formaat van 'Highlight Definition &XML;'. Het zal de hoofdcomponenten, hun betekenis en gebruik beschrijven op basis van een klein voorbeeld. De volgende sectie zal in detail de accentueringdetectieregels uitleggen.</para>
+
+<para
+>De formele definitie, ook bekend als <acronym
+>XSD</acronym
+> kunt u vinden in <ulink url="https://commits.kde.org/syntax-highlighting?path=data/schema"
+>Opslagruimte voor accentuering van syntaxis</ulink
+> in het bestand <filename
+>taal.xsd</filename
+> </para>
+
+<para
+>Zelf gemaakte <filename class="extension"
+>.xml</filename
+> bestanden voor definitie van accentuering zijn geplaatst in <filename class="directory"
+>org.kde.syntax-highlighting/syntax/</filename
+> in uw gebruikersmap te vinden met <userinput
+><command
+>qtpaths</command
+><option
+>--paths GenericDataLocation</option
+></userinput
+> die gebruikelijk <filename class="directory"
+><envar
+>$HOME</envar
+>/.local/share</filename
+> is </para>
+
+<para
+>Op &Windows; zijn deze bestanden gelokaliseerd in <filename
+>%USERPROFILE%/AppData/Local/org.kde.syntax-highlighting/syntax</filename
+>. <replaceable
+>%USERPROFILE%</replaceable
+> wordt gewoonlijk <filename
+>C:\\Users\\<replaceable
+>gebruiker</replaceable
+></filename
+>.</para>
+
+<variablelist>
+<title
+>Hoofdsecties van bestanden voor accentueringsdefinities van &kappname;</title>
+
+<varlistentry>
+<term
+>Een bestand voor accentuering bevat een kop die de XML-versie instelt:</term>
+<listitem>
+<programlisting
+>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+</programlisting>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>De basis van het definitiebestand is het element <userinput
+>language</userinput
+>. Beschikbare attributen zijn:</term>
+
+<listitem>
+<para
+>Vereiste attributen:</para>
+<para
+><userinput
+>name</userinput
+> stelt de naam van de taal in. Het verschijnt nadien in de menu's en dialogen.</para>
+<para
+><userinput
+>section</userinput
+> specificeert de categorie.</para>
+<para
+><userinput
+>extensions</userinput
+> definieert bestandsextensies, zoals &quot;*.cpp;*.h&quot;</para>
+<para
+><userinput
+>versie</userinput
+> specificeert de huidige revisie van het definitiebestand in termen van een geheel getal. Wanneer u een geaccentueerd definitiebestand wijzigt, verzeker u ervan dat dit getal wordt verhoogt.</para>
+<para
+><userinput
+>kateversion</userinput
+> specificeert de laatst ondersteunde versie van &kappname;.</para>
+
+<para
+>Optionele attributen:</para>
+<para
+><userinput
+>mimetype</userinput
+> associeert ket &MIME;-type van bestanden.</para>
+<para
+><userinput
+>casesensitive</userinput
+> definieert of de sleutelwoorden gevoelig zijn voor hoofd- en kleine letters.</para>
+<para
+><userinput
+>priority</userinput
+> is nodig als een andere bestand met accentueringsdefinities dezelfde extensies gebruiken. De hogere prioriteit wint.</para>
+<para
+><userinput
+>author</userinput
+> bevat de naam van de auteur en zijn/haar e-mailadres.</para>
+<para
+><userinput
+>license</userinput
+> bevat de licentie, gewoonlijk de MIT licentie voor nieuwe bestanden met accentuering van syntaxis.</para>
+<para
+><userinput
+>style</userinput
+> bevat de geleverde taal en wordt gebruikt door de indenteerders voor het attribuut <literal
+>required-syntax-style</literal
+>.</para>
+<para
+><userinput
+>hidden</userinput
+> definieert of de naam moet verschijnen in de menu's van &kappname;.</para>
+<para
+>De volgende regel kan er als volgt uitzien:</para>
+<programlisting
+>&lt;language name=&quot;C++&quot; version=&quot;1&quot; kateversion=&quot;2.4&quot; section=&quot;Sources&quot; extensions=&quot;*.cpp;*.h&quot; /&gt;
+</programlisting>
+</listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+>Vervolgens komt het element <userinput
+>highlighting</userinput
+>, die het optionele element <userinput
+>list</userinput
+> bevat en de vereiste elementen <userinput
+>contexts</userinput
+> en <userinput
+>itemDatas</userinput
+>.</term>
+<listitem>
+<para
+>Elementen <userinput
+>list</userinput
+> bevatten een lijst met sleutelwoorden. In dit geval zijn de sleutelwoorden <emphasis
+>class</emphasis
+> en <emphasis
+>const</emphasis
+>. U mag zoveel elementen 'list' toevoegen als nodig is.</para>
+<para
+>Het element <userinput
+>contexts</userinput
+> bevat alle contexten. De eerste context is per definitie het begin van de accentuering. Er zijn twee regels in de context <emphasis
+>Normal Text</emphasis
+>, die overeenkomt met de lijst sleutelwoorden met de naam <emphasis
+>somename</emphasis
+> en een regel die een aanhalingsteken detecteert en de context om schakelt naar <emphasis
+>String</emphasis
+>. Om meer over regels te leren, leest u het volgende hoofdstuk.</para>
+<para
+>Het derde deel is het element <userinput
+>itemDatas</userinput
+>. Het bevat alle kleur- en lettertypestijlen nodig voor de contexten en regels. In dit voorbeeld worden <userinput
+>itemData</userinput
+> <emphasis
+>Normal Text</emphasis
+>, <emphasis
+>String</emphasis
+> en <emphasis
+>Keyword</emphasis
+> gebruikt. </para>
+<programlisting
+>&lt;highlighting&gt;
+    &lt;list name=&quot;somename&quot;&gt;
+      &lt;item&gt; class &lt;/item&gt;
+      &lt;item&gt; const &lt;/item&gt;
+    &lt;/list&gt;
+    &lt;contexts&gt;
+      &lt;context attribute=&quot;Normal Text&quot; lineEndContext=&quot;#pop&quot; name=&quot;Normal Text&quot; &gt;
+        &lt;keyword attribute=&quot;Keyword&quot; context=&quot;#stay&quot; String=&quot;somename&quot; /&gt;
+        &lt;DetectChar attribute=&quot;String&quot; context=&quot;string&quot; char=&quot;&amp;quot;&quot; /&gt;
+      &lt;/context&gt;
+      &lt;context attribute=&quot;String&quot; lineEndContext=&quot;#stay&quot; name=&quot;string&quot; &gt;
+        &lt;DetectChar attribute=&quot;String&quot; context=&quot;#pop&quot; char=&quot;&amp;quot;&quot; /&gt;
+      &lt;/context&gt;
+    &lt;/contexts&gt;
+    &lt;itemDatas&gt;
+      &lt;itemData name=&quot;Normal Text&quot; defStyleNum=&quot;dsNormal&quot; /&gt;
+      &lt;itemData name=&quot;Keyword&quot; defStyleNum=&quot;dsKeyword&quot; /&gt;
+      &lt;itemData name=&quot;String&quot; defStyleNum=&quot;dsString&quot; /&gt;
+    &lt;/itemDatas&gt;
+  &lt;/highlighting&gt;
+</programlisting>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Het laatste deel van een accentueringsdefinitie is de optionele sectie <userinput
+>general</userinput
+>. Het mag informatie over sleutelwoorden, vouwen van code, commentaar en inspringen bevatten.</term>
+
+<listitem>
+<para
+>De sectie <userinput
+>comment</userinput
+> definieert met welke tekenreeks een enkele regel commentaar wordt aangegeven. U kunt ook commentaar op meerdere regels definiëren met <emphasis
+>multiLine</emphasis
+> met het additionele attribuut <emphasis
+>end</emphasis
+>. Dit wordt gebruikt als de gebruiker op de bijbehorende sneltoets voor <emphasis
+>comment/uncomment</emphasis
+> drukt.</para>
+<para
+>De sectie <userinput
+>keywords</userinput
+> definieert of lijsten met sleutelwoorden onderscheid maken tussen hoofd- en kleine letters. Andere attributen zullen later worden verklaard.</para>
+<programlisting
+>&lt;general&gt;
+    &lt;comments&gt;
+      &lt;comment name="singleLine" start="#"/&gt;
+    &lt;/comments&gt;
+    &lt;keywords casesensitive="1"/&gt;
+  &lt;/general&gt;
+&lt;/language&gt;
+</programlisting>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+
+</sect3>
+
+<sect3 id="kate-highlight-sections">
+<title
+>De secties in detail</title>
+<para
+>Dit deel zal alle beschikbare attributen voor contexten beschrijven, itemDatas, sleutelwoorden, commentaar, code opvouwen en inspringen.</para>
+
+<variablelist>
+<varlistentry>
+<term
+>Het element <userinput
+>context</userinput
+> behoort tot de groep <userinput
+>contexts</userinput
+>. Een context zelf definieert context specifieke regels zoals wat zou moeten gebeuren als het systeem voor accentuering het eind van een regel bereikt. Beschikbare attributen zijn:</term>
+
+
+<listitem>
+<para
+><userinput
+>name</userinput
+> geeft de contextnaam aan. Regels zullen deze naam gebruiken om de context te specificeren om om te schakelen als de regel overeenkomt.</para>
+<para
+><userinput
+>lineEndContext</userinput
+> definieert de context waarnaar het systeem voor accentuering omschakelt als het einde van een regel wordt bereikt. Dit kan of de naam van een andere context zijn, <userinput
+>#stay</userinput
+> om de context niet om te schakelen (&eg;. niets doen) of <userinput
+>#pop</userinput
+> wat de oorzaak is van het verlaten van deze context. Het is mogelijk om bijvoorbeeld <userinput
+>#pop#pop#pop</userinput
+> te gebruiken om drie keer te poppen of zelfs <userinput
+>#pop#pop!AndereContext</userinput
+> om twee keer te poppen en om te schakelen naar de context genaamd <userinput
+>AndereContext</userinput
+>.</para>
+<para
+><userinput
+>lineEmptyContext</userinput
+> definieert de context als een lege regel wordt bereikt. Standaard: #stay.</para>
+<para
+><userinput
+>fallthrough</userinput
+> definieert of het systeem voor accentuering omschakelt naar de context gespecificeerd in fallthroughContext als er geen regel overeenkomt. Standaard: <emphasis
+>false</emphasis
+>.</para>
+<para
+><userinput
+>fallthroughContext</userinput
+> specificeert de volgende context als geen regel overeenkomt.</para>
+<para
+><userinput
+>dynamic</userinput
+> indien <emphasis
+>true</emphasis
+>, dan herinnert de context tekenreeksen/plaatshouders opgeslagen door dynamische regels. Dit is bijvoorbeeld nodig voor HIER-documenten. Standaard: <emphasis
+>false</emphasis
+>.</para>
+</listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+>Het element <userinput
+>itemData</userinput
+> is in de groep <userinput
+>itemDatas</userinput
+>. Het definieert de lettertypestijl en kleuren. Het is dus mogelijk om uw eigen stijlen en kleuren te definiëren. Wij bevelen echter aan om, indien mogelijk, bij de standaard stijlen te blijven zodat de gebruiker altijd dezelfde zal zien in verschillende talen. Soms is er echter geen andere manier en is het noodzakelijk de kleur- en lettertypeattributen te wijzigen. De attributen naam en defStyleNum zijn vereist, de anderen zijn optioneel. Beschikbare attributen zijn:</term>
+
+<listitem>
+<para
+><userinput
+>name</userinput
+> stelt de naam van het itemData in. Contexten en regels zullen deze naam in hun attribuut <emphasis
+>attribute</emphasis
+> gebruiken om naar een itemData te verwijzen.</para>
+<para
+><userinput
+>defStyleNum</userinput
+> definieert welke standaard stijl te gebruiken. Beschikbare standaard stijlen worden later in detail verklaard.</para>
+<para
+><userinput
+>color</userinput
+> definieert een kleur. Geldige formaten zijn '#rrggbb' of '#rgb'.</para>
+<para
+><userinput
+>selColor</userinput
+> definieert de selectiekleur.</para>
+<para
+><userinput
+>italic</userinput
+> indien <emphasis
+>true</emphasis
+>, de tekst zal cursief worden.</para>
+<para
+><userinput
+>bold</userinput
+> indien <emphasis
+>true</emphasis
+>, de tekst zal vet worden.</para>
+<para
+><userinput
+>underline</userinput
+> indien <emphasis
+>true</emphasis
+>, de tekst zal onderstreept worden.</para>
+<para
+><userinput
+>strikeout</userinput
+> indien <emphasis
+>true</emphasis
+>, door de tekst zal een streep worden gezet.</para>
+<para
+><userinput
+>spellChecking</userinput
+> indien <emphasis
+>true</emphasis
+>, de tekst zal gecontroleerd worden op spelling.</para>
+</listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+>Het element <userinput
+>keywords</userinput
+> in de groep <userinput
+>general</userinput
+> definieert sleutelwoordeigenschappen. Beschikbare attributen zijn:</term>
+
+<listitem>
+<para
+><userinput
+>casesensitive</userinput
+> mag <emphasis
+>true</emphasis
+> of <emphasis
+>false</emphasis
+> zijn. Indien <emphasis
+>true</emphasis
+>, worden alle sleutelwoorden met onderscheid tussen hoofd- en kleine letters met elkaar vergeleken</para>
+<para
+><userinput
+>weakDeliminator</userinput
+> is een lijst met tekens die niet als scheiding tussen woorden werken. Bijvoorbeeld: de punt <userinput
+>'.'</userinput
+> is een scheider van woorden. Als een sleutelwoord in een <userinput
+>list</userinput
+> een punt bevat, dan zal die alleen overeenkomen als u de punt als een zwak scheidingsteken specificeert.</para>
+<para
+><userinput
+>additionalDeliminator</userinput
+> definieert extra scheidingstekens.</para>
+<para
+><userinput
+>wordWrapDeliminator</userinput
+> definieert tekens waarna een regel mag afbreken.</para>
+<para
+>Standaard scheidingstekens en regelafbreektekens zijn de tekens <userinput
+>.():!+,-&lt;=&gt;%&amp;*/;?[]^{|}~\</userinput
+>, spatie (<userinput
+>' '</userinput
+>) en tab (<userinput
+>'\t'</userinput
+>).</para>
+</listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+>Het element <userinput
+>comment</userinput
+> in de groep <userinput
+>comments</userinput
+> definieert eigenschappen van commentaar die gebruikt worden voor <menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guimenuitem
+>Commentaar</guimenuitem
+></menuchoice
+> en <menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+> <guimenuitem
+>Commentaar verwijderen</guimenuitem
+></menuchoice
+>. Beschikbare attributen zijn:</term>
+
+<listitem>
+<para
+><userinput
+>name</userinput
+> is either <emphasis
+>singleLine</emphasis
+> or <emphasis
+>multiLine</emphasis
+>. If you choose <emphasis
+>multiLine</emphasis
+> the attributes <emphasis
+>end</emphasis
+> and <emphasis
+>region</emphasis
+> are required.</para>
+<para
+><userinput
+>start</userinput
+> definieert de gebruikte tekenreeks om commentaar te laten beginnen. In C++ zou dit &quot;/*&quot; zijn.</para>
+<para
+><userinput
+>end</userinput
+> definieert de gebruikte tekenreeks om commentaar te laten eindigen. In C++ zou dit &quot;*/&quot; zijn.</para>
+<para
+><userinput
+>region</userinput
+> moet de naam van het opvouwbare multiregel commentaar. U hebt <emphasis
+>beginRegion="Comment"</emphasis
+> ... <emphasis
+>endRegion="Comment"</emphasis
+> in uw regels, u zou <emphasis
+>region="Comment"</emphasis
+> moeten gebruiken. Op deze manier werkt verwijderen zelfs als u niet alle tekst van het multiregel commentaar selecteert. De cursor hoeft alleen in het multiregel commentaar te staan.</para>
+</listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+>Het element <userinput
+>folding</userinput
+> in de groep <userinput
+>general</userinput
+> definieert de eigenschappen van het invouwen van broncode. Beschikbare attributen zijn:</term>
+
+<listitem>
+<para
+>De markeringen voor code opvouwen, als <userinput
+>indentationsensitive</userinput
+> <emphasis
+>true</emphasis
+> is, zullen worden toegevoegd gebaseerd op inspringen, zoals in de scripttaal Python. Het is gewoonlijk niet nodig dit in te stellen omdat de standaard <emphasis
+>false</emphasis
+> is.</para>
+</listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+>Het element <userinput
+>indentation</userinput
+> in de groep <userinput
+>general</userinput
+> definieert welke inspringing gebruikt zal worden. We bevelen ten zeerste aan om dit element over te slaan, omdat de inspringing gewoonlijk ingesteld zal worden door ofwel een Bestandstype of door een modusregel toe te voegen aan het tekstbestand. Als u toch een inspringing definieert, forceert u een specifieke inspringing op de gebruiker, die hij helemaal niet wil. Beschikbare attributen zijn:</term>
+
+<listitem>
+<para
+><userinput
+>mode</userinput
+> is de naam van de inspringing. Beschikbare inspringingen op dit moment zijn: <emphasis
+>normal, cstyle, haskell, lilypond, lisp, python, ruby</emphasis
+> en <emphasis
+>xml</emphasis
+>.</para>
+</listitem>
+</varlistentry>
+
+
+</variablelist>
+
+
+</sect3>
+
+<sect3 id="kate-highlight-default-styles">
+<title
+>Beschikbare standaard stijlen</title>
+<para
+>Standaard stijlen zijn <link linkend="kate-highlight-system-default-styles"
+>al verklaard</link
+>, als een korte samenvatting: Standaard stijlen zijn voorgedefinieerde lettertypen- en kleurstijlen.</para>
+<variablelist>
+<varlistentry>
+<term
+>Algemene standaard stijlen:</term>
+<listitem>
+<para
+><userinput
+>dsNormal</userinput
+>, wanneer geen speciale accentuering is vereist.</para>
+<para
+><userinput
+>dsKeyword</userinput
+>, ingebouwde sleutelwoorden van taal.</para>
+<para
+><userinput
+>dsFunction</userinput
+>, functie-aanroepen en definities.</para>
+<para
+><userinput
+>dsVariable</userinput
+>, indien van toepassing: namen van variabelen (bijv. $eenVar in PHP/Perl).</para>
+<para
+><userinput
+>dsControlFlow</userinput
+>, sleutelwoorden voor flowcontrol zoals if, else, switch, break, return, yield, ...</para>
+<para
+><userinput
+>dsOperator</userinput
+>, operatoren zoals + - * / :: &lt; &gt;</para>
+<para
+><userinput
+>dsFunction</userinput
+>, ingebouwde functies, klassen en objecten.</para>
+<para
+><userinput
+>dsExtension</userinput
+>, algemene extensies, zoals Qt klassen en functies/macro's in C++ en Python.</para>
+<para
+><userinput
+>dsPreprocessor</userinput
+>, preprocessor statements of macro-definities.</para>
+<para
+><userinput
+>dsAttribute</userinput
+>, annotaties zoals @override en __declspec(...).</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Standaard stijlen gerelateerd aan tekenreeksen</term>
+<listitem>
+<para
+><userinput
+>dsChar</userinput
+>, enkele tekens, zoals 'x'.</para>
+<para
+><userinput
+>dsSpecialChar</userinput
+>, tekens met een speciale betekenis in tekenreeksen zoals escapes, substituties of regex-operatoren.</para>
+<para
+><userinput
+>dsString</userinput
+>, tekenreeksen zoals "hello world".</para>
+<para
+><userinput
+>dsVerbatimString</userinput
+>, letterlijke of raw-tekenreeksen zoals 'raw \backlash' in Perl, CoffeeScript en shells, evenals r'\raw' in Python.</para>
+<para
+><userinput
+>dsSpecialString</userinput
+>, SQL, regexes, HERE-docs, LaTeX math mode, ...</para>
+<para
+><userinput
+>dsImport</userinput
+>, import, include, require van modulen.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Standaard stijlen gerelateerd aan getallen:</term>
+<listitem>
+<para
+><userinput
+>dsDataType</userinput
+>, ingebouwde typen gegevens zoals int, void, u64.</para>
+<para
+><userinput
+>dsDecVal</userinput
+>, decimale waarden.</para>
+<para
+><userinput
+>dsBaseN</userinput
+>, waarden met een andere basis dan 10.</para>
+<para
+><userinput
+>dsFloat</userinput
+>, drijvende-komma waarden.</para>
+<para
+><userinput
+>dsConstant</userinput
+>, ingebouwde en gebruikergedefineerde constanten zoals pi.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Standaard stijlen gerelateerd aan commentaar en documentatie:</term>
+<listitem>
+<para
+><userinput
+>dsComment</userinput
+>, commentaar.</para>
+<para
+><userinput
+>dsDocumentation</userinput
+>, /** Documentatie commentaar */ of """docstrings""".</para>
+<para
+><userinput
+>dsAnnotation</userinput
+>, documentatiecommando's zoals @param, @brief.</para>
+<para
+><userinput
+>dsCommentVar</userinput
+>, de in bovenstaande commando's gebruikte namen van variabelen, zoals "foobar" in @param foobar.</para>
+<para
+><userinput
+>dsRegionMarker</userinput
+>, gebiedsmarkeringen zoals//BEGIN, //END in commentaar.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Andere standaard stijlen:</term>
+<listitem>
+<para
+><userinput
+>dsInformation</userinput
+>, notities en tips zoals @note in doxygen.</para>
+<para
+><userinput
+>dsWarning</userinput
+>, waarschuwingen zoals @warning in doxygen.</para>
+<para
+><userinput
+>dsAlert</userinput
+>, speciale woorden zoals TODO, FIXME, XXXX.</para>
+<para
+><userinput
+>dsError</userinput
+>, accentuering van fouten en foute syntaxis.</para>
+<para
+><userinput
+>dsOthers</userinput
+>, wanneer niets anders past.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+</sect3>
+
+</sect2>
+
+<sect2 id="kate-highlight-rules-detailled">
+<title
+>Detectieregels accentueren</title>
+
+<para
+>Deze paragraaf beschrijft de syntaxis van detectieregels.</para>
+
+<para
+>Elke regel kan nul of meer tekens aan het begin van de tekenreeks bevatten, waartegen ze worden getest. Als de regel overeenkomt worden de overeenkomstige tekens toegekend aan de stijl of <emphasis
+>attribuut</emphasis
+> gedefinieerd door de regel en een regel kan vragen de huidige context om te schakelen.</para>
+
+<para
+>Een regel ziet er als volgt uit:</para>
+
+<programlisting
+>&lt;RuleName attribute=&quot;(identifier)&quot; context=&quot;(identifier)&quot; [regelspecifieke attributen] /&gt;</programlisting>
+
+<para
+>Het <emphasis
+>attribute</emphasis
+> identificeert de te gebruiken stijl voor overeenkomende tekens bij naam en de <emphasis
+>context</emphasis
+> identificeert de vanaf hier te gebruiken context.</para>
+
+<para
+>De <emphasis
+>context</emphasis
+> kan worden geïdentificeerd door:</para>
+
+<itemizedlist>
+<listitem>
+<para
+>Een <emphasis
+>identifier</emphasis
+>, wat de naam is van de andere context.</para>
+</listitem>
+<listitem>
+<para
+>Een <emphasis
+>opdracht</emphasis
+> die de engine vertelt om in de huidige context te blijven (<userinput
+>#stay</userinput
+>) of terug te gaan naar een eerdere context met in de tekenreeks (<userinput
+>#pop</userinput
+>).</para>
+<para
+>Om meer stappen terug te gaan kan het #pop commando worden herhaald: <userinput
+>#pop#pop#pop</userinput
+></para>
+</listitem>
+<listitem>
+<para
+>Een <emphasis
+>order</emphasis
+> gevolgd door een uitroepteken (<emphasis
+>!</emphasis
+>) en een <emphasis
+>identifier</emphasis
+>, die er voor zorgt dat de engine eerst de order volgt en dan omschakelt naar de andere context, bijv. <userinput
+>#pop#pop!AndereContext</userinput
+>.</para>
+</listitem>
+</itemizedlist>
+
+<para
+>Sommige regels kunnen <emphasis
+>dochterregels</emphasis
+> hebben die dan alleen worden geëvalueerd als de ouderregel overeenkomt. De gehele overeenkomende tekenreeks zal het attribuut worden gegeven die is gedefinieerd door de ouderregel. Een regel met dochterregels ziet er als volgt uit:</para>
+
+<programlisting
+>&lt;RuleName (attributen)&gt;
+  &lt;ChildRuleName (attributen) /&gt;
+  ...
+&lt;/RuleName&gt;
+</programlisting>
+
+
+<para
+>Specifieke attributen van regels variëren en zijn beschreven in de volgende secties.</para>
+
+
+<itemizedlist>
+<title
+>Gezamenlijke attributen</title>
+<para
+>Alle regels hebben de volgende gezamenlijke attributen en zijn beschikbaar wanneer <userinput
+>(common attributes)</userinput
+> verschijnt. <emphasis
+>attribute</emphasis
+> en <emphasis
+>context</emphasis
+> zijn vereiste attributen, alle andere zijn optioneel. </para>
+
+<listitem>
+<para
+><emphasis
+>attribute</emphasis
+>: Een attribuut komt overeen met een gedefinieerd <emphasis
+>itemData</emphasis
+>.</para>
+</listitem>
+<listitem>
+<para
+><emphasis
+>context</emphasis
+>: Specificeer de context waarnaar het accentueringssysteem omschakelt als de regel overeenkomt.</para>
+</listitem>
+<listitem>
+<para
+><emphasis
+>beginRegion</emphasis
+>: Start een invouwblok voor code. Standaard: niet ingesteld.</para>
+</listitem>
+<listitem>
+<para
+><emphasis
+>endRegion</emphasis
+>: Sluit een invouwblok voor code. Standaard: niet ingesteld.</para>
+</listitem>
+<listitem>
+<para
+><emphasis
+>lookAhead</emphasis
+>: Indien <emphasis
+>true</emphasis
+>, zal het accentueringssysteem niet de overeenkomende lengte verwerken. Standaard: <emphasis
+>false</emphasis
+>.</para>
+</listitem>
+<listitem>
+<para
+><emphasis
+>firstNonSpace</emphasis
+>: Komt alleen overeen als de tekenreeks de eerste niet-witruimte in de regel. Standaard: <emphasis
+>false</emphasis
+>.</para>
+</listitem>
+<listitem>
+<para
+><emphasis
+>column</emphasis
+>: Komt alleen overeen als de kolom overeenkomt. Standaard: niet ingesteld.</para>
+</listitem>
+</itemizedlist>
+
+<itemizedlist>
+<title
+>Dynamische regels</title>
+<para
+>Sommige regels staan het optionele attribuut <userinput
+>dynamic</userinput
+> toe van het type boolean dat standaard de waarde <emphasis
+>false</emphasis
+> heeft. Als dynamic <emphasis
+>true</emphasis
+> is kan een regel plaatshouders bevatten die de tekst representeren die overeenkomt met een <emphasis
+>reguliere expressie</emphasis
+> die schakelt naar de huidige context in zijn attributen <userinput
+>tekenreeks</userinput
+> of <userinput
+>teken</userinput
+>. In een <userinput
+>tekenreeks</userinput
+>wordt de plaatshouder <replaceable
+>%N</replaceable
+> (waar N is a getal is) vervangen door de overeenkomstige vangst <replaceable
+>N</replaceable
+> uit de aanroepende reguliere expressie. In een <userinput
+>teken</userinput
+> moet de plaatshouder een getal <replaceable
+>N</replaceable
+> zijn en het zal worden vervangen door het eerste teken van de overeenkomstige vangst <replaceable
+>N</replaceable
+> uit de aanroepende reguliere expressie. Wanneer een regel dit attribuut toestaat zal het een <emphasis
+>(dynamic)</emphasis
+> bevatten.</para>
+
+<listitem>
+<para
+><emphasis
+>dynamic</emphasis
+>: kan <emphasis
+>(true|false)</emphasis
+> zijn.</para>
+</listitem>
+</itemizedlist>
+
+<sect3 id="highlighting-rules-in-detail">
+<title
+>De regels in detail</title>
+
+<variablelist>
+<varlistentry>
+<term
+>DetectChar</term>
+<listitem>
+<para
+>Detecteert een enkele specifiek teken. Gewoonlijk gebruikt, bijvoorbeeld om het einde van een tekenreeks tussen accenten of aanhalingstekens.</para>
+<programlisting
+>&lt;DetectChar char=&quot;(teken)&quot; (common attributes) (dynamic) /&gt;</programlisting>
+<para
+>Het attribuut <userinput
+>char</userinput
+> definieert het teken dat moet overeenkomen.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Detect2Chars</term>
+<listitem>
+<para
+>Detecteert twee specifieke tekens in een gedefinieerde volgorde.</para>
+<programlisting
+>&lt;Detect2Chars char=&quot;(teken)&quot; char1=&quot;(teken)&quot; (common attributes) (dynamic) /&gt;</programlisting>
+<para
+>Het attribuut <userinput
+>char</userinput
+> definieert het eerste teken dat moet overeenkomen, <userinput
+>char1</userinput
+> the tweede.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>AnyChar</term>
+<listitem>
+<para
+>Detecteer één teken van een set van gespecificeerde tekens.</para>
+<programlisting
+>&lt;AnyChar String=&quot;(tekenreeks)&quot; (common attributes) /&gt;</programlisting>
+<para
+>Het attribuut <userinput
+>String</userinput
+> definieert de set tekens.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>StringDetect</term>
+<listitem>
+<para
+>Detecteert een exacte tekenreeks.</para>
+<programlisting
+>&lt;StringDetect String=&quot;(tekenreeks)&quot; [insensitive=&quot;true|false&quot;] (common attributes) (dynamic) /&gt;</programlisting>
+<para
+>Het attribuut <userinput
+>String</userinput
+> definieert de overeen te komen tekenreeks. Het attribuut <userinput
+>insensitive</userinput
+> is standaard <emphasis
+>false</emphasis
+> en wordt doorgegeven aan de vergelijkingsfunctie van de tekenreeks. Als de waarde <emphasis
+>true</emphasis
+> is wordt 'insensitive' vergelijking gebruikt.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>WordDetect</term>
+<listitem>
+<para
+>Detecteert een exacte tekenreeks maar vereist extra woordgrenzen zoals een punt <userinput
+>'.'</userinput
+> of witruimte aan het begin en eind van het woord. Denk aan <userinput
+>\b&lt;tekenreeks&gt;\b</userinput
+> in termen van een reguliere expressie, het is echter sneller dan de regel <userinput
+>RegExpr</userinput
+>.</para>
+<programlisting
+>&lt;WordDetect String=&quot;(tekenreeks)&quot; [insensitive=&quot;true|false&quot;] (common attributes) (dynamic) /&gt;</programlisting>
+<para
+>Het attribuut <userinput
+>String</userinput
+> definieert de overeen te komen tekenreeks. Het attribuut <userinput
+>insensitive</userinput
+> is standaard <emphasis
+>false</emphasis
+> en wordt doorgegeven aan de vergelijkingsfunctie van de tekenreeks. Als de waarde <emphasis
+>true</emphasis
+> is wordt 'insensitive' vergelijking gebruikt.</para>
+<para
+>Sinds: Kate 3.5 (KDE 4.5)</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>RegExpr</term>
+<listitem>
+<para
+>Komt overeen met een reguliere expressie.</para>
+<programlisting
+>&lt;RegExpr String=&quot;(tekenreeks)&quot; [insensitive=&quot;true|false&quot;] [minimal=&quot;true|false&quot;] (common attributes) (dynamic) /&gt;</programlisting>
+<para
+>Het attribuut <userinput
+>String</userinput
+> definieert de reguliere expressie.</para>
+<para
+><userinput
+>insensitive</userinput
+> is standaard <emphasis
+>false</emphasis
+> en wordt doorgegeven aan de engine voor de reguliere expressie.</para>
+<para
+><userinput
+>minimal</userinput
+> is standaard <emphasis
+>false</emphasis
+> en wordt doorgegeven aan de engine voor de reguliere expressie.</para>
+<para
+>Omdat de regels altijd vergeleken worden met het begin van de huidige tekenreeks, zal een reguliere expressie die begint met een dakje (<literal
+>^</literal
+>) aangeven dat de regel alleen overeen moet komen met het begin van een regel.</para>
+<para
+>Zie <link linkend="regular-expressions"
+>Reguliere expressies</link
+> voor meer informatie hierover.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>trefwoord</term>
+<listitem>
+<para
+>Detecteert een sleutelwoord uit een gespecificeerde lijst.</para>
+<programlisting
+>&lt;keyword String=&quot;(lijstnaam)&quot; (common attributes) /&gt;</programlisting>
+<para
+>Het attribuut <userinput
+>String</userinput
+> identificeert de lijst met sleutelwoorden met een naam. Een lijst met die naam moet bestaan.</para>
+<para
+>Het systeem voor accentuering bewerkt sleutelwoordregels op een zeer geoptimaliseerde manier. Dit maakt het absoluut noodzakelijk dat elk te vinden sleutelwoord omgeven wordt door gedefinieerde scheidingstekens, ofwel impliciet (de standaard scheidingstekens) of expliciet gespecificeerd binnen de eigenschap <emphasis
+>additionalDeliminator</emphasis
+> van de <emphasis
+>sleutelwoord</emphasis
+>-tag.</para>
+<para
+>Als een te vinden sleutelwoord een scheidingsteken moet bevatten, dan moet dit teken toegevoegd worden aan de eigenschap <emphasis
+>weakDeliminator</emphasis
+> van de <emphasis
+>sleutelwoord</emphasis
+>-tag. Dit teken zal dan zijn eigenschap scheidingsteken in alle <emphasis
+>sleutelwoord</emphasis
+>-regels verliezen.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Int</term>
+<listitem>
+<para
+>Detecteert een geheel getal.</para>
+<para
+><programlisting
+>&lt;Int (common attributes) (dynamic) /&gt;</programlisting
+></para>
+<para
+>Deze regel heeft geen specifieke attributen. Dochterregels worden typisch gebruikt om combinaties met <userinput
+>L</userinput
+> en <userinput
+>U</userinput
+> na het getal te detecteren, die het type geheel getal in programmacode aangeeft. Alle dochterregels zijn toegestaan als dochterregels, hoewel de <acronym
+>DTD</acronym
+> alleen de dochterregel <userinput
+>StringDetect</userinput
+> toestaat.</para>
+<para
+>Het volgende voorbeeld laat overeenkomst zien met gehele getallen gevolgd door het teken 'L'. <programlisting
+>&lt;Int attribute="Decimal" context="#stay" &gt;
+  &lt;StringDetect attribute="Decimal" context="#stay" String="L" insensitive="true"/&gt;
+&lt;/Int&gt;
+</programlisting
+></para>
+
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>Zwevend</term>
+<listitem>
+<para
+>Een drijvende kommagetal detecteren.</para>
+<para
+><programlisting
+>&lt;Drijvende komma (algemene attributen) /&gt;</programlisting
+></para>
+<para
+>Deze regel heeft geen specifieke attributen. <userinput
+>AnyChar</userinput
+> is toegestaan als een dochterregel en wordt typisch gebruikt om combinaties te detecteren, zie de regel <userinput
+>Int</userinput
+> als referentie.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>HlCOct</term>
+<listitem>
+<para
+>Detecteert de representatie van een octaal puntgetal.</para>
+<para
+><programlisting
+>&lt;HlCOct (common attributes) /&gt;</programlisting
+></para>
+<para
+>Deze regel heeft geen specifieke attributen.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>HlCHex</term>
+<listitem>
+<para
+>Detecteert de representatie van een hexadecimaal getal.</para>
+<para
+><programlisting
+>&lt;HlCHex (common attributes) /&gt;</programlisting
+></para>
+<para
+>Deze regel heeft geen specifieke attributen.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>HlCStringChar</term>
+<listitem>
+<para
+>Detecteer een escaped teken.</para>
+<para
+><programlisting
+>&lt;HlCStringChar (common attributes) /&gt;</programlisting
+></para>
+<para
+>Deze regel heeft geen specifieke attributen.</para>
+
+<para
+>Komt overeen met de letterlijke representatie van tekens, gewoonlijk gebruikt in programmacode, bijvoorbeeld <userinput
+>\n</userinput
+> (nieuwe-regel) of <userinput
+>\t</userinput
+> (TAB).</para>
+
+<para
+>De volgende tekens zullen overeenkomen als ze volgen op een backslash (<literal
+>\</literal
+>): <userinput
+>abefnrtv&quot;'?\</userinput
+>. Bovendien escaped hexadecimale getallen zoals bijvoorbeeld <userinput
+>\xff</userinput
+> en escaped octale getallen, zoals bijvoorbeeld <userinput
+>\033</userinput
+> zullen overeenkomen.</para>
+
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>HlCChar</term>
+<listitem>
+<para
+>Detecteer een C-teken.</para>
+<para
+><programlisting
+>&lt;HlCChar (gezamenlijke attributen) /&gt;</programlisting
+></para>
+<para
+>Deze regel heeft geen specifieke attributen.</para>
+
+<para
+>Komt overeen met een C-teken tussen accenten (Bijvoorbeeld: <userinput
+>'c'</userinput
+>). De accenten kunnen een eenvoudig teken zijn of een escaped teken. Zie HlCStringChar voor overeenkomende reeksen van escaped tekens.</para>
+
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>RangeDetect</term>
+<listitem>
+<para
+>Detecteert een tekenreeks met gedefinieerde begin- en eindtekens.</para>
+<programlisting
+>&lt;RangeDetect char=&quot;(teken)&quot;  char1=&quot;(teken)&quot; (gezamenlijke attributen) /&gt;</programlisting>
+<para
+><userinput
+>char</userinput
+> defines the character starting the range, <userinput
+>char1</userinput
+> the character ending the range.</para>
+<para
+>Bruikbaar om bijvoorbeeld kleine tekenreeksen of zoiets te detecteren, maar merk op dat de accentiëringsengine werkt op één regel tegelijk, hierdoor zullen tekenreeksen over meerdere regels niet gevonden worden.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>LineContinue</term>
+<listitem>
+<para
+>Komt overeen met een gespecificeerd teken aan het eind van een regel.</para>
+<programlisting
+>&lt;LineContinue (gezamenlijke attributen) [char="\"] /&gt;</programlisting>
+<para
+><userinput
+>char</userinput
+> optioneel teken dat moet overeenkomen, standaard is de backslash (<userinput
+>'\'</userinput
+>). Nieuw sinds KDE 4.13.</para>
+<para
+>Deze regel is bruikbaar voor het omschakelen van context aan het einde van een regel. Dit is bijvoorbeeld nodig in C/C++ om macro's of tekenreeksen door te laten lopen.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+>IncludeRules</term>
+<listitem>
+<para
+>Voeg regels in uit een ander context- of taalbestand.</para>
+<programlisting
+>&lt;IncludeRules context=&quot;contextlink&quot; [includeAttrib=&quot;true|false&quot;] /&gt;</programlisting>
+
+<para
+>Het attribuut <userinput
+>context</userinput
+> definieert welke context in te voegen.</para>
+<para
+>Als het een eenvoudige tekenreeks is dan zijn alle gedefinieerde regels in de huidige context ingevoegd, bijvoorbeeld: <programlisting
+>&lt;IncludeRules context=&quot;anotherContext&quot; /&gt;</programlisting
+></para>
+
+<para
+>Als de tekenreeks <userinput
+>##</userinput
+> bevat zal het accentueringssysteem zoeken naar een context uit een andere taaldefinitie met de gegeven naam, bijvoorbeeld <programlisting
+>&lt;IncludeRules context=&quot;String##C++&quot; /&gt;</programlisting
+> zou de context <emphasis
+>String</emphasis
+> uit de accentueringsdefinitie van <emphasis
+>C++</emphasis
+> invoegen.</para>
+<para
+>Als attribuut <userinput
+>includeAttrib</userinput
+> <emphasis
+>true</emphasis
+> is, dan wijzigt het doelattribuut naar die van de bron. Dit is vereist om bijvoorbeeld het aanbrengen van commentaar te laten werken als tekst die overeenkomt met de ingevoegde context een verschillende accentuering is van de host-context. </para>
+</listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+>DetectSpaces</term>
+<listitem>
+<para
+>Detecteert witruimte.</para>
+<programlisting
+>&lt;DetectSpaces (gezamenlijke attributen) /&gt;</programlisting>
+
+<para
+>Deze regel heeft geen specifieke attributen.</para>
+<para
+>Gebruik deze regel als u weet dat er verschillende witruimtes aankomen, bijvoorbeeld aan het begin van inspringende regels. Deze regel slaat alle witruimte in een keer over, in plaats van testen met meerdere regels en een voor een overslaan vanwege geen overeenkomst.</para>
+</listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+>DetectIdentifier</term>
+<listitem>
+<para
+>Detecteer tekenreeksen voor een identifier (als een reguliere expressie: [a-zA-Z_][a-zA-Z0-9_]*).</para>
+<programlisting
+>&lt;DetectIdentifier (gezamenlijke attributen) /&gt;</programlisting>
+
+<para
+>Deze regel heeft geen specifieke attributen.</para>
+<para
+>Gebruik deze regel om een reeks woordtekens in een keer over te slaan, in plaats van deze te testen met meerdere regels en ze een voor een over te slaan omdat er geen overeenkomst is.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</sect3>
+
+<sect3>
+<title
+>Tips &amp; trucs</title>
+
+<itemizedlist>
+<para
+>Als u hebt begrepen hoe het omschakelen van context werkt zal het gemakkelijk zijn om definities voor accentuering te schrijven. Hoewel u zeer zorgvuldig moet controleren welke regel u kiest in welke situatie. Reguliere expressies zijn erg krachtig, maar ze zijn langzaam vergeleken met de andere regels. Dus zou u de volgende tips nog eens moeten bekijken. </para>
+
+<listitem>
+<para
+>Als u alleen twee tekens wilt laten overeenkomen gebruik dan <userinput
+>Detect2Chars</userinput
+> in plaats van <userinput
+>StringDetect</userinput
+>. Hetzelfde is van toepassing op <userinput
+>DetectChar</userinput
+>.</para>
+</listitem>
+<listitem>
+<para
+>Reguliere expressies zijn gemakkelijk te gebruiken maar vaak is er een andere veel snellere manier om hetzelfde resultaat te behalen. U wilt alleen een overeenkomst vinden met het teken <userinput
+>'#'</userinput
+> als het het eerste teken is in de regel. Een oplossing gebaseerd op een reguliere expressie zou er zo uit zien: <programlisting
+>&lt;RegExpr attribute=&quot;Macro&quot; context=&quot;macro&quot; String=&quot;^\s*#&quot; /&gt;</programlisting
+>. U kunt hetzelfde veel sneller bereiken door te gebruiken: <programlisting
+>&lt;DetectChar attribute=&quot;Macro&quot; context=&quot;macro&quot; char=&quot;#&quot; firstNonSpace=&quot;true&quot; /&gt;</programlisting
+>. Als u de reguliere expressie <userinput
+>'^#'</userinput
+> wilt laten vereen komen dan kunt u nog steeds <userinput
+>DetectChar</userinput
+> gebruiken met het attribuut <userinput
+>column=&quot;0&quot;</userinput
+>. Het attribuut <userinput
+>column</userinput
+> telt tekens zodat een tab nog één teken is. </para>
+</listitem>
+<listitem>
+<para
+>U kunt van contexts wisselen zonder tekens te bewerken. Neem aan dat u van context wilt wisselen wanneer u de tekenreeks <userinput
+>*/</userinput
+> tegenkomt, maar u moet die tekenreeks in de volgende context bewerken. De onderstaande regel zal overeenkomen en het attribuut <userinput
+>lookAhead</userinput
+> zal de overeenkomende tekenreeks voor accentuering bewaren voor de volgende context. <programlisting
+>&lt;Detect2Chars attribute=&quot;Comment&quot; context=&quot;#pop&quot; char=&quot;*&quot; char1=&quot;/&quot; lookAhead=&quot;true&quot; /&gt;</programlisting>
+</para>
+</listitem>
+<listitem>
+<para
+>Gebruik <userinput
+>DetectSpaces</userinput
+> als u weet dat er veel witruimtes zijn.</para>
+</listitem>
+<listitem>
+<para
+>Gebruik <userinput
+>DetectIdentifier</userinput
+> in plaats van de reguliere expressie <userinput
+>'[a-zA-Z_]\w*'</userinput
+>.</para>
+</listitem>
+<listitem>
+<para
+>Gebruik standaard stijlen wanneer dat kan. Op deze manier vindt de gebruiker een bekende omgeving.</para>
+</listitem>
+<listitem>
+<para
+>Kijk in andere XML-bestanden om te zien hoe andere mensen ingewikkelde regels implementeren.</para>
+</listitem>
+<listitem>
+<para
+>U kunt elk XML-bestand valideren met de opdracht <command
+>validatehl.sh language.xsd mySyntax.xml</command
+>. De bestanden <filename
+>validatehl.sh</filename
+> en <filename
+>taal.xsd</filename
+> zijn beschikbaar in <ulink url="https://commits.kde.org/syntax-highlighting?path=data/schema"
+>Opslagruimte voor accentuering van syntaxis</ulink
+>. </para>
+</listitem>
+<listitem>
+<para
+>Als u complexe reguliere expressies erg vaak gebruikt dan kunt u <emphasis
+>ENTITIES</emphasis
+> gebruiken. Voorbeeld:</para>
+<programlisting
+>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE language SYSTEM "language.dtd"
+[
+        &lt;!ENTITY myref    "[A-Za-z_:][\w.:_-]*"&gt;
+]&gt;
+</programlisting>
+<para
+>Nu kunt u <emphasis
+>&amp;myref;</emphasis
+> gebruiken in plaats van de reguliere expressie.</para>
+</listitem>
+</itemizedlist>
+</sect3>
+
+</sect2>
+
+</sect1>
+
+
+<sect1 id="dev-scripting">
+<title
+>Scripting met JavaScript</title>
+
+<para
+>De editor-component van &kappname; is eenvoudig uit te breiden met scripts. De scripttaal is ECMAScript (breed bekend als JavaScript). &kappname; ondersteunt twee soorten scripts: inspringen en commandoregelscripts. </para>
+
+<sect2 id="dev-scripting-indentation">
+<title
+>Inspringscripts</title>
+
+<para
+>Inspringscripts - ook genoemd indenteerders - laten de broncode inspringen bij het typen van tekst. Na het indrukken van de toets Enter zal het inspringniveau vaak toenemen. </para>
+
+<para
+>De volgende secties beschrijven stap voor stap hoe het skelet voor een eenvoudige indenteerder te maken. Als eerste stap, maak een nieuw bestand <filename
+>*.js</filename
+> aan, &eg; met de naam <filename
+>javascript.js</filename
+> in de lokale thuismap <filename
+>$<envar
+>XDG_DATA_HOME</envar
+>/katepart5/script/indentation</filename
+>. Waarin de omgevingsvariabele <envar
+>XDG_DATA_HOME</envar
+> typisch expandeert tot ofwel <filename
+>~/.local</filename
+> of <filename
+>~/.local/share</filename
+>. </para>
+<para
+>Op &Windows; zijn deze bestanden gelokaliseerd in <filename
+>%USERPROFILE%\AppData\Local\katepart5\indentation</filename
+>. <replaceable
+>%USERPROFILE%</replaceable
+> wordt gewoonlijk <filename
+>C:\\Users\\<replaceable
+>gebruiker</replaceable
+></filename
+>.</para>
+
+<sect3 id="dev-scripting-indentation-header">
+<title
+>De kop van het inspringscript</title>
+<para
+>De kop van het bestand <filename
+>javascript.js</filename
+> is ingebed als JSON aan het begin van het document als volgt: <programlisting>
+var kate-script = {
+ * "name": JavaScript
+ * "author": Voorbeeldnaam &lt;voorbeeld.naam@een.adres.org&gt;,
+ * "license": "BSD License"
+ * "revision": 1,
+ * "kate-version": "5.1",
+ * "required-syntax-style": javascript,
+ * "indent-languages": ["javascript"],
+ * "priority": 0,
+ *}; // kate-script-header, moet aan het begin van het bestand staan zonder commentaar
+</programlisting
+> Elk item wordt nu in detail uitgelegd: <itemizedlist>
+<listitem
+><para
+><literal
+>name</literal
+> [vereist]: Dit is de naam van de indenteerder die in het menu <menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guimenuitem
+>Inspringen</guimenuitem
+></menuchoice
+> verschijnt en in de configuratiedialoog. </para
+></listitem>
+<listitem
+><para
+><literal
+>author</literal
+> [optioneel]: De naam van de auteur en contactinformatie. </para
+></listitem>
+<listitem
+><para
+><literal
+>license</literal
+> [optioneel]: Korte vorm van de licentie, zoals BSD License of LGPLv3. </para
+></listitem>
+<listitem
+><para
+><literal
+>revision</literal
+> [vereist]: De revisie van het script. Dit getal moet verhoogd worden wanneer het script wordt gewijzigd. </para
+></listitem>
+<listitem
+><para
+><literal
+>kate-version</literal
+> [required]: Minimaal vereiste versie van &kappname;. </para
+></listitem>
+<listitem
+><para
+><literal
+>required-syntax-style</literal
+> [optioneel]: De vereiste stijl voor de syntaxis, die overeenkomt met de gespecificeerde <literal
+>style</literal
+> in bestanden voor accentuering van syntaxis. Dit is belangrijk voor indenteerders die vertrouwen op specifieke informatie voor accentuering in het document. Als een vereiste syntaxisstijl is gespecificeerd, zal de indenteerder alleen beschikbaar zijn wanneer het juiste programma voor accentuering actief is. Dit voorkomt <quote
+>ongedefinieerd gedrag</quote
+> veroorzaakt door de indenteerder te gebruiken zonder het verwachte schema voor accentuering. De Ruby indenteerder, bijvoorbeeld, maakt hier gebruik van in de bestanden <filename
+>ruby.js</filename
+> en <filename
+>ruby.xml</filename
+>. </para
+></listitem>
+<listitem
+><para
+><literal
+>indent-languages</literal
+> [optioneel]: JSON array van syntaxis stijlen die de indenteerder correct kan laten inspringen, &eg;: <literal
+>["c++", "java"]</literal
+>. </para
+></listitem>
+<listitem
+><para
+><literal
+>priority</literal
+> [optioneel]: Als verschillende indenteerders geschikt zij voor een bepaald bestand om te accentueren, dan bepaalt de prioriteit welke indenteerder als standaard wordt gekozen. </para
+></listitem>
+</itemizedlist>
+</para>
+
+</sect3>
+
+<sect3 id="dev-scripting-indentation-body">
+<title
+>De broncode van de indenteerder</title>
+<para
+>Nadat de header is gespecificeerd, legt deze sectie uit hoe het script voor inspringen zelf werkt. Het basis sjabloon van de inhoud ziet er uit als volgt: <programlisting>
+// vereiste js-bibliotheken van katepart, bijv. range.js als u Range gebruikt
+require ("range.js");
+triggerCharacters = "{}/:;";
+function indent(line, indentWidth, ch)
+{
+    // aangeroepen voor elk teken nieuwe-regel (ch == '\n') en alle tekens gespecificeerd in
+    // de globale variabele triggerCharacters. Bij het aanroepen van <menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guimenuitem
+>Uitlijnen</guimenuitem
+></menuchoice>
+    // is de variabele ch leeg, i.e. ch == ''.
+    //
+    // zie ook: Scripting API
+    return -2;
+}
+</programlisting
+> De functie <function
+>indent()</function
+> heeft drie parameters: <itemizedlist
+> <listitem
+><para
+><literal
+>line</literal
+>: de regel die moet inspringen</para
+></listitem
+> <listitem
+><para
+><literal
+>indentWidth</literal
+>: de inspringbreedte in aantal spaties</para
+></listitem
+> <listitem
+><para
+><literal
+>ch</literal
+>: of een teken nieuwe-regel (<literal
+>ch == '\n'</literal
+>), het activeringsteken gespecificeerd in <literal
+>triggerCharacters</literal
+> of leeg als de gebruiker de actie <menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+><guimenuitem
+>Uitlijnen</guimenuitem
+></menuchoice
+> heeft gestart.</para
+></listitem
+> </itemizedlist
+> De terugkeerwaarde van de functie <function
+>indent()</function
+> specificeert hoe de regel zal worden ingesprongen. Als de terugkeerwaarde een eenvoudig geheel getal is, wordt deze geïnterpreteerd als volgt: <itemizedlist
+> <listitem
+><para
+>terugkeerwaarde <literal
+>-2</literal
+>: niets doen</para
+></listitem
+> <listitem
+><para
+>terugkeerwaarde <literal
+>-1</literal
+>: behoudthet inspringen (zoekt naar voorgaande niet-blanko regel)</para
+></listitem
+> <listitem
+><para
+>terugkeerwaarde <literal
+> 0</literal
+>: getallen &gt;= 0 specificeer de insringdiepte in spaties</para
+></listitem
+> </itemizedlist
+> Alternatief, een reeks van twee elementen kan worden teruggegeven: <itemizedlist
+> <listitem
+><para
+><literal
+>geef [ indent, align ] terug;</literal
+></para
+></listitem
+> </itemizedlist
+> In dit geval is het eerste element de inspringdiepte zoals hierboven met dezelfde betekenis van de speciale waarden. Het tweede element is een absolute waarde die een kolom aangeeft voor <quote
+>uitlijning</quote
+>. Als deze waarde groter is dan de inspringwaarde, dan is het verschil een aantal spaties dat na het inspringen van de eerste parameter moet worden toegevoegd. Anders wordt het tweede getal genegeerd. Tabs en spaties voor inspringen gebruiken wordt vaak <quote
+>gemengde modus</quote
+> genoemd. </para>
+
+<para
+>beschouw het volgende voorbeeld: Neem aan dat tabs worden gebruikt voor inspringen en tabbreedte is ingesteld op 4. &lt;tab&gt; vertegenwoordigt hier een tab-teken en '.' een spatie: <programlisting>
+1: &lt;tab&gt;&lt;tab&gt;foobar("hello",
+2: &lt;tab&gt;&lt;tab&gt;......."world");
+</programlisting
+> Bij inspringen van regel 2 zal de functie <function
+>indent()</function
+> [8, 15] als terugkeerwaarde geven. Als resultaat worden hier twee tabs ingevoegd om in te springen tot kolom 8 en worden 7 spaties toegevoegd om de tweede parameter uit te lijnen onder de eerste, zodat het uitgelijnd blijft als het bestand wordt bekeken met een andere tabbreedte. </para>
+
+<para
+>Een standaard &kde; installatie levert bij &kappname; verschillende indenteerders. De overeenkomstige JavaScript broncode kan worden gevonden in <filename
+>$<envar
+>XDG_DATA_DIRS</envar
+>/katepart5/script/indentation</filename
+>.</para>
+<para
+>Op &Windows; zijn deze bestanden gelokaliseerd in <filename
+>%USER%\AppData\Local\katepart5\indentation</filename
+>. <replaceable
+>%USER%</replaceable
+> wordt gewoonlijk <filename
+>C:\\Users\\<replaceable
+>user</replaceable
+></filename
+>. </para>
+
+<para
+>Ontwikkeling van een indenteerder vereist herladen van de scripts om te zien of de wijzigingen zich netjes gedragen. In plaats van het opnieuw opstarten van de toepassing, schakel eenvoudig om naar de commandoregel en start het commando <command
+>reload-scripts</command
+>. </para>
+
+<para
+>Als u bruikbare scripts ontwikkeld overweeg dan deze aan het &kappname;-project bij te dragen door <ulink url="mailto:kwrite-devel@kde.org"
+>kontact op te nemen via de e-maillijst</ulink
+>. </para>
+
+</sect3>
+</sect2>
+
+<sect2 id="dev-scripting-command-line">
+<title
+>Commandoregelscripts</title>
+
+<para
+>Omdat het moeilijk is om aan de noden van iedereen te voldoen, ondersteunt &kappname; kleine hulpmiddelen voor snelle tekstmanipulatie via de <link linkend="advanced-editing-tools-commandline"
+>ingebouwde commandoregel</link
+>. Het commando <command
+>sort</command
+> is bijvoorbeeld geïmplementeerd als een script. Deze sectie legt uit hoe <filename
+>*.js</filename
+> bestanden aan te maken om &kappname; uit te breiden met willekeurige hulpscripts. </para>
+
+<para
+>Commandoregelscripts staan in dezelfde map als inspringscripts. Dus als eerste stap maakt u een nieuw <filename
+>*.js</filename
+> bestand aan genaamd <filename
+>myutils.js</filename
+> in de lokale map <filename
+>$<envar
+>XDG_DATA_HOME</envar
+>/katepart5/script/commands</filename
+>. De omgevingsvariabele <envar
+>XDG_DATA_HOME</envar
+> daarin expandeert typisch tot ofwel <filename
+>~/.local</filename
+> of <filename
+>~/.local/share</filename
+>.</para>
+<para
+>Op &Windows; zijn deze bestanden gelokaliseerd in <filename
+>%USER%\AppData\Local\katepart5\commands</filename
+>. <replaceable
+>%USER%</replaceable
+> wordt gewoonlijk <filename
+>C:\\Users\\<replaceable
+>user</replaceable
+></filename
+>. </para>
+
+<sect3 id="dev-scripting-command-line-header">
+<title
+>De kop van het commandoregelscript</title>
+<para
+>De header van elke commandoregelscript is ingebed in JSON aan het begin van het script als volgt: <programlisting>
+var katescript = {
+    "author": "Voorbeeldnaam &lt;voorbeeld.naam@een.adres.org&gt;",
+    "license": "LGPLv2+",
+    "revision": 1,
+    "kate-version": "5.1",
+    "functions": ["sort", "moveLinesDown"],
+    "actions": [
+        {   "function": "sort",
+            "name": "Sort Selected Text",
+            "category": "Editing",
+            "interactive": "false"
+        },
+        {   "function": "moveLinesDown",
+            "name": "Move Lines Down",
+            "category": "Editing",
+            "shortcut": "Ctrl+Shift+Down",
+            "interactive": "false"
+        }
+    ]
+}; // kate-script-header, moet zich bevinden aan het begin van het bestand zonder commentaar
+</programlisting
+> Elk item wordt nu in detail uitgelegd: <itemizedlist>
+<listitem
+><para
+><literal
+>author</literal
+> [optioneel]: De naam van de auteur en contactinformatie.</para
+></listitem>
+<listitem
+><para
+><literal
+>license</literal
+> [optioneel]: Korte vorm van de licentie, zoals BSD licentie of LGPLv2.</para
+></listitem>
+<listitem
+><para
+><literal
+>revision</literal
+> [vereist]: De revisie van het script. Dit getal moet verhoogd worden wanneer het script wordt gewijzigd.</para
+></listitem>
+<listitem
+><para
+><literal
+>kate-version</literal
+> [required]: Minimaal vereiste versie van &kappname;.</para
+></listitem>
+<listitem
+><para
+><literal
+>functions</literal
+> [vereist]: JSON-array met commando's in het script.</para
+></listitem>
+<listitem
+><para
+><literal
+>actions</literal
+> [optioneel]: JSON Array van JSON objecten die de acties definiëren die verschijnen in het menu van de toepassing. Gedetailleerde informatie wordt in de sectie <link linkend="advanced-editing-tools-commandline"
+>Koppelen van sneltoetsen</link
+>.</para
+></listitem>
+</itemizedlist>
+</para>
+
+<para
+>Omdat de waarde van <literal
+>functions</literal
+> een JSON array is, is een enkel script in staat een willekeurig aantal commandoregels te bevatten. Elke functie is beschikbaar via <link linkend="advanced-editing-tools-commandline"
+>ingebouwde commandoregel</link
+> van &kappname;. </para>
+</sect3>
+
+<sect3 id="dev-scripting-command-line-body">
+<title
+>De broncode van het script</title>
+
+<para
+>Alle in de kop gespecificeerde functies moeten worden geïmplementeerd in het script. Het script-bestand uit het bovenstaande voorbeeld moet de twee functies <command
+>sort</command
+> en <command
+>moveLinesDown</command
+> implementeren. Alle functies hebben de volgende syntaxis: <programlisting
+>// vereiste js-bibliotheken van katepart, bijv. range.js als u Range gebruikt
+require ("range.js");
+
+function &lt;naam&gt;(arg1, arg2, ...)
+{
+    // ... implementatie, zie ook: Scripting API
+}
+</programlisting>
+</para>
+
+<para
+>De argumenten in de commandoregel worden doorgegeven naar de functie als <parameter
+>arg1</parameter
+>, <parameter
+>arg2</parameter
+>, etc. Om documentatie voor elk commando te leveren, implementeert u eenvoudig de functie '<function
+>help</function
+>' als volgt: <programlisting>
+function help(cmd)
+{
+    if (cmd == "sort") {
+        return i18n("Sort the selected text.");
+    } else if (cmd == "...") {
+        // ...
+    }
+}
+</programlisting
+> uitvoeren van <command
+>help sort</command
+> in de commandoregel roept deze help-functie op met het argument <parameter
+>cmd</parameter
+> ingesteld op het gegeven commando, &ie; <parameter
+>cmd == "sort"</parameter
+>. &kappname; laat dan de teruggeleverde tekst zien als documentatie voor de gebruiker. Zorg er voor dat <link linkend="dev-scripting-api-i18n"
+>de tekenreeksen vertaald zijn</link
+>. </para>
+
+<para
+>Ontwikkeling van een commandoregelscript vereist herladen van de scripts om te zien of de wijzigingen zich netjes gedragen. In plaats van het opnieuw opstarten van de toepassing, schakel eenvoudig om naar de commandoregel en start het commando <command
+>reload-scripts</command
+>. </para>
+
+<sect4 id="dev-scripting-command-line-shortcuts">
+<title
+>Koppelen van sneltoetsen</title>
+<para
+>Om de scripts toegankelijk te maken in het menu van de toepassing en sneltoetsen toe te kunnen, moet het script een juiste script-header leveren. In het bovenstaande voorbeeld, verschijnen beide functies <literal
+>sort</literal
+> en <literal
+>moveLinesDown</literal
+> in het menu vanwege het volgende deel in de script-header: <programlisting>
+var katescript = {
+    ...
+    "actions": [
+        {   "function": "sort",
+            "name": "Sort Selected Text",
+            "icon": "",
+            "category": "Editing",
+            "interactive": "false"
+        },
+        {   "function": "moveLinesDown",
+            "name": "Move Lines Down",
+            "icon": "",
+            "category": "Editing",
+            "shortcut": "Ctrl+Shift+Down",
+            "interactive": "false"
+        }
+    ]
+};
+</programlisting
+> De velden voor een actie zijn als volgt: <itemizedlist>
+<listitem
+><para
+><literal
+>function</literal
+> [vereist]: De functie die zou moeten verschijnen in het menu <menuchoice
+><guimenu
+>Hulpmiddelen</guimenu
+> <guisubmenu
+>Scripts</guisubmenu
+></menuchoice
+>.</para
+></listitem>
+<listitem
+><para
+><literal
+>name</literal
+> [vereist]: De tekst verschijnt het script-menu.</para
+></listitem>
+<listitem
+><para
+><literal
+>icon</literal
+> [optioneel]: Het pictogram verschijnt naast de tekst in het menu. Alle pictogramnamen van &kde; kunnen hier worden gebruikt.</para
+></listitem>
+<listitem
+><para
+><literal
+>category</literal
+> [optioneel]: Als een categorie wordt gespecificeerd, verschijnt het script in een submenu.</para
+></listitem>
+<listitem
+><para
+><literal
+>shortcut</literal
+> [optioneel]: De hier gegeven sneltoets is de standaard sneltoets. Voorbeeld: <literal
+>Ctrl+Alt+t</literal
+>. Zie de <ulink url="http://qt-project.org/doc/qt-5/qt.html#Key-enum"
+>Qt documentatie</ulink
+> voor verdere details.</para
+></listitem>
+<listitem
+><para
+><literal
+>interactive</literal
+> [optioneel]: Als het script invoer van de gebruiker in de commandoregel nodig heeft, zet dit dan op <literal
+>true</literal
+>.</para
+></listitem>
+</itemizedlist>
+</para>
+
+<para
+>Als u bruikbare scripts ontwikkeld overweeg dan deze aan het &kappname;-project bij te dragen door <ulink url="mailto:kwrite-devel@kde.org"
+>kontact op te nemen via de e-maillijst</ulink
+>. </para>
+
+</sect4>
+</sect3>
+</sect2>
+
+<sect2 id="dev-scripting-api">
+<title
+>API voor scripts</title>
+
+<para
+>De API voor scripts hier aanwezig is beschikbaar voor alle scripts, &eg; scripts voor inspringen en opdrachtregels. De klassen <classname
+>Cursor</classname
+> en <classname
+>Range</classname
+> worden geleverd door biblitheekbestanden in <filename
+>$<envar
+>XDG_DATA_DIRS</envar
+>/katepart5/libraries</filename
+>. Als u ze in uw script wilt gebruiken, wat nodig is om bepaalde <classname
+>Document</classname
+> of <classname
+>View</classname
+>-functies te gebruiken, voeg dan de benodigde bibliotheek in met: <programlisting
+>// vereiste js-bibliotheken van katepart, bijv. range.js als u Range gebruikt
+require ("range.js");
+</programlisting>
+</para>
+
+<para
+>Om de standaard API voor scripting uit te breiden met uw eigen functies en prototypen, maak gewoon een nieuw bestand aan in de lokale configuratiemap van &kde; <filename
+>$<envar
+>XDG_DATA_HOME</envar
+>/apps/katepart5/libraries</filename
+> en voeg deze in in uw script met: <programlisting
+>require ("mijnscriptnaamhier.js");
+</programlisting>
+
+</para>
+
+<para
+>Op &Windows; zijn deze bestanden gelokaliseerd in <filename
+>%USER%\AppData\Local\katepart5\libraries</filename
+>. <replaceable
+>%USER%</replaceable
+> wordt gewoonlijk <filename
+>C:\\Users\\<replaceable
+>user</replaceable
+></filename
+>.</para>
+
+<para
+>Om bestaande prototypes zoals <classname
+>Cursor</classname
+> of <classname
+>Reeks</classname
+> uit te breiden, os de aanbevolen manier om <emphasis
+>niet</emphasis
+> de globale <filename
+>*.js</filename
+> bestanden te wijzigen. In plaats daarvan wijzigt u het prototype <classname
+>Cursor</classname
+> in JavaScript nadat <filename
+>cursor.js</filename
+> is ingevoegd in uw script via <literal
+>require</literal
+>. </para>
+
+<sect3 id="dev-scripting-api-prototypes">
+<title
+>Cursors en bereiken</title>
+
+<para
+>Omdat &kappname; is een tekstbewerker is, is alles voor de API voor scripting, waar mogelijk, gebaseerd op cursors en reeksen. Een cursor is een eenvoudig een paar <literal
+>(regel, kolom)</literal
+> die een tekstpositie in het document weergeeft. Een reeks omspant tekst van een begincursorpositie tot een eincursorpositie. De API wordt in de volgende secties in detail uitgelegd. </para>
+
+<sect4 id="dev-scripting-api-cursors">
+<title
+>Het prototype van cursor</title>
+
+<variablelist
+><varlistentry>
+<term
+><synopsis
+>Cursor();
+</synopsis
+></term>
+<listitem
+><para
+>Constructor. Levert een cursor terug op positie <literal
+>(0, 0)</literal
+>.</para>
+<para
+>Voorbeeld: <function
+>var cursor = new Cursor();</function
+> </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>Cursor(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Constructor. Levert een cursor terug op positie (regel, kolom). </para>
+<para
+>Voorbeeld: <function
+>var cursor = new Cursor(3, 42);</function
+> </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>Cursor(<parameter
+>Cursor <replaceable
+>andere</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Constructor kopiëren. Geeft een kopie van de cursor <replaceable
+>andere</replaceable
+>.  </para>
+<para
+>Voorbeeld:<function
+>var copy = nieuwe cursor(andere);</function
+> </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>Cursor Cursor.clone();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft een kloon van de cursor terug.</para>
+<para
+>Voorbeeld: <function
+>var clone = cursor.clone();</function
+> </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>Cursor.setPosition(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Stel de cursorpositie in op <replaceable
+>regel</replaceable
+> en <replaceable
+>kolom</replaceable
+>.</para>
+<para
+>Sinds: &kde; 4.11 </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool Cursor.isValid();
+</synopsis
+></term>
+<listitem
+><para
+>Controleert of de cursor geldig is. De cursor is ongeldig indien lijn en/of kolom ingesteld zijn op <literal
+>-1</literal
+>. </para>
+<para
+>Voorbeeld: <function
+>var valid = cursor.isValid();</function
+> </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>Cursor Cursor.invalid();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft een nieuwe ongeldige cursor op locatie <literal
+>(-1, -1)</literal
+>. </para>
+<para
+>Voorbeeld:<function
+>var invalidCursor = cursor.invalid();</function
+> </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><synopsis
+>int Cursor.compareTo(<parameter
+>Cursor <replaceable
+>andere</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Vergelijkt deze cursor met de cursor <replaceable
+>andere</replaceable
+>. Geeft terug <itemizedlist>
+<listitem
+><para
+><literal
+>-1</literal
+>, indien deze cursor zich bevindt voor de cursor <replaceable
+>andere</replaceable
+>,</para
+></listitem>
+<listitem
+><para
+><literal
+>0</literal
+>, indien beide cursors gelijk zijn</para
+></listitem>
+<listitem
+><para
+><literal
+>+1</literal
+>, als deze cursor gelokaliseerd is na de cursor <replaceable
+>andere</replaceable
+>.</para
+></listitem>
+</itemizedlist>
+</para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool Cursor.equals(<parameter
+>Cursor <replaceable
+>andere</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als deze cursor en de cursor <replaceable
+>andere</replaceable
+> gelijk zijn, anders <literal
+>false</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>String Cursor.toString();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de cursor terug als een tekenreeks met de vorm <quote
+><literal
+>Cursor(regel, kolom)</literal
+></quote
+>. </para
+></listitem>
+</varlistentry
+></variablelist>
+
+</sect4>
+
+
+<sect4 id="dev-scripting-api-ranges">
+<title
+>Het prototype Range</title>
+
+<variablelist
+><varlistentry>
+<term
+><synopsis
+>Range();
+</synopsis
+></term>
+<listitem
+><para
+>Constructor. Aanroepen van <literal
+>new Range()</literal
+> geeft een bereik op (0, 0) - (0, 0) terug. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>Range(<parameter
+>Cursor <replaceable
+>begin</replaceable
+></parameter
+>, <parameter
+>Cursor <replaceable
+>eind</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Constructor. Aanroepen van <literal
+>new Range(<replaceable
+>begin</replaceable
+>, <replaceable
+>eind</replaceable
+>)</literal
+> geeft de Reeks (<replaceable
+>begin</replaceable
+>, <replaceable
+>eind</replaceable
+>) terug. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>Range(<parameter
+>int <replaceable
+>beginRegel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>beginKolom</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>eindRegel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>eindKolom</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Constructor. Aanroepen van <literal
+>new Range(<replaceable
+>beginRegel</replaceable
+>, <replaceable
+>beginKolom</replaceable
+>, <replaceable
+>eindeRegel</replaceable
+>, <replaceable
+>eindKolom</replaceable
+>)</literal
+> geeft de Reeks van (<replaceable
+>beginRegel</replaceable
+>, <replaceable
+>beginKolom</replaceable
+>) tot (<replaceable
+>eindeRegel</replaceable
+>, <replaceable
+>eindKolom</replaceable
+>). </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>Range(<parameter
+>Range <replaceable
+>andere</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Constructor kopiëren. Geeft een kopie terug van Range <replaceable
+>andere</replaceable
+>.  </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>Reeks Range.clone();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft een kloon van de reeks terug. </para>
+<para
+>Voorbeeld: <function
+>var clone = range.clone();</function
+> </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool Range.isEmpty();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als zowel begin als einde cursor gelijk zijn. </para>
+<para
+>Voorbeeld: <function
+>var empty = range.isEmpty();</function
+> </para>
+<para
+>Sinds: &kde; 4.11 </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool Range.isValid();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als zowel begin als einde cursor geldig zijn, anders <literal
+>false</literal
+>. </para>
+<para
+>Voorbeeld: <function
+>var valid = range.isValid();</function
+> </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>Range Range.invalid();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de Reeks van (-1, -1) tot (-1, -1) terug. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool Range.contains(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als de reeks de cursorpositie bevat, anders <literal
+>false</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool Range.contains(<parameter
+>Range <replaceable
+>andere</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als deze reeks de Reeks<replaceable
+>andere</replaceable
+> bevat, anders <literal
+>false</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool Range.containsColumn(<parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als <replaceable
+>kolom</replaceable
+> zich in het half open interval <literal
+>[start.column, end.column)</literal
+> bevindt, anders <literal
+>false</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool Range.containsLine(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als <replaceable
+>regel</replaceable
+> zich in het half open interval <literal
+>[start.line, end.line)</literal
+> bevindt, anders <literal
+>false</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool Range.overlaps(<parameter
+>Range <replaceable
+>overig</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als deze reeks en de reeks<replaceable
+>overig</replaceable
+> een gebied delen, anders <literal
+>false</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool Range.overlapsLine(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als <replaceable
+>regel</replaceable
+> zich in het interval <literal
+>[start.line, end.line)</literal
+> bevindt, anders <literal
+>false</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool Range.overlapsColumn(<parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als <replaceable
+>kolom</replaceable
+> zich in het interval <literal
+>[start.column, end.column)</literal
+> bevindt, anders <literal
+>false</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool Range.onSingleLine();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als zowel begin als einde van de reeks op dezelfde regel, &ie; als <replaceable
+>Range.start.line == Range.end.line</replaceable
+>. </para>
+<para
+>Sinds: &kde; 4.9 </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool Range.equals(<parameter
+>Range <replaceable
+>overig</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als deze reeks de Reeks <replaceable
+>andere</replaceable
+> gelijk zijn, anders <literal
+>false</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>String Range.toString();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de reeks terug als een tekenreeks van de vorm <quote
+><literal
+>Range(Cursor(line, column), Cursor(line, column))</literal
+></quote
+>. </para
+></listitem>
+</varlistentry
+></variablelist>
+
+</sect4>
+</sect3>
+
+<sect3 id="dev-scripting-api-global">
+<title
+>Globale functies</title>
+<para
+>Deze sectie geeft een lijst met alle globale functies.</para>
+
+
+<sect4 id="dev-scripting-api-includes">
+<title
+>Lezen &amp; invoegen van bestanden</title>
+
+<variablelist
+><varlistentry>
+<term
+><synopsis
+>String read(<parameter
+>String <replaceable
+>bestand</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Zal het gegeven <replaceable
+>bestand</replaceable
+> zoeken relatief ten opzichte van de map <literal
+>katepart/script/files</literal
+> en en de inhoud teruggeven als een tekenreeks. </para
+></listitem>
+</varlistentry
+></variablelist>
+
+<variablelist
+><varlistentry>
+<term
+><synopsis
+>void require(<parameter
+>String <replaceable
+>bestand</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Zal het gegeven <replaceable
+>bestand</replaceable
+> zoeken relatief ten opzichte van de map <literal
+>katepart/script/libraries</literal
+> en het evalueren. <literal
+>require</literal
+> is intern beschermd tegen meervoudig invoegen van hetzelfde <replaceable
+>bestand</replaceable
+>. </para>
+<para
+>Sinds: &kde; 4.10 </para>
+</listitem>
+</varlistentry
+></variablelist>
+
+</sect4>
+
+<sect4 id="dev-scripting-api-debug">
+<title
+>Debugging</title>
+
+<variablelist
+><varlistentry>
+<term
+><synopsis
+>void debug(<parameter
+>String <replaceable
+>tekst</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Stuurt <replaceable
+>tekst</replaceable
+> naar <literal
+>stdout</literal
+> in de console na het starten van de toepassing. </para
+></listitem>
+</varlistentry
+></variablelist>
+
+</sect4>
+
+<sect4 id="dev-scripting-api-i18n">
+<title
+>Vertaling</title>
+
+<para
+>Om volledige lokalisatie te ondersteunen zijn er verschillende functies om tekenreeksen in scripts te vertalen, namelijk <literal
+>i18n</literal
+>, <literal
+>i18nc</literal
+>, <literal
+>i18np</literal
+> en <literal
+>i18ncp</literal
+>. Deze functies gedragen zich op precies dezelfde manier zoals in <ulink url="http://techbase.kde.org/Development/Tutorials/Localization/i18n"
+> Vertalingsfuncties van &kde;</ulink
+>. </para>
+
+<para
+>De vertalingfuncties vertalen de omwikkelde tekenreeksen via het vertalingssysteem van &kde; naar de in de toepassing gebruikte taal. Tekenreeksen in scripts die worden ontwikkeld in de officiële broncode van &kappname; worden automatisch geëxtraheerd en vertaalbaar gemaakt. Met andere woorden, als ontwikkelaar van &kappname; hoeft u zich niet bezig te houden met extraheren en vertalen. Opgemerkt moet echter worden dat de vertaling alleen werkt binnen de infrastructuur van $kde;. Dat wil zeggen dat nieuwe tekenreeksen in scripts van derden ontwikkeld buiten &kde; niet worden vertaald. Neem dus in overweging om uw scripts aan &kate; bij te dragen zodat vertaling mogelijk wordt. </para>
+
+<variablelist
+><varlistentry>
+<term
+><synopsis
+>void i18n(<parameter
+>String <replaceable
+>tekst</replaceable
+></parameter
+>, <replaceable
+>arg1</replaceable
+>, ...);
+</synopsis
+></term>
+<listitem
+><para
+>Vertaalt <replaceable
+>text</replaceable
+> in de taal die wordt gebruikt door de toepassing. De argumenten <replaceable
+>arg1</replaceable
+>, ..., zijn optioneel en worden gebruikt om plaatshouders <literal
+>%1</literal
+>, <literal
+>%2</literal
+>, etc. te vervangen.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><synopsis
+>void i18nc(<parameter
+>String <replaceable
+>context</replaceable
+></parameter
+>, <parameter
+>String <replaceable
+>tekst</replaceable
+></parameter
+>, <replaceable
+>arg1</replaceable
+>, ...);
+</synopsis
+></term>
+<listitem
+><para
+>Vertaalt <replaceable
+>text</replaceable
+> in de taal die wordt gebruikt door de toepassing. Bovendien is de tekenreeks <replaceable
+>context</replaceable
+> zichtbaar voor de vertalers, zodat zij een betere vertaling kunnen produceren. De argumenten <replaceable
+>arg1</replaceable
+>, ..., zijn optioneel en worden gebruikt om plaatshouders <literal
+>%1</literal
+>, <literal
+>%2</literal
+>, etc. te vervangen.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><synopsis
+>void i18np(<parameter
+>String <replaceable
+>enkelvoud</replaceable
+></parameter
+>, <parameter
+>String <replaceable
+>meervoud</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>nummer</replaceable
+></parameter
+>, <replaceable
+>arg1</replaceable
+>, ...);
+</synopsis
+></term>
+<listitem
+><para
+>Vertaalt ofwel <replaceable
+>enkelvoud</replaceable
+> of <replaceable
+>meervoud</replaceable
+> in de taal die wordt gebruikt door de toepassing, afhankelijk van het gegeven <replaceable
+>nummer</replaceable
+>. De argumenten <replaceable
+>arg1</replaceable
+>, ..., zijn optioneel en worden gebruikt om plaatshouders <literal
+>%1</literal
+>, <literal
+>%2</literal
+>, etc. te vervangen.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><synopsis
+>void i18ncp(<parameter
+>String <replaceable
+>context</replaceable
+></parameter
+>, <parameter
+>String <replaceable
+>eenvoud</replaceable
+></parameter
+>, <parameter
+>String <replaceable
+>meervoud</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>nummer</replaceable
+></parameter
+>, <replaceable
+>arg1</replaceable
+>, ...);
+</synopsis
+></term>
+<listitem
+><para
+>Vertaalt <replaceable
+>enkelvoud</replaceable
+> of<replaceable
+>meervoud</replaceable
+> in de taal die wordt gebruikt door de toepassing, afhankelijk van het gegeven nummer. Bovendien is de tekenreeks <replaceable
+>context</replaceable
+> zichtbaar voor de vertalers, zodat zij een betere vertaling kunnen produceren. De argumenten <replaceable
+>arg1</replaceable
+>, ..., zijn optioneel en worden gebruikt om plaatshouders <literal
+>%1</literal
+>, <literal
+>%2</literal
+>, etc. te vervangen.</para
+></listitem>
+</varlistentry
+></variablelist>
+
+</sect4>
+</sect3>
+
+<sect3 id="dev-scripting-api-view">
+<title
+>De API voor weergave</title>
+<para
+>Wanneer een script wordt uitgevoerd, dan is er een globale variabele <quote
+><literal
+>view</literal
+></quote
+> die de huidige actieve editor-view representeert. Het volgende is een lijst met alle beschikbare weergavefuncties. <variablelist
+><varlistentry>
+<term
+><synopsis
+><function
+>Cursor view.cursorPosition()</function
+>
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de huidige cursorpositie in het beeld terug.</para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>void view.setCursorPosition(<parameter
+>int <replaceable
+>line</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>column</replaceable
+></parameter
+>);
+void view.setCursorPosition(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Stelt de huidige cursorpositie in op ofwel (regel, kolom) of op de gegeven cursor. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>Cursor view.virtualCursorPosition();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de virtuele cursorpositie terug waarin elke tab telt voor de overeenkomstige hoeveelheid spaties afhankelijk van de huidige tabbreedte. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>void view.setVirtualCursorPosition(<parameter
+>int <replaceable
+>line</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>column</replaceable
+></parameter
+>);
+void view.setVirtualCursorPosition(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Stelt de huidige virtuele cursorpositie in op (regel, kolom) of op de gegeven cursor. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>String view.selectedText();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de geselecteerde tekst terug. Als er geen tekst is geselecteerd dan is de tekenreeks leeg. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool view.hasSelection();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als het beeld geselecteerde tekst heeft, anders <literal
+>false</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>Range view.selection();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de geselecteerde tekstreeks terug. Als er geen tekst is geselecteerd dan is de tekenreeks ongeldig. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>void view.setSelection(<parameter
+>Range <replaceable
+>reeks</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Stelt de geselecteerde tekst in op de gegeven reeks. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>void view.removeSelectedText();
+</synopsis
+></term>
+<listitem
+><para
+>Verwijder de geselecteerde tekst. Als het beeld geen geselecteerde tekst bevat, dan doet dit niets. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>void view.selectAll();
+</synopsis
+></term>
+<listitem
+><para
+>Selecteert de gehele tekst in het document. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>void view.clearSelection();
+</synopsis
+></term>
+<listitem
+><para
+>Wist de tekstselectie zonder de tekst te verwijderen. </para
+></listitem>
+</varlistentry
+></variablelist>
+</para>
+</sect3>
+
+<sect3 id="dev-scripting-api-document">
+<title
+>De API van Document</title>
+<para
+>Wanneer een script uitgevoerd wordt is er een globale variabele <quote
+><literal
+>document</literal
+></quote
+> die het huidige actieve document representeert. Het volgende is een lijst met alle beschikbare documentfuncties. <variablelist
+><varlistentry>
+<term
+><synopsis
+>String document.fileName();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de bestandsnaam van het document terug of een lege tekenreeks voor niet opgeslagen tekstbuffers. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>String document.url();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de volledige url van het document terug of een lege tekenreeks voor niet opgeslagen tekstbuffers. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>String document.mimeType();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft het mime-type van het document terug of het mime-type <literal
+>application/octet-stream</literal
+> als er geen toepasselijk mime-type gevonden kan worden. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>String document.encoding();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de nu gebruikte codering terug om het bestand op te slaan. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><synopsis
+>String document.highlightingMode();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de gebruikte globale accentueringmodus terug voor het gehele document. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><synopsis
+>String document.highlightingModeAt(<parameter
+>Cursor <replaceable
+>pos</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de gebruikte accentueringmodus terug op de gegeven positie in het document. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><synopsis
+>Array document.embeddedHighlightingModes();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft een reeks van accentueringmodi terug ingebed in dit document. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><synopsis
+>bool document.isModified();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als het document niet opgeslagen wijzigingen heeft(gemodificeerd), anders <literal
+>false</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>String document.text();
+</synopsis
+></term>
+<listitem
+><para
+>Geef de gehele inhoud van het document terug in een enkele tekenreeks. Nieuwe regels zijn gemarkeerd met het teken nieuw-regel <quote
+><literal
+>\n</literal
+></quote
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>String document.text(<parameter
+>int <replaceable
+>vanafRegel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>vanafKolom</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>totRegel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>totKolom</replaceable
+></parameter
+>);
+String document.text(<parameter
+>Cursor <replaceable
+>vanaf</replaceable
+></parameter
+>, <parameter
+>Cursor <replaceable
+>tot</replaceable
+></parameter
+>);
+String document.text(<parameter
+>Range <replaceable
+>bereik</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de tekst terug in het gegeven bereik. Het is aanbevolen de cursor te gebruiken en een versie gebaseerd op bereik voor betere leesbaarheid van de broncode. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>String document.line(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de gegeven tekstregel terug als tekenreeks. De tekenreeks is leeg als de gevraagde regel buiten het bereik ligt. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>String document.wordAt(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>);
+String document.wordAt(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft het woord terug op de gegeven cursorpositie. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term>
+<synopsis
+>Range document.wordRangeAt(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>);
+Range document.wordRangeAt(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>);
+</synopsis>
+</term>
+<listitem
+><para
+>Geeft de reeks van het woord op de gegeven cursorpositie terug. De teruggeven reeks is ongeldig (zie Range.isValid()), als de tekstpositie zich na het eind van een regel bevindt. Als er geen woord is op de gegeven cursorpositie, zal een lege reeks worden teruggegeven. </para>
+<para
+>Sinds: &kde; 4.9 </para>
+</listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>String document.charAt(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>);
+String document.charAt(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft het teken terug op de gegeven cursorpositie. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>String document.firstChar(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft het eerste teken in de gegeven <replaceable
+>regel</replaceable
+> terug die geen witruimte is. Het eerste teken is in kolom 0. Als de regel leeg of alleen witruimte bevat, dan is de teruggegeven tekenreeks leeg. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>String document.lastChar(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft het laatste teken in de gegeven <replaceable
+>regel</replaceable
+> terug die geen witruimte is. Als de regel leeg of alleen witruimte bevat, dan is de teruggegeven tekenreeks leeg. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.isSpace(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>);
+bool document.isSpace(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als het teken op de gegeven cursorpositie gelijk is aan een witruimte, anders <literal
+>false</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.matchesAt(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>, <parameter
+>String <replaceable
+>tekst</replaceable
+></parameter
+>);
+bool document.matchesAt(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>, <parameter
+>String <replaceable
+>tekst</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als de gegeven <replaceable
+>tekst</replaceable
+> overeenkomt met de overeenkomstige cursorpositie, anders <literal
+>false</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.startsWith(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>String <replaceable
+>tekst</replaceable
+></parameter
+>, <parameter
+>bool <replaceable
+>skipWhiteSpaces</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug als de regel begint met <replaceable
+>tekst</replaceable
+>, anders <literal
+>false</literal
+>. Het argument <replaceable
+>skipWhiteSpaces</replaceable
+> bepaalt of voorloopwitruimte genegeerd worden. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.endsWith(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>String <replaceable
+>tekst</replaceable
+></parameter
+>, <parameter
+>bool <replaceable
+>skipWhiteSpaces</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug als de regel eindigt met <replaceable
+>tekst</replaceable
+>, anders <literal
+>false</literal
+>. Het argument <replaceable
+>skipWhiteSpaces</replaceable
+> bepaalt of witruimte achteraan genegeerd wordt. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.setText(<parameter
+>String <replaceable
+>tekst</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Stelt de gehele documenttekst in. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.clear();
+</synopsis
+></term>
+<listitem
+><para
+>Verwijdert de gehele tekst uit het document. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.truncate(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>);
+bool document.truncate(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Kap de gegeven regel op de gegeven kolom of cursorpositie af. Geeft <literal
+>true</literal
+> terug bij succes of <literal
+>false</literal
+> als de gegeven regel geen deel is van het documentbereik. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.insertText(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>, <parameter
+>String <replaceable
+>tekst</replaceable
+></parameter
+>);
+bool document.insertText(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>, <parameter
+>String <replaceable
+>tekst</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Voeg de <replaceable
+>tekst</replaceable
+> op de cursorpositie in. Geeft <literal
+>true</literal
+> terug bij succes of <literal
+>false</literal
+>, als het document alleen-lezen is. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.removeText(<parameter
+>int <replaceable
+>vanafRegel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>vanafKolom</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>totRegel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>totKolom</replaceable
+></parameter
+>);
+bool document.removeText(<parameter
+>Cursor <replaceable
+>vanaf</replaceable
+></parameter
+>, <parameter
+>Cursor <replaceable
+>tot</replaceable
+></parameter
+>);
+bool document.removeText(<parameter
+>Range <replaceable
+>bereik</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Verwijdert de tekst in het gegeven bereik. Geeft <literal
+>true</literal
+> terug bij succes of <literal
+>false</literal
+>, als het document alleen-lezen is. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.insertLine(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>String <replaceable
+>tekst</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Voegt tekst in de gegeven regel in. Geeft <literal
+>true</literal
+> terug bij succes of <literal
+>false</literal
+>, als het document alleen-lezen is of de regel niet in het documentbereik ligt. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.removeLine(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Verwijdert de gegeven tekstregel. Geeft <literal
+>true</literal
+> terug bij succes of <literal
+>false</literal
+>, als het document alleen-lezen is of de regel niet in het documentbereik ligt. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.wrapLine(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>);
+bool document.wrapLine(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Breekt de regel op de gegeven cursorpositie op. Geeft <literal
+>true</literal
+> terug bij succes, anders <literal
+>false</literal
+>, &eg; als regel &lt; 0. </para>
+<para
+>Sinds: &kde; 4.9 </para>
+</listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>void document.joinLines(<parameter
+>int <replaceable
+>beginRegel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>eindRegel</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Voegt de regels vanaf <replaceable
+>beginRegel</replaceable
+> tot <replaceable
+>eindRegel</replaceable
+> samen. Twee elkaar opvolgende tekstregels worden altijd gescheiden door een enkele spatie. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>int document.lines();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft het aantal regels in het document terug. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.isLineModified(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als <replaceable
+>regel</replaceable
+> nu niet opgeslagen gegevens bevat. </para>
+<para
+>Sinds: &kde; 5.0 </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.isLineSaved(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als <replaceable
+>regel</replaceable
+> is gewijzigd, maar het document is opgeslagen. Dus bevat de regel nu geen niet opgeslagen gegevens. </para>
+<para
+>Sinds: &kde; 5.0 </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.isLineTouched(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als <replaceable
+>regel</replaceable
+> nu niet opgeslagen gegevens bevat of eerder is gewijzigd. </para>
+<para
+>Sinds: &kde; 5.0 </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>void document.findTouchedLine(<parameter
+>int <replaceable
+>beginRegel</replaceable
+></parameter
+>, <parameter
+>bool <replaceable
+>oplaag</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Zoek naar de volgende aangeraakte regel beginnend bij <replaceable
+>regel</replaceable
+>. Het zoeken wordt uitgevoerd ofwel omhoog of omlaag afhankelijk van de zoekrichting gespecificeerd in <replaceable
+>omlaag</replaceable
+>. </para>
+<para
+>Sinds: &kde; 5.0 </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>int document.length();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft het aantal tekens in het document terug. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>int document.lineLength(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de lengte van de <replaceable
+>regel</replaceable
+> terug. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>void document.editBegin();
+</synopsis
+></term>
+<listitem
+><para
+>Begint een bewerkingsgroep voor groepering van ongedaan maken/opnieuw doen. Controleer altijd of <function
+>editEnd()</function
+> is aangeroepen als u <function
+>editBegin()</function
+> aanroept. Aanroepen van <function
+>editBegin()</function
+> gebruikt intern een referentieteller, &ie; deze aanroep kan genest worden. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>void document.editEnd();
+</synopsis
+></term>
+<listitem
+><para
+>Beëindigt een bewerkingsgroep. De laatst aanroep van <function
+>editEnd()</function
+> (&ie; diegene voor de eerste aanroep van <function
+>editBegin()</function
+>) beëindigt de bewerkingsstap. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>int document.firstColumn(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de eerste niet-witruimte kolom in de gegeven <replaceable
+>regel</replaceable
+> terug. Als er alleen witruimte in de regel bevindt, dan is de terugkeerwaarde <literal
+>-1</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>int document.lastColumn(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de laatste niet-witruimte kolom in de gegeven <replaceable
+>regel</replaceable
+> terug. Als er alleen witruimte in de regel bevindt, dan is de terugkeerwaarde <literal
+>-1</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>int document.prevNonSpaceColumn(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>);
+int document.prevNonSpaceColumn(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de kolom terug met een niet-witruimte teken beginnend bij de gegeven cursorpositie en achterwaarts zoeken. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>int document.nextNonSpaceColumn(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>);
+int document.nextNonSpaceColumn(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de kolom terug met een niet-witruimte teken beginnend bij de gegeven cursorpositie en voorwaarts zoeken. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>int document.prevNonEmptyLine(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de volgende niet-lege regel terug met een niet-witruimte tekens en achterwaarts zoeken. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>int document.nextNonEmptyLine(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de volgende niet-lege regel terug met een niet-witruimte teken en voorwaarts zoeken. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.isInWord(<parameter
+>String <replaceable
+>teken</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>attribuut</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als het gegeven <replaceable
+>teken</replaceable
+> met het gegeven <replaceable
+>attribuut</replaceable
+> deel van een woord kan zijn, anders <literal
+>false</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.canBreakAt(<parameter
+>String <replaceable
+>teken</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>attribuut</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als het gegeven <replaceable
+>teken</replaceable
+> met het gegeven <replaceable
+>attribuut</replaceable
+> geschikt is om een regel af te breken, anders <literal
+>false</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.canComment(<parameter
+>int <replaceable
+>beginAttribuut</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>eindAttribuut</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als een bereik beginnend en eindigend met de gegeven attributen geschikt is om als commentaar te worden aangemerkt, anders <literal
+>false</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>String document.commentMarker(<parameter
+>int <replaceable
+>attribuut</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de markeerder voor commentaar terug voor commentaar op een enkele regel voor een gegeven <replaceable
+>attribuut</replaceable
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>String document.commentStart(<parameter
+>int <replaceable
+>attribuut</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de markeerder voor commentaar terug voor begin van commentaar over meerdere regels voor een gegeven <replaceable
+>attribuut</replaceable
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>String document.commentEnd(<parameter
+>int <replaceable
+>attribuut</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de markeerder voor commentaar terug voor het einde van commentaar over meerdere regels voor een gegeven <replaceable
+>attribuut</replaceable
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>Range document.documentRange();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft een reeks terug die het gehele document omvat. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>Cursor documentEnd();
+</synopsis
+></term>
+<listitem
+><para
+>Geeft een cursor terug gepositioneerd in de laatste kolom van de laatste regel in het document. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool isValidTextPosition(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>);
+bool isValidTextPosition(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als de gegeven cursorpositie is gepositioneerd op een geldige tekstpositie. Een tekstpositie is alleen geldig als het is gelokaliseerd aan het begin, in het midden, of aan het eind van een geldige regel. Verder is een tekstpositie ongeldig als het is gelokaliseerd in een Unicode-surrogaat. </para
+><para
+>Sinds: &kde; 5.0 </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>int document.attribute(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>);
+int document.attribute(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft het attribuut terug op de gegeven cursorpositie. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.isAttribute(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>attribuut</replaceable
+></parameter
+>);
+bool document.isAttribute(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>attribuut</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als het attribuut op de gegeven cursorpositie gelijk is aan <replaceable
+>attribuut</replaceable
+>, anders <literal
+>false</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>String document.attributeName(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>);
+String document.attributeName(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de attribuutnaam terug als leesbare tekst. Dit is gelijk aan de <literal
+>itemData</literal
+>-naam in de syntaxis-accentuering-bestanden. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.isAttributeName(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>, <parameter
+>String <replaceable
+>naam</replaceable
+></parameter
+>);
+bool document.isAttributeName(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>, <parameter
+>String <replaceable
+>naam</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als de attribuutnaam op een bepaalde cursorpositie overeenkomt met de gegeven <replaceable
+>naam</replaceable
+>, anders <literal
+>false</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>String document.variable(<parameter
+>String <replaceable
+>sleutel</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de waarde terug van de gevraagde documentvariabele <replaceable
+>sleutel</replaceable
+>. Als de documentvariabele niet bestaat, wordt een lege tekenreeks teruggegeven. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>void document.setVariable(<parameter
+>String <replaceable
+>sleutel</replaceable
+></parameter
+>, <parameter
+>String <replaceable
+>waarde</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Stelt de waarde in van de gevraagde documentvariabele <replaceable
+>sleutel</replaceable
+>. </para>
+<para
+>Zie ook: <link linkend="config-variables"
+>Documentvariabelen van Kate</link
+> </para>
+<para
+>Sinds: &kde; 4.8 </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>int document.firstVirtualColumn(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de virtuele kolom terug van het eerste niet-witruimte-teken in de gegeven regel of <literal
+>-1</literal
+>, als de regel leeg is of alleen witruimte-tekens bevat. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>int document.lastVirtualColumn(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de virtuele kolom terug van het laatste niet-witruimte-teken in de gegeven regel of <literal
+>-1</literal
+>, als de regel leeg is of alleen witruimte-tekens bevat. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>int document.toVirtualColumn(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>);
+int document.toVirtualColumn(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>);
+Cursor document.toVirtualCursor(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Converteert de gegeven <quote
+>echte</quote
+> cursorpositie naar een virtuele cursorpositie, geeft ofwel een int terug of een cursor-object. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>int document.fromVirtualColumn(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>virtueleKolom</replaceable
+></parameter
+>);
+int document.fromVirtualColumn(<parameter
+>Cursor <replaceable
+>virtueleCursor</replaceable
+></parameter
+>);
+Cursor document.fromVirtualCursor(<parameter
+>Cursor <replaceable
+>virtueleCursor</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Converteert de gegeven virtuele cursorpositie naar een <quote
+>echte</quote
+> cursorpositie, geeft ofwel een int terug of een cursor-object. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>Cursor document.anchor(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>, <parameter
+>Char <replaceable
+>teken</replaceable
+></parameter
+>);
+Cursor document.anchor(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>, <parameter
+>Char <replaceable
+>teken</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Zoekt achterwaarts naar het gegeven teken te beginnen vanaf de gegeven cursor. Als voorbeeld, als '(' als teken wordt meegegeven, dan geeft deze functie de positie terug van de openingings '('. Dit houdt rekening met aantallen, &ie; andere '(...)' worden genegeerd. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>Cursor document.rfind(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>, <parameter
+>String <replaceable
+>tekst</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>attribuut</replaceable
+> = -1</parameter
+>);
+Cursor document.rfind(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>, <parameter
+>String <replaceable
+>tekst</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>attribuut</replaceable
+> = -1</parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Zoek de gegeven tekst achterwaarts met het juiste <replaceable
+>attribuut</replaceable
+>. Het argument <replaceable
+>attribuut</replaceable
+> wordt genegeerd als het is ingesteld op <literal
+>-1</literal
+>. De teruggegeven cursor is ongeldig, als de tekst niet is gevonden. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>int document.defStyleNum(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>);
+int document.defStyleNum(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft de standaard stijl terug op de gegeven cursorpositie. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.isCode(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>);
+bool document.isCode(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als het attribuut op de gegeven cursorpositie niet gelijk is aan alle volgende stijlen: <literal
+>dsComment</literal
+>, <literal
+>dsString</literal
+>, <literal
+>dsRegionMarker</literal
+>, <literal
+>dsChar</literal
+>, <literal
+>dsOthers</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.isComment(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>);
+bool document.isComment(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als het attribuut van het teken op de cursorpositie gelijk is aan <literal
+>dsComment</literal
+>, anders <literal
+>false</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.isString(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>);
+bool document.isString(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als het attribuut van het teken op de cursorpositie gelijk is aan <literal
+>dsString</literal
+>, anders <literal
+>false</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.isRegionMarker(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>);
+bool document.isRegionMarker(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als het attribuut van het teken op de cursorpositie gelijk is aan <literal
+>dsRegionMarker</literal
+>,anders <literal
+>false</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.isChar(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>);
+bool document.isChar(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als het attribuut van het teken op de cursorpositie gelijk is aan <literal
+>dsChar</literal
+>, anders <literal
+>false</literal
+>. </para
+></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term
+><synopsis
+>bool document.isOthers(<parameter
+>int <replaceable
+>regel</replaceable
+></parameter
+>, <parameter
+>int <replaceable
+>kolom</replaceable
+></parameter
+>);
+bool document.isOthers(<parameter
+>Cursor <replaceable
+>cursor</replaceable
+></parameter
+>);
+</synopsis
+></term>
+<listitem
+><para
+>Geeft <literal
+>true</literal
+> terug, als het attribuut van het teken op de cursorpositie gelijk is aan <literal
+>dsOthers</literal
+>, anders <literal
+>false</literal
+>. </para
+></listitem>
+</varlistentry
+></variablelist>
+</para>
+
+</sect3>
+</sect2>
+
+</sect1>
+
+</chapter>

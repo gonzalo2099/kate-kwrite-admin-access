@@ -1,0 +1,1660 @@
+# Translation of kate.po to Catalan (Valencian)
+# Copyright (C) 1999-2018 This_file_is_part_of_KDE
+# This file is distributed under the license LGPL version 2 or later.
+#
+# Sebastià Pla i Sanz <sps@sastia.com>, 1999, 2000, 2001, 2002, 2004, 2005, 2006.
+# Antoni Bella Pérez <antonibella5@yahoo.com>, 2003, 2014, 2015, 2016, 2017.
+# Albert Astals Cid <aacid@kde.org>, 2004, 2005.
+# Josep Ma. Ferrer <txemaq@gmail.com>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018.
+# Manuel Tortosa Moreno <manutortosa@chakra-project.org>, 2009, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: kate\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2018-07-15 03:19+0200\n"
+"PO-Revision-Date: 2018-07-15 10:48+0100\n"
+"Last-Translator: Josep Ma. Ferrer <txemaq@gmail.com>\n"
+"Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
+"Language: ca@valencia\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 2.0\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Accelerator-Marker: &\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Sebastià Pla i Sanz,Antoni Bella,Manuel Tortosa Moreno"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "sps@sastia.com,antonibella5@yahoo.com,manutortosa@gmail.com"
+
+#. i18n: ectx: Menu (file)
+#: data/kateui.rc:6
+#, kde-format
+msgid "&File"
+msgstr "&Fitxer"
+
+#. i18n: ectx: Menu (edit)
+#: data/kateui.rc:32
+#, kde-format
+msgid "&Edit"
+msgstr "E&dita"
+
+#. i18n: ectx: Menu (view)
+#: data/kateui.rc:43
+#, kde-format
+msgid "&View"
+msgstr "Vi&sualitza"
+
+#. i18n: ectx: Menu (view-split)
+#: data/kateui.rc:54
+#, kde-format
+msgid "Split View"
+msgstr "Divideix la vista"
+
+#. i18n: ectx: Menu (tools)
+#: data/kateui.rc:81
+#, kde-format
+msgid "&Tools"
+msgstr "&Eines"
+
+#. i18n: ectx: Menu (sessions)
+#: data/kateui.rc:89
+#, kde-format
+msgid "Sess&ions"
+msgstr "Sess&ions"
+
+#. i18n: ectx: Menu (settings)
+#: data/kateui.rc:100
+#, kde-format
+msgid "&Settings"
+msgstr "A&rranjament"
+
+#. i18n: ectx: Menu (help)
+#: data/kateui.rc:106
+#, kde-format
+msgid "&Help"
+msgstr "A&juda"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: data/kateui.rc:111
+#, kde-format
+msgid "Main Toolbar"
+msgstr "Barra d'eines principal"
+
+#. i18n: ectx: Menu (viewspace_popup_statusbar)
+#: data/kateui.rc:141
+#, kde-format
+msgid "&Status Bar Items"
+msgstr "Elements de la barra d'e&stat"
+
+#: kateapp.cpp:190 kateapp.cpp:299
+#, kde-format
+msgid ""
+"The file '%1' could not be opened: it is not a normal file, it is a folder."
+msgstr ""
+"El fitxer «%1» no s'ha pogut obrir, aquest no és un fitxer normal, és una "
+"carpeta."
+
+#: katecolorschemechooser.cpp:62
+#, kde-format
+msgid "&Color Theme"
+msgstr "Tema de &color"
+
+#: kateconfigdialog.cpp:56
+#, kde-format
+msgid "Configure"
+msgstr "Configura"
+
+#: kateconfigdialog.cpp:65
+#, kde-format
+msgid "Application"
+msgstr "Aplicació"
+
+#: kateconfigdialog.cpp:67
+#, kde-format
+msgid "Application Options"
+msgstr "Opcions de l'aplicació"
+
+#: kateconfigdialog.cpp:74
+#, kde-format
+msgid "General"
+msgstr "General"
+
+#: kateconfigdialog.cpp:75
+#, kde-format
+msgid "General Options"
+msgstr "Opcions generals"
+
+#: kateconfigdialog.cpp:83
+#, kde-format
+msgid "&Behavior"
+msgstr "&Comportament"
+
+#: kateconfigdialog.cpp:89
+#, kde-format
+msgid "Wa&rn about files modified by foreign processes"
+msgstr "A&visa quant a fitxers modificats per processos externs"
+
+#: kateconfigdialog.cpp:92
+#, kde-format
+msgid ""
+"If enabled, when Kate receives focus you will be asked what to do with files "
+"that have been modified on the hard disk. If not enabled, you will be asked "
+"what to do with a file that has been modified on the hard disk only when "
+"that file is tried to be saved."
+msgstr ""
+"Si està habilitat, quan el Kate reba el focus vos demanarà què cal fer amb "
+"els fitxers que han estat modificats al disc dur. Si no està habilitat, vos "
+"demanarà què fer amb un fitxer que ha estat modificat al disc dur només quan "
+"s'intente guardar aquest fitxer."
+
+#: kateconfigdialog.cpp:102
+#, kde-format
+msgid "Meta-Information"
+msgstr "Meta-informació"
+
+#: kateconfigdialog.cpp:108
+#, kde-format
+msgid "Keep &meta-information past sessions"
+msgstr "Conserva la &meta-informació de les sessions antigues"
+
+#: kateconfigdialog.cpp:111
+#, kde-format
+msgid ""
+"Check this if you want document configuration like for example bookmarks to "
+"be saved past editor sessions. The configuration will be restored if the "
+"document has not changed when reopened."
+msgstr ""
+"Marqueu-ho si voleu que la configuració del document, com per exemple els "
+"punts, es guarde després de les sessions de l'editor. La configuració es "
+"restaurarà si el document no ha canviat en tornar-lo a obrir."
+
+#: kateconfigdialog.cpp:123
+#, kde-format
+msgid "&Delete unused meta-information after:"
+msgstr "&Suprimeix la meta-informació sense usar després de:"
+
+#: kateconfigdialog.cpp:127
+#, kde-format
+msgctxt "The special case of 'Delete unused meta-information after'"
+msgid "(never)"
+msgstr "(mai)"
+
+#: kateconfigdialog.cpp:128
+#, kde-format
+msgctxt "The suffix of 'Delete unused meta-information after'"
+msgid " day"
+msgid_plural " days"
+msgstr[0] " dia"
+msgstr[1] " dies"
+
+#: kateconfigdialog.cpp:143
+#, kde-format
+msgid "Sessions"
+msgstr "Sessions"
+
+#: kateconfigdialog.cpp:144
+#, kde-format
+msgid "Session Management"
+msgstr "Gestió de les sessions"
+
+#: kateconfigdialog.cpp:180
+#, kde-format
+msgid "Plugins"
+msgstr "Connectors"
+
+#: kateconfigdialog.cpp:181
+#, kde-format
+msgid "Plugin Manager"
+msgstr "Gestor dels connectors"
+
+#: kateconfigdialog.cpp:193
+#, kde-format
+msgid "Editor Component"
+msgstr "Component d'edició"
+
+#: kateconfigdialog.cpp:195
+#, kde-format
+msgid "Editor Component Options"
+msgstr "Opcions del component d'edició"
+
+#: kateconfigplugindialogpage.cpp:78
+#, kde-format
+msgid "Name"
+msgstr "Nom"
+
+#: kateconfigplugindialogpage.cpp:78
+#, kde-format
+msgid "Description"
+msgstr "Descripció"
+
+#: kateconfigplugindialogpage.cpp:80
+#, kde-format
+msgid ""
+"Here you can see all available Kate plugins. Those with a check mark are "
+"loaded, and will be loaded again the next time Kate is started."
+msgstr ""
+"Ací podeu veure tots els connectors del Kate disponibles. Aquells que tenen "
+"una marca de selecció estan carregats i es tornaran a carregar la pròxima "
+"vegada que inicieu el Kate."
+
+#: katedocmanager.cpp:233
+#, kde-format
+msgid ""
+"The supposedly temporary file %1 has been modified. Do you want to delete it "
+"anyway?"
+msgstr ""
+"El suposat fitxer temporal %1 ha estat modificat. El voleu suprimir "
+"igualment?"
+
+#: katedocmanager.cpp:235
+#, kde-format
+msgid "Delete File?"
+msgstr "Suprimeixo el fitxer?"
+
+#: katedocmanager.cpp:340
+#, kde-format
+msgid ""
+"<p>The document '%1' has been modified, but not saved.</p><p>Do you want to "
+"save your changes or discard them?</p>"
+msgstr ""
+"<p>El document «%1» ha estat modificat, però no guardat.</p><p>Voleu guardar "
+"els canvis o descartar-los?</p>"
+
+#: katedocmanager.cpp:342 katetabbutton.cpp:46
+#, kde-format
+msgid "Close Document"
+msgstr "Tanca el document"
+
+#: katedocmanager.cpp:349
+#, kde-format
+msgid "Save As"
+msgstr "Guarda com a"
+
+#: katedocmanager.cpp:368 katemainwindow.cpp:473
+#, kde-format
+msgid "New file opened while trying to close Kate, closing aborted."
+msgstr ""
+"S'ha obert un fitxer nou mentre s'intentava tancar el Kate, s'interromp el "
+"tancament."
+
+#: katedocmanager.cpp:369 katemainwindow.cpp:474
+#, kde-format
+msgid "Closing Aborted"
+msgstr "Tancament interromput"
+
+#: katedocmanager.cpp:444
+#, kde-format
+msgid "Starting Up"
+msgstr "S'està engegant"
+
+#: katedocmanager.cpp:445
+#, kde-format
+msgid "Reopening files from the last session..."
+msgstr "S'estan reobrint els fitxers de l'última sessió..."
+
+#: katedocmanager.cpp:606
+#, kde-format
+msgid "Errors/Warnings while opening documents"
+msgstr "Errors/avisos mentre s'obren els documents"
+
+#: katemainwindow.cpp:221
+#, kde-format
+msgid "Use this command to show or hide the view's statusbar"
+msgstr "Usa aquesta ordre per a mostrar o ocultar la vista de la barra d'estat"
+
+#: katemainwindow.cpp:224
+#, kde-format
+msgid "Show &Tabs"
+msgstr "Mostra les &pestanyes"
+
+#: katemainwindow.cpp:227
+#, kde-format
+msgid "Use this command to show or hide the tabs for the views"
+msgstr "Usa aquesta ordre per a mostrar o ocultar les pestanyes a les vistes"
+
+#: katemainwindow.cpp:229
+#, kde-format
+msgid "Sho&w Path in Titlebar"
+msgstr "Mo&stra el camí a la barra de títol"
+
+#: katemainwindow.cpp:232
+#, kde-format
+msgid "Show the complete document path in the window caption"
+msgstr "Mostra el camí complet cap al document al títol de la finestra"
+
+#: katemainwindow.cpp:238
+#, kde-format
+msgid "&Previous Tab"
+msgstr "&Pestanya anterior"
+
+#: katemainwindow.cpp:239
+#, kde-format
+msgid "Focus the previous tab."
+msgstr "Dóna el focus a la pestanya anterior."
+
+#: katemainwindow.cpp:244
+#, kde-format
+msgid "&Next Tab"
+msgstr "Pestanya se&güent"
+
+#: katemainwindow.cpp:245
+#, kde-format
+msgid "Focus the next tab."
+msgstr "Dóna el focus a la pestanya següent."
+
+#: katemainwindow.cpp:252
+#, kde-format
+msgid "&Quick Open"
+msgstr "Obertura &ràpida"
+
+#: katemainwindow.cpp:255
+#, kde-format
+msgid "Open a form to quick open documents."
+msgstr "Obri un formulari per obrir documents amb rapidesa."
+
+#: katemainwindow.cpp:288
+#, kde-format
+msgid "Create a new document"
+msgstr "Crea un document nou"
+
+#: katemainwindow.cpp:290
+#, kde-format
+msgid "Open an existing document for editing"
+msgstr "Obri un document existent per a edició"
+
+#: katemainwindow.cpp:295
+#, kde-format
+msgid ""
+"This lists files which you have opened recently, and allows you to easily "
+"open them again."
+msgstr ""
+"Mostra una llista dels fitxers oberts recentment i vos permet obrir-los "
+"fàcilment una altra vegada."
+
+#: katemainwindow.cpp:299
+#, kde-format
+msgid "Save A&ll"
+msgstr "Guarda-ho &tot"
+
+#: katemainwindow.cpp:302
+#, kde-format
+msgid "Save all open, modified documents to disk."
+msgstr "Guarda al disc tots els documents oberts modificats."
+
+#: katemainwindow.cpp:305
+#, kde-format
+msgid "&Reload All"
+msgstr "&Actualitza-ho tot"
+
+#: katemainwindow.cpp:307
+#, kde-format
+msgid "Reload all open documents."
+msgstr "Actualitza tots els documents oberts."
+
+#: katemainwindow.cpp:310
+#, kde-format
+msgid "Close Orphaned"
+msgstr "Tanca els orfes"
+
+#: katemainwindow.cpp:312
+#, kde-format
+msgid ""
+"Close all documents in the file list that could not be reopened, because "
+"they are not accessible anymore."
+msgstr ""
+"Tanca tots els documents de la llista de fitxers que no es poden tornar a "
+"obrir, perquè ja no són accessibles."
+
+#: katemainwindow.cpp:316
+#, kde-format
+msgid "Close the current document."
+msgstr "Tanca el document actual."
+
+#: katemainwindow.cpp:319
+#, kde-format
+msgid "Close Other"
+msgstr "Tanca els altres"
+
+#: katemainwindow.cpp:321
+#, kde-format
+msgid "Close other open documents."
+msgstr "Tanca els altres documents oberts."
+
+#: katemainwindow.cpp:324
+#, kde-format
+msgid "Clos&e All"
+msgstr "Tan&ca-ho tot"
+
+#: katemainwindow.cpp:326
+#, kde-format
+msgid "Close all open documents."
+msgstr "Tanca tots els documents oberts."
+
+#: katemainwindow.cpp:331
+#, kde-format
+msgid "Close this window"
+msgstr "Tanca aquesta finestra"
+
+#: katemainwindow.cpp:335
+#, kde-format
+msgid "&New Window"
+msgstr "Finestra &nova"
+
+#: katemainwindow.cpp:337
+#, kde-format
+msgid "Create a new Kate view (a new window with the same document list)."
+msgstr ""
+"Crea una nova vista del Kate (una finestra nova amb la mateixa llista de "
+"documents)."
+
+#: katemainwindow.cpp:343
+#, kde-format
+msgid "Open W&ith"
+msgstr "O&bre amb"
+
+#: katemainwindow.cpp:345
+#, kde-format
+msgid ""
+"Open the current document using another application registered for its file "
+"type, or an application of your choice."
+msgstr ""
+"Obri el document actual usant una altra aplicació registrada per aquest "
+"tipus de fitxer o una aplicació de la vostra elecció."
+
+#: katemainwindow.cpp:350
+#, kde-format
+msgid "Configure the application's keyboard shortcut assignments."
+msgstr ""
+"Configura les associacions de les dreceres de teclat per a l'aplicació."
+
+#: katemainwindow.cpp:353
+#, kde-format
+msgid "Configure which items should appear in the toolbar(s)."
+msgstr "Configura quins elements hauran d'aparèixer a la/es barra/es d'eines."
+
+#: katemainwindow.cpp:356
+#, kde-format
+msgid ""
+"Configure various aspects of this application and the editing component."
+msgstr ""
+"Configura diversos aspectes d'aquesta aplicació i del component d'edició."
+
+#: katemainwindow.cpp:360
+#, kde-format
+msgid "&Plugins Handbook"
+msgstr "&Manual dels connectors"
+
+#: katemainwindow.cpp:362
+#, kde-format
+msgid "This shows help files for various available plugins."
+msgstr "Mostra els fitxers d'ajuda pels diferents connectors disponibles."
+
+#: katemainwindow.cpp:366
+#, kde-format
+msgid "&About Editor Component"
+msgstr "&Quant al component d'edició"
+
+#: katemainwindow.cpp:383
+#, kde-format
+msgctxt "Menu entry Session->New"
+msgid "&New"
+msgstr "&Nova"
+
+#: katemainwindow.cpp:388
+#, kde-format
+msgid "&Open Session"
+msgstr "&Obri una sessió"
+
+#: katemainwindow.cpp:393
+#, kde-format
+msgid "&Save Session"
+msgstr "Guarda la &sessió"
+
+#: katemainwindow.cpp:397
+#, kde-format
+msgid "Save Session &As..."
+msgstr "Guarda la sessió com &a..."
+
+#: katemainwindow.cpp:401
+#, kde-format
+msgid "&Manage Sessions..."
+msgstr "&Gestiona les sessions..."
+
+#: katemainwindow.cpp:406
+#, kde-format
+msgid "&Quick Open Session"
+msgstr "Obri &ràpidament una sessió"
+
+#: katemainwindow.cpp:413
+#, kde-format
+msgid "This will close all open documents. Are you sure you want to continue?"
+msgstr ""
+"Això tancarà tots els documents oberts. Esteu segur que voleu continuar?"
+
+#: katemainwindow.cpp:414
+#, kde-format
+msgid "Close all documents"
+msgstr "Tanca tots els documents"
+
+#: katemainwindow.cpp:427
+#, kde-format
+msgid ""
+"This will close all open documents beside the current one. Are you sure you "
+"want to continue?"
+msgstr ""
+"Això tancarà tots els documents oberts excepte l'actual. Esteu segur que "
+"voleu continuar?"
+
+#: katemainwindow.cpp:428
+#, kde-format
+msgid "Close all documents beside current one"
+msgstr "Tanca tots els documents excepte l'actual"
+
+#: katemainwindow.cpp:604
+#, kde-format
+msgid ""
+"This will hide the menu bar completely. You can show it again by typing %1."
+msgstr ""
+"Això ocultarà completament la barra de menús. La podeu tornar a mostrar "
+"prement %1."
+
+#: katemainwindow.cpp:606
+#, kde-format
+msgid "Hide menu bar"
+msgstr "Oculta la barra de menús"
+
+#: katemainwindow.cpp:717
+#, kde-format
+msgid ""
+"You dropped the directory %1 into Kate. Do you want to load all files "
+"contained in it ?"
+msgstr ""
+"S'ha deixat anar el %1 en el Kate. Voleu carregar-hi tots els fitxers "
+"continguts?"
+
+#: katemainwindow.cpp:719
+#, kde-format
+msgid "Load files recursively?"
+msgstr "Carrego recursivament els fitxers?"
+
+#: katemainwindow.cpp:847
+#, kde-format
+msgid "&Other..."
+msgstr "&Altres..."
+
+#: katemainwindow.cpp:870
+#, kde-format
+msgid "Application '%1' not found."
+msgstr "No s'ha trobat l'aplicació «%1»."
+
+#: katemainwindow.cpp:870
+#, kde-format
+msgid "Application not found"
+msgstr "No s'ha trobat l'aplicació"
+
+#: katemainwindow.cpp:977
+#, kde-format
+msgid " [read only]"
+msgstr " [només de lectura]"
+
+#: katemdi.cpp:113
+#, kde-format
+msgid "Tool &Views"
+msgstr "&Vistes d'eina"
+
+#: katemdi.cpp:115
+#, kde-format
+msgid "Show Side&bars"
+msgstr "Mostra les &barres laterals"
+
+#: katemdi.cpp:158
+#, kde-format
+msgid "Show %1"
+msgstr "Mostra %1"
+
+#: katemdi.cpp:500
+#, kde-format
+msgid "Configure ..."
+msgstr "Configura..."
+
+#: katemdi.cpp:504
+#, kde-format
+msgid "Behavior"
+msgstr "Comportament"
+
+#: katemdi.cpp:507
+#, kde-format
+msgid "Make Non-Persistent"
+msgstr "Fes no persistent"
+
+#: katemdi.cpp:507
+#, kde-format
+msgid "Make Persistent"
+msgstr "Fes persistent"
+
+#: katemdi.cpp:509
+#, kde-format
+msgid "Move To"
+msgstr "Mou a"
+
+#: katemdi.cpp:512
+#, kde-format
+msgid "Left Sidebar"
+msgstr "Barra lateral esquerra"
+
+#: katemdi.cpp:516
+#, kde-format
+msgid "Right Sidebar"
+msgstr "Barra lateral dreta"
+
+#: katemdi.cpp:520
+#, kde-format
+msgid "Top Sidebar"
+msgstr "Barra lateral superior"
+
+#: katemdi.cpp:524
+#, kde-format
+msgid "Bottom Sidebar"
+msgstr "Barra lateral inferior"
+
+#: katemdi.cpp:860
+#, kde-format
+msgid ""
+"<qt>You are about to hide the sidebars. With hidden sidebars it is not "
+"possible to directly access the tool views with the mouse anymore, so if you "
+"need to access the sidebars again invoke <b>View &gt; Tool Views &gt; Show "
+"Sidebars</b> in the menu. It is still possible to show/hide the tool views "
+"with the assigned shortcuts.</qt>"
+msgstr ""
+"<qt>Ara s'ocultaran les barres laterals. Amb les barres laterals ocultes ja "
+"no és possible accedir directament a les vistes d'eina amb el ratolí, per "
+"tant, si vos cal tornar a accedir a les barres laterals, useu <b>Visualitza "
+"&gt; Vistes d'eina &gt; Mostra les barres laterals</b> al menú. Encara serà "
+"possible mostrar/ocultar les vistes d'eina amb les dreceres assignades.</qt>"
+
+#: katemwmodonhddialog.cpp:67
+#, kde-format
+msgid "Documents Modified on Disk"
+msgstr "Documents modificats al disc"
+
+#: katemwmodonhddialog.cpp:84
+#, kde-format
+msgid ""
+"<qt>The documents listed below have changed on disk.<p>Select one or more at "
+"once, and press an action button until the list is empty.</p></qt>"
+msgstr ""
+"<qt>Els documents de la llista de sota han canviat al disc.<p>Seleccioneu-ne "
+"un o més a la vegada i premeu un botó d'acció fins que la llista siga buida."
+"</p></qt>"
+
+#: katemwmodonhddialog.cpp:93
+#, kde-format
+msgid "Filename"
+msgstr "Nom del fitxer"
+
+#: katemwmodonhddialog.cpp:93
+#, kde-format
+msgid "Status on Disk"
+msgstr "Estat al disc"
+
+#: katemwmodonhddialog.cpp:98
+#, kde-format
+msgid "Modified"
+msgstr "Modificat"
+
+#: katemwmodonhddialog.cpp:98
+#, kde-format
+msgid "Created"
+msgstr "Creat"
+
+#: katemwmodonhddialog.cpp:98
+#, kde-format
+msgid "Deleted"
+msgstr "Suprimit"
+
+#: katemwmodonhddialog.cpp:112
+#, kde-format
+msgid "&View Difference"
+msgstr "&Visualitza la diferència"
+
+#: katemwmodonhddialog.cpp:114
+#, kde-format
+msgid ""
+"Calculates the difference between the editor contents and the disk file for "
+"the selected document, and shows the difference with the default "
+"application. Requires diff(1)."
+msgstr ""
+"Calcula la diferència entre el contingut de l'editor i el fitxer al disc pel "
+"document seleccionat, i mostra la diferència amb l'aplicació per omissió. "
+"Cal el diff(1)."
+
+#: katemwmodonhddialog.cpp:124
+#, kde-format
+msgid "&Ignore Changes"
+msgstr "&Ignora els canvis"
+
+#: katemwmodonhddialog.cpp:125
+#, kde-format
+msgid "Remove modified flag from selected documents"
+msgstr "Elimina l'indicador de modificació dels documents seleccionats"
+
+#: katemwmodonhddialog.cpp:131
+#, kde-format
+msgid "Overwrite selected documents, discarding disk changes"
+msgstr "Sobreescriu els documents seleccionats, descartant els canvis al disc"
+
+#: katemwmodonhddialog.cpp:135
+#, kde-format
+msgid "&Reload"
+msgstr "&Actualitza"
+
+#: katemwmodonhddialog.cpp:137
+#, kde-format
+msgid "Reload selected documents from disk"
+msgstr "Torna a carregar els documents seleccionats des del disc"
+
+#: katemwmodonhddialog.cpp:199
+#, kde-format
+msgid ""
+"Could not save the document \n"
+"'%1'"
+msgstr ""
+"No s'ha pogut guardar el document \n"
+"«%1»"
+
+#: katemwmodonhddialog.cpp:308
+#, kde-format
+msgid ""
+"The diff command failed. Please make sure that diff(1) is installed and in "
+"your PATH."
+msgstr ""
+"Ha fallat l'ordre «diff». Assegureu-vos que el diff(1) està instal·lat i a "
+"la PATH."
+
+#: katemwmodonhddialog.cpp:310
+#, kde-format
+msgid "Error Creating Diff"
+msgstr "Hi ha hagut un error en crear el «diff»"
+
+#: katemwmodonhddialog.cpp:318
+#, kde-format
+msgid "Ignoring amount of white space changed, the files are identical."
+msgstr "S'ignoren els canvis en els espais en blanc, els fitxers són idèntics."
+
+#: katemwmodonhddialog.cpp:319
+#, kde-format
+msgid "Diff Output"
+msgstr "Eixida del «diff»"
+
+#: katequickopen.cpp:64
+#, kde-format
+msgid "Quick Open Search"
+msgstr "Cerca amb obertura ràpida"
+
+#: katesavemodifieddialog.cpp:81
+#, kde-format
+msgid "Save As (%1)"
+msgstr "Guarda com a (%1)"
+
+#: katesavemodifieddialog.cpp:88
+#, kde-format
+msgid ""
+"A file named \"%1\" already exists. Are you sure you want to overwrite it?"
+msgstr ""
+"Ja existeix un fitxer anomenat «%1». Esteu segur que voleu sobreescriure'l?"
+
+#: katesavemodifieddialog.cpp:90
+#, kde-format
+msgid "Overwrite File?"
+msgstr "Sobreescric el fitxer?"
+
+#: katesavemodifieddialog.cpp:147
+#, kde-format
+msgid "Save Documents"
+msgstr "Guarda els documents"
+
+#: katesavemodifieddialog.cpp:155
+#, kde-format
+msgid ""
+"<qt>The following documents have been modified. Do you want to save them "
+"before closing?</qt>"
+msgstr ""
+"<qt>Els següents documents han estat modificats. Voleu guardar-los abans de "
+"tancar?</qt>"
+
+#: katesavemodifieddialog.cpp:162
+#, kde-format
+msgid "Documents"
+msgstr "Documents"
+
+#: katesavemodifieddialog.cpp:162
+#, kde-format
+msgid "Location"
+msgstr "Ubicació"
+
+#: katesavemodifieddialog.cpp:172
+#, kde-format
+msgid "Se&lect All"
+msgstr "Se&lecciona-ho tot"
+
+#: katesavemodifieddialog.cpp:244
+#, kde-format
+msgid ""
+"Data you requested to be saved could not be written. Please choose how you "
+"want to proceed."
+msgstr ""
+"Les dades que heu demanat que es guarden no han pogut ser escrites. Per "
+"favor, escolliu com voleu procedir."
+
+#: kateviewmanager.cpp:127
+#, kde-format
+msgid "Split Ve&rtical"
+msgstr "Divideix en &vertical"
+
+#: kateviewmanager.cpp:131
+#, kde-format
+msgid "Split the currently active view vertically into two views."
+msgstr "Divideix verticalment en dues parts la vista actualment activa."
+
+#: kateviewmanager.cpp:135
+#, kde-format
+msgid "Split &Horizontal"
+msgstr "Divideix en &horitzontal"
+
+#: kateviewmanager.cpp:139
+#, kde-format
+msgid "Split the currently active view horizontally into two views."
+msgstr "Divideix horitzontalment en dues parts la vista actualment activa."
+
+#: kateviewmanager.cpp:143
+#, kde-format
+msgid "Cl&ose Current View"
+msgstr "Tanca la vista &actual"
+
+#: kateviewmanager.cpp:147
+#, kde-format
+msgid "Close the currently active split view"
+msgstr "Tanca la vista dividida actualment activa"
+
+#: kateviewmanager.cpp:151
+#, kde-format
+msgid "Close Inactive Views"
+msgstr "Tanca les vistes inactives"
+
+#: kateviewmanager.cpp:154
+#, kde-format
+msgid "Close every view but the active one"
+msgstr "Tanca totes les vistes excepte l'activa"
+
+#: kateviewmanager.cpp:158
+#, kde-format
+msgid "Hide Inactive Views"
+msgstr "Oculta les vistes inactives"
+
+#: kateviewmanager.cpp:162
+#, kde-format
+msgid "Hide every view but the active one"
+msgstr "Oculta totes les vistes excepte l'activa"
+
+#: kateviewmanager.cpp:165
+#, kde-format
+msgid "Toggle Orientation"
+msgstr "Alterna l'orientació"
+
+#: kateviewmanager.cpp:168
+#, kde-format
+msgid "Toggles the orientation of the current split view"
+msgstr "Alterna l'orientació de la vista dividida actual"
+
+#: kateviewmanager.cpp:171
+#, kde-format
+msgid "Next Split View"
+msgstr "Vista dividida següent"
+
+#: kateviewmanager.cpp:175
+#, kde-format
+msgid "Make the next split view the active one."
+msgstr "Torna activa la vista dividida següent."
+
+#: kateviewmanager.cpp:178
+#, kde-format
+msgid "Previous Split View"
+msgstr "Vista dividida anterior"
+
+#: kateviewmanager.cpp:182
+#, kde-format
+msgid "Make the previous split view the active one."
+msgstr "Torna activa la vista dividida anterior."
+
+#: kateviewmanager.cpp:185
+#, kde-format
+msgid "Move Splitter Right"
+msgstr "Mou el divisor a la dreta"
+
+#: kateviewmanager.cpp:188
+#, kde-format
+msgid "Move the splitter of the current view to the right"
+msgstr "Mou cap a la dreta el divisor de la vista actual"
+
+#: kateviewmanager.cpp:191
+#, kde-format
+msgid "Move Splitter Left"
+msgstr "Mou el divisor a l'esquerra"
+
+#: kateviewmanager.cpp:194
+#, kde-format
+msgid "Move the splitter of the current view to the left"
+msgstr "Mou cap a l'esquerra el divisor de la vista actual"
+
+#: kateviewmanager.cpp:197
+#, kde-format
+msgid "Move Splitter Up"
+msgstr "Mou el divisor amunt"
+
+#: kateviewmanager.cpp:200
+#, kde-format
+msgid "Move the splitter of the current view up"
+msgstr "Mou cap a dalt el divisor de la vista actual"
+
+#: kateviewmanager.cpp:203
+#, kde-format
+msgid "Move Splitter Down"
+msgstr "Mou el divisor avall"
+
+#: kateviewmanager.cpp:206
+#, kde-format
+msgid "Move the splitter of the current view down"
+msgstr "Mou cap a baix el divisor de la vista actual"
+
+#: kateviewmanager.cpp:233
+#, kde-format
+msgid "Open File"
+msgstr "Obri un fitxer"
+
+#: kateviewmanager.cpp:250
+#, kde-format
+msgid ""
+"<p>You are attempting to open one or more large files:</p><ul>%1</ul><p>Do "
+"you want to proceed?</p><p><strong>Beware that kate may stop responding for "
+"some time when opening large files.</strong></p>"
+msgstr ""
+"<p>Esteu intentant obrir un o més fitxers grans:</p><ul>%1</ul><p>Voleu "
+"continuar?</p><p><strong>Tingueu en compte que el Kate podria aturar-se "
+"durant una estona en obrir fitxers grans.</strong></p>"
+
+#: kateviewmanager.cpp:251
+#, kde-format
+msgid "Opening Large File"
+msgstr "Obertura d'un fitxer gran"
+
+#: kateviewspace.cpp:88 kateviewspace.cpp:554
+#, kde-format
+msgctxt "indicator for more documents"
+msgid "+%1"
+msgstr "+%1"
+
+#: kateviewspace.cpp:93 kateviewspace.cpp:153
+#, kde-format
+msgid "Click here to switch to the Quick Open view."
+msgstr "Cliqueu ací per canviar a la vista Obertura ràpida."
+
+#: kateviewspace.cpp:106
+#, kde-format
+msgid "Control view space splitting"
+msgstr "Control de la divisió de l'espai de la vista"
+
+#: kateviewspace.cpp:154
+#, kde-format
+msgid ""
+"Currently, there is one more document open. To see all open documents, "
+"switch to the Quick Open view by clicking here."
+msgid_plural ""
+"Currently, there are %1 more documents open. To see all open documents, "
+"switch to the Quick Open view by clicking here."
+msgstr[0] ""
+"Actualment, no hi ha obert cap document més. Per a veure tots els documents "
+"oberts, canvieu a la vista Obertura ràpida clicant ací."
+msgstr[1] ""
+"Actualment, hi ha oberts %1 documents. Per a veure tots els documents "
+"oberts, canvieu a la vista Obertura ràpida clicant ací."
+
+#: kateviewspace.cpp:593
+#, kde-format
+msgid "&Close Document"
+msgstr "Tan&ca el document"
+
+#: kateviewspace.cpp:594
+#, kde-format
+msgid "Close Other &Documents"
+msgstr "Tanca els altres &documents"
+
+#: kateviewspace.cpp:596
+#, kde-format
+msgid "Copy &Path"
+msgstr "Co&pia el camí"
+
+#: kateviewspace.cpp:597
+#, kde-format
+msgid "&Open Containing Folder"
+msgstr "&Obri la carpeta contenidora"
+
+#: main.cpp:114
+#, kde-format
+msgid "Kate"
+msgstr "Kate"
+
+#: main.cpp:115
+#, kde-format
+msgid "Kate - Advanced Text Editor"
+msgstr "Kate: Editor avançat de text"
+
+#: main.cpp:116
+#, kde-format
+msgid "(c) 2000-2017 The Kate Authors"
+msgstr "(c) 2000-2017 The Kate Authors"
+
+#: main.cpp:130
+#, kde-format
+msgid "Christoph Cullmann"
+msgstr "Christoph Cullmann"
+
+#: main.cpp:130
+#, kde-format
+msgid "Maintainer"
+msgstr "Mantenidor"
+
+#: main.cpp:131
+#, kde-format
+msgid "Anders Lund"
+msgstr "Anders Lund"
+
+#: main.cpp:131 main.cpp:132 main.cpp:133 main.cpp:142
+#, kde-format
+msgid "Core Developer"
+msgstr "Desenvolupador principal"
+
+#: main.cpp:132
+#, kde-format
+msgid "Joseph Wenninger"
+msgstr "Joseph Wenninger"
+
+#: main.cpp:133
+#, kde-format
+msgid "Hamish Rodda"
+msgstr "Hamish Rodda"
+
+#: main.cpp:134
+#, kde-format
+msgid "Dominik Haumann"
+msgstr "Dominik Haumann"
+
+#: main.cpp:134
+#, kde-format
+msgid "Developer & Highlight wizard"
+msgstr "Desenvolupador i assistent pel ressaltat"
+
+#: main.cpp:135
+#, kde-format
+msgid "Kåre Särs"
+msgstr "Kåre Särs"
+
+#: main.cpp:135 main.cpp:136 main.cpp:137
+#, kde-format
+msgid "Developer"
+msgstr "Desenvolupador"
+
+#: main.cpp:136
+#, kde-format
+msgid "Alexander Neundorf"
+msgstr "Alexander Neundorf"
+
+#: main.cpp:137
+#, kde-format
+msgid "Sven Brauch"
+msgstr "Sven Brauch"
+
+#: main.cpp:138
+#, kde-format
+msgid "Waldo Bastian"
+msgstr "Waldo Bastian"
+
+#: main.cpp:138
+#, kde-format
+msgid "The cool buffersystem"
+msgstr "El fantàstic sistema de memòria intermèdia"
+
+#: main.cpp:139
+#, kde-format
+msgid "Charles Samuels"
+msgstr "Charles Samuels"
+
+#: main.cpp:139
+#, kde-format
+msgid "The Editing Commands"
+msgstr "Les ordres d'edició"
+
+#: main.cpp:140
+#, kde-format
+msgid "Matt Newell"
+msgstr "Matt Newell"
+
+#: main.cpp:140
+#, kde-format
+msgid "Testing, ..."
+msgstr "Proves..."
+
+#: main.cpp:141
+#, kde-format
+msgid "Michael Bartl"
+msgstr "Michael Bartl"
+
+#: main.cpp:141
+#, kde-format
+msgid "Former Core Developer"
+msgstr "Antic desenvolupador principal"
+
+#: main.cpp:142
+#, kde-format
+msgid "Michael McCallum"
+msgstr "Michael McCallum"
+
+#: main.cpp:143
+#, kde-format
+msgid "Jochen Wilhemly"
+msgstr "Jochen Wilhemly"
+
+#: main.cpp:143
+#, kde-format
+msgid "KWrite Author"
+msgstr "Autor del KWrite"
+
+#: main.cpp:144
+#, kde-format
+msgid "Michael Koch"
+msgstr "Michael Koch"
+
+#: main.cpp:144
+#, kde-format
+msgid "KWrite port to KParts"
+msgstr "Port del KWrite a KParts"
+
+#: main.cpp:145
+#, kde-format
+msgid "Christian Gebauer"
+msgstr "Christian Gebauer"
+
+#: main.cpp:146
+#, kde-format
+msgid "Simon Hausmann"
+msgstr "Simon Hausmann"
+
+#: main.cpp:147
+#, kde-format
+msgid "Glen Parker"
+msgstr "Glen Parker"
+
+#: main.cpp:147
+#, kde-format
+msgid "KWrite Undo History, Kspell integration"
+msgstr "Historial desfés del KWrite, integració amb el Kspell"
+
+#: main.cpp:148
+#, kde-format
+msgid "Scott Manson"
+msgstr "Scott Manson"
+
+#: main.cpp:148
+#, kde-format
+msgid "KWrite XML Syntax highlighting support"
+msgstr "Implementació del ressaltat de la sintaxi XML al KWrite"
+
+#: main.cpp:149
+#, kde-format
+msgid "John Firebaugh"
+msgstr "John Firebaugh"
+
+#: main.cpp:149
+#, kde-format
+msgid "Patches and more"
+msgstr "Pedaços i més"
+
+#: main.cpp:150
+#, kde-format
+msgid "Pablo Martín"
+msgstr "Pablo Martín"
+
+#: main.cpp:150
+#, kde-format
+msgid "Python Plugin Developer"
+msgstr "Desenvolupador del connector Python"
+
+#: main.cpp:151
+#, kde-format
+msgid "Gerald Senarclens de Grancy"
+msgstr "Gerald Senarclens de Grancy"
+
+#: main.cpp:151
+#, kde-format
+msgid "QA and Scripting"
+msgstr "QA i creació de scripts"
+
+#: main.cpp:153
+#, kde-format
+msgid "Matteo Merli"
+msgstr "Matteo Merli"
+
+#: main.cpp:153
+#, kde-format
+msgid "Highlighting for RPM Spec-Files, Perl, Diff and more"
+msgstr "Ressaltat pels fitxers «spec» dels RPM, Perl, diff i més"
+
+#: main.cpp:154
+#, kde-format
+msgid "Rocky Scaletta"
+msgstr "Rocky Scaletta"
+
+#: main.cpp:154
+#, kde-format
+msgid "Highlighting for VHDL"
+msgstr "Ressaltat per a VHDL"
+
+#: main.cpp:155
+#, kde-format
+msgid "Yury Lebedev"
+msgstr "Yury Lebedev"
+
+#: main.cpp:155
+#, kde-format
+msgid "Highlighting for SQL"
+msgstr "Ressaltat per a SQL"
+
+#: main.cpp:156
+#, kde-format
+msgid "Chris Ross"
+msgstr "Chris Ross"
+
+#: main.cpp:156
+#, kde-format
+msgid "Highlighting for Ferite"
+msgstr "Ressaltat per a Ferite"
+
+#: main.cpp:157
+#, kde-format
+msgid "Nick Roux"
+msgstr "Nick Roux"
+
+#: main.cpp:157
+#, kde-format
+msgid "Highlighting for ILERPG"
+msgstr "Ressaltat per a ILERPG"
+
+#: main.cpp:158
+#, kde-format
+msgid "Carsten Niehaus"
+msgstr "Carsten Niehaus"
+
+#: main.cpp:158
+#, kde-format
+msgid "Highlighting for LaTeX"
+msgstr "Ressaltat per a LaTeX"
+
+#: main.cpp:159
+#, kde-format
+msgid "Per Wigren"
+msgstr "Per Wigren"
+
+#: main.cpp:159
+#, kde-format
+msgid "Highlighting for Makefiles, Python"
+msgstr "Ressaltat pels fitxers de Make, Python"
+
+#: main.cpp:160
+#, kde-format
+msgid "Jan Fritz"
+msgstr "Jan Fritz"
+
+#: main.cpp:160
+#, kde-format
+msgid "Highlighting for Python"
+msgstr "Ressaltat per a Python"
+
+#: main.cpp:161
+#, kde-format
+msgid "Daniel Naber"
+msgstr "Daniel Naber"
+
+#: main.cpp:162
+#, kde-format
+msgid "Roland Pabel"
+msgstr "Roland Pabel"
+
+#: main.cpp:162
+#, kde-format
+msgid "Highlighting for Scheme"
+msgstr "Ressaltat per a Scheme"
+
+#: main.cpp:163
+#, kde-format
+msgid "Cristi Dumitrescu"
+msgstr "Cristi Dumitrescu"
+
+#: main.cpp:163
+#, kde-format
+msgid "PHP Keyword/Datatype list"
+msgstr "Llista de les paraules clau/tipus de dades per a PHP"
+
+#: main.cpp:164
+#, kde-format
+msgid "Carsten Pfeiffer"
+msgstr "Carsten Pfeiffer"
+
+#: main.cpp:164
+#, kde-format
+msgid "Very nice help"
+msgstr "Ajuda molt valuosa"
+
+#: main.cpp:165
+#, kde-format
+msgid "All people who have contributed and I have forgotten to mention"
+msgstr "Tothom qui ha col·laborat i als que m'he descuidat de mencionar"
+
+#: main.cpp:189
+#, kde-format
+msgid "Start Kate with a given session."
+msgstr "Inicia el Kate amb una sessió indicada."
+
+#: main.cpp:189
+#, kde-format
+msgid "session"
+msgstr "sessió"
+
+#: main.cpp:193
+#, kde-format
+msgid "Start Kate with a new anonymous session, implies '-n'."
+msgstr "Inicia el Kate amb una sessió anònima nova, implica «-n»."
+
+#: main.cpp:197
+#, kde-format
+msgid ""
+"Force start of a new kate instance (is ignored if start is used and another "
+"kate instance already has the given session opened), forced if no parameters "
+"and no URLs are given at all."
+msgstr ""
+"Força l'inici d'una nova instància del Kate (s'ignora si s'ha usat «start» i "
+"una altra instància del Kate ja té oberta la sessió indicada), forçada si no "
+"se li proporcionen paràmetres ni els URL."
+
+#: main.cpp:201
+#, kde-format
+msgid ""
+"If using an already running kate instance, block until it exits, if URLs "
+"given to open."
+msgstr ""
+"Si s'està usant una instància del Kate en execució, la bloqueja fins que "
+"eixiu, si se li han proporcionat els URL a obrir."
+
+#: main.cpp:205
+#, kde-format
+msgid ""
+"Only try to reuse kate instance with this pid (is ignored if start is used "
+"and another kate instance already has the given session opened)."
+msgstr ""
+"Intenta només usar la instància del Kate amb aquest PID (s'ignora si s'ha "
+"usat «start» i ja hi ha una altra instància del Kate amb la sessió indicada "
+"oberta)."
+
+#: main.cpp:205
+#, kde-format
+msgid "pid"
+msgstr "PID"
+
+#: main.cpp:209
+#, kde-format
+msgid "Set encoding for the file to open."
+msgstr "Estableix la codificació del fitxer a obrir."
+
+#: main.cpp:209
+#, kde-format
+msgid "encoding"
+msgstr "codificació"
+
+#: main.cpp:213
+#, kde-format
+msgid "Navigate to this line."
+msgstr "Navega fins aquesta línia."
+
+#: main.cpp:213
+#, kde-format
+msgid "line"
+msgstr "línia"
+
+#: main.cpp:217
+#, kde-format
+msgid "Navigate to this column."
+msgstr "Navega fins aquesta columna."
+
+#: main.cpp:217
+#, kde-format
+msgid "column"
+msgstr "columna"
+
+#: main.cpp:221
+#, kde-format
+msgid "Read the contents of stdin."
+msgstr "Llig el contingut de l'entrada estàndard."
+
+#: main.cpp:225
+#, kde-format
+msgid "The files/URLs opened by the application will be deleted after use"
+msgstr ""
+"Els fitxers/URL oberts per l'aplicació se suprimiran després d'usar-los"
+
+#: main.cpp:229
+#, kde-format
+msgid "Documents to open."
+msgstr "Documents a obrir."
+
+#: main.cpp:229
+#, kde-format
+msgid "[urls...]"
+msgstr "[URL...]"
+
+#: session/katesessionchooser.cpp:43
+#, kde-format
+msgid "Session Chooser"
+msgstr "Selector de sessió"
+
+#: session/katesessionchooser.cpp:50 session/katesessionmanagedialog.cpp:55
+#: session/katesessionopendialog.cpp:49
+#, kde-format
+msgid "Session Name"
+msgstr "Nom de la sessió"
+
+#: session/katesessionchooser.cpp:51 session/katesessionmanagedialog.cpp:56
+#: session/katesessionopendialog.cpp:50
+#, kde-format
+msgctxt "The number of open documents"
+msgid "Open Documents"
+msgstr "Documents oberts"
+
+#: session/katesessionchooser.cpp:74
+#, kde-format
+msgid "Clone session settings"
+msgstr "Clona l'arranjament de la sessió"
+
+#: session/katesessionchooser.cpp:77
+#, kde-format
+msgid "Delete this session"
+msgstr "Elimina aquesta sessió"
+
+#: session/katesessionchooser.cpp:96
+#, kde-format
+msgid "&Always use this choice"
+msgstr "Usa &sempre aquesta elecció"
+
+#: session/katesessionchooser.cpp:108 session/katesessionopendialog.cpp:39
+#, kde-format
+msgid "Open Session"
+msgstr "Obri una sessió"
+
+#: session/katesessionchooser.cpp:115
+#, kde-format
+msgid "New Session"
+msgstr "Sessió nova"
+
+#: session/katesessionmanagedialog.cpp:42
+#, kde-format
+msgid "Manage Sessions"
+msgstr "Gestiona les sessions"
+
+#: session/katesessionmanagedialog.cpp:74
+#, kde-format
+msgid "&Rename..."
+msgstr "&Reanomena..."
+
+#: session/katesessionmanagedialog.cpp:93 session/katesessionopendialog.cpp:79
+#, kde-format
+msgid "&Open"
+msgstr "&Obri"
+
+#: session/katesessionmanagedialog.cpp:128 session/katesessionmanager.cpp:463
+#, kde-format
+msgid "Session name:"
+msgstr "Nom de la sessió:"
+
+#: session/katesessionmanagedialog.cpp:128
+#, kde-format
+msgid "Specify New Name for Session"
+msgstr "Especifiqueu un nom nou per a la sessió"
+
+#: session/katesessionmanagedialog.cpp:136 session/katesessionmanager.cpp:471
+#, kde-format
+msgid "To save a session, you must specify a name."
+msgstr "Per guardar una sessió, heu d'especificar un nom."
+
+#: session/katesessionmanagedialog.cpp:136 session/katesessionmanager.cpp:471
+#, kde-format
+msgid "Missing Session Name"
+msgstr "Falta el nom de la sessió"
+
+#: session/katesessionmanager.cpp:132
+#, kde-format
+msgid ""
+"Internal error: there is more than one instance open for a given session."
+msgstr ""
+"Error intern: hi ha més d'una instància oberta d'una sessió proporcionada."
+
+#: session/katesessionmanager.cpp:137
+#, kde-format
+msgid ""
+"Session '%1' is already opened in another kate instance, change there "
+"instead of reopening?"
+msgstr ""
+"La sessió «%1» ja està oberta per una altra instància del Kate, voleu "
+"canviar-la en lloc de reobrir-la?"
+
+#: session/katesessionmanager.cpp:275
+#, kde-format
+msgid ""
+"The session could not be renamed to \"%1\", there already exists another "
+"session with the same name"
+msgstr ""
+"La sessió no es pot reanomenar a «%1», ja existeix una altra sessió amb el "
+"mateix nom"
+
+#: session/katesessionmanager.cpp:276 session/katesessionmanager.cpp:289
+#, kde-format
+msgid "Session Renaming"
+msgstr "Reanomenant una sessió"
+
+#: session/katesessionmanager.cpp:288
+#, kde-format
+msgid "The session could not be renamed to \"%1\". Failed to write to \"%2\""
+msgstr "La sessió no es pot reanomenar a «%1». Ha fallat en escriure a «%2»"
+
+#: session/katesessionmanager.cpp:462
+#, kde-format
+msgid "Specify New Name for Current Session"
+msgstr "Especifiqueu un nom nou per a la sessió actual"
+
+#: session/katesessionmanager.cpp:463
+#, kde-format
+msgid ""
+"There is already an existing session with your chosen name.\n"
+"Please choose a different one\n"
+"Session name:"
+msgstr ""
+"Ja hi ha una sessió existent amb el nom seleccionat.\n"
+"Per favor, trieu-ne un de diferent\n"
+"Nom de la sessió:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, gbElements)
+#: ui/sessionconfigwidget.ui:29
+#, kde-format
+msgid "Session Elements"
+msgstr "Elements de la sessió"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: ui/sessionconfigwidget.ui:35
+#, kde-format
+msgid ""
+"The session contains the list of open documents, recently opened files list, "
+"bookmarks, cursor position etc. When the session is loaded all elements are "
+"restored."
+msgstr ""
+"La sessió conté la llista dels documents oberts, la llista dels fitxers "
+"oberts recentment, els punts, la posició del cursor, etc. Quan es carregui "
+"la sessió, es restauraran tots els elements."
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: ui/sessionconfigwidget.ui:47
+#, kde-format
+msgid "Maximum number of entries in recent file list:"
+msgstr "Nombre màxim d'entrades a la llista de fitxers recents:"
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, restoreVC)
+#: ui/sessionconfigwidget.ui:75
+#, kde-format
+msgid ""
+"Check this if you want all your views and frames restored each time you open "
+"Kate."
+msgstr ""
+"Marqueu-ho si voleu que es restaurin totes les vistes i els marcs cada cop "
+"que obriu el Kate."
+
+#. i18n: ectx: property (text), widget (QCheckBox, restoreVC)
+#: ui/sessionconfigwidget.ui:78
+#, kde-format
+msgid "Include &window configuration"
+msgstr "Inclou la &configuració de les finestres"
+
+#. i18n: ectx: property (title), widget (QGroupBox, gbAppStartup)
+#: ui/sessionconfigwidget.ui:88
+#, kde-format
+msgid "Behaviour on Application Startup"
+msgstr "Comportament de l'aplicació en iniciar-se"
+
+#. i18n: ectx: property (text), widget (QRadioButton, startNewSessionRadioButton)
+#: ui/sessionconfigwidget.ui:94
+#, kde-format
+msgid "&Start new session"
+msgstr "&Inicia una sessió nova"
+
+#. i18n: ectx: property (text), widget (QRadioButton, loadLastUserSessionRadioButton)
+#: ui/sessionconfigwidget.ui:101
+#, kde-format
+msgid "&Load last used session"
+msgstr "&Carrega l'última sessió usada"
+
+#. i18n: ectx: property (text), widget (QRadioButton, manuallyChooseSessionRadioButton)
+#: ui/sessionconfigwidget.ui:108
+#, kde-format
+msgid "&Manually choose a session"
+msgstr "Trieu &manualment una sessió"

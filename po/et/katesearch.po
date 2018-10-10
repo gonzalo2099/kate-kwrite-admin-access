@@ -1,0 +1,578 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Marek Laane <bald@smail.ee>, 2011, 2012, 2014, 2016.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2018-05-02 03:21+0200\n"
+"PO-Revision-Date: 2016-07-26 18:08+0300\n"
+"Last-Translator: Marek Laane <qiilaq69@gmail.com>\n"
+"Language-Team: Estonian <kde-et@linux.ee>\n"
+"Language: et\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: plugin_search.cpp:227
+#, kde-format
+msgid "Kate Search & Replace"
+msgstr "Kate otsimine ja asendamine"
+
+#: plugin_search.cpp:233
+#, kde-format
+msgid "Search and Replace"
+msgstr "Otsimine ja asendamine"
+
+#: plugin_search.cpp:242
+#, kde-format
+msgid "Search in Files"
+msgstr "Failides otsimine"
+
+#: plugin_search.cpp:246
+#, kde-format
+msgid "Search in Files (in new tab)"
+msgstr "Failides otsimine (uuel kaardil)"
+
+#: plugin_search.cpp:252
+#, kde-format
+msgid "Go to Next Match"
+msgstr "Liigu järgmisele esinemisele"
+
+#: plugin_search.cpp:256
+#, kde-format
+msgid "Go to Previous Match"
+msgstr "Liigu eelmisele esinemisele"
+
+#: plugin_search.cpp:276
+#, kde-format
+msgid ""
+"Comma separated list of file types to search in. Example: \"*.cpp,*.h\"\n"
+msgstr ""
+"Failitüüpide komadega eraldatud nimekiri, mille seas otsida. Näide: \"*.cpp,"
+"*.h\"\n"
+
+#: plugin_search.cpp:277
+#, kde-format
+msgid ""
+"Comma separated list of files and directories to exclude from the search. "
+"Example: \"build*\""
+msgstr ""
+"Failide ja kataloogide komadega eraldatud nimekiri, mis otsingust välja "
+"jätta. Näide: \"build*\""
+
+#: plugin_search.cpp:762
+#, kde-format
+msgid "SearchHighLight"
+msgstr "Otsingu esiletõstmine"
+
+#: plugin_search.cpp:783 plugin_search.cpp:1344 replace_matches.cpp:184
+#, kde-format
+msgid "Line: <b>%1</b>: %2"
+msgstr "Rida: <b>%1</b>: %2"
+
+#: plugin_search.cpp:1108
+#, kde-format
+msgid "Searching while you type was interrupted. It would have taken too long."
+msgstr ""
+
+#: plugin_search.cpp:1210
+#, kde-format
+msgid "<b><i>One match found</i></b>"
+msgid_plural "<b><i>%1 matches found</i></b>"
+msgstr[0] "<b><i>Leiti üks vaste</i></b>"
+msgstr[1] "<b><i>Leiti %1 vastet</i></b>"
+
+#: plugin_search.cpp:1235
+#, kde-format
+msgid "<b>Searching: ...%1</b>"
+msgstr "<b>Otsitakse: ...%1</b>"
+
+#: plugin_search.cpp:1238
+#, kde-format
+msgid "<b>Searching: %1</b>"
+msgstr "<b>Otsitakse: %1</b>"
+
+#: plugin_search.cpp:1420
+#, fuzzy, kde-format
+#| msgid "<b>Searching: ...%1</b>"
+msgid "<b>Replacing in: ...%1</b>"
+msgstr "<b>Otsitakse: ...%1</b>"
+
+#: plugin_search.cpp:1423
+#, fuzzy, kde-format
+#| msgid "<b>Searching: %1</b>"
+msgid "<b>Replacing in: %1</b>"
+msgstr "<b>Otsitakse: %1</b>"
+
+#: plugin_search.cpp:1541
+#, fuzzy, kde-format
+#| msgid "<b><i>One match found in current file</i></b>"
+#| msgid_plural "<b><i>%1 matches found in current file</i></b>"
+msgid "<b><i>%1 match found in current file</i></b>"
+msgid_plural "<b><i>%1 matches (%2 checked) found in current file</i></b>"
+msgstr[0] "<b><i>Avatud failis leiti üks vaste</i></b>"
+msgstr[1] "<b><i>Avatud failis leiti %1 vastet</i></b>"
+
+#: plugin_search.cpp:1546
+#, fuzzy, kde-format
+#| msgid "<b><i>One match found in open files</i></b>"
+#| msgid_plural "<b><i>%1 matches found in open files</i></b>"
+msgid "<b><i>%1 match found in open files</i></b>"
+msgid_plural "<b><i>%1 matches (%2 checked) found in open files</i></b>"
+msgstr[0] "<b><i>Avatud failides leiti üks vaste</i></b>"
+msgstr[1] "<b><i>Avatud failides leiti %1 vastet</i></b>"
+
+#: plugin_search.cpp:1551
+#, fuzzy, kde-format
+#| msgid "<b><i>One match found in folder %2</i></b>"
+#| msgid_plural "<b><i>%1 matches found in folder %2</i></b>"
+msgid "<b><i>%1 match found in folder %2</i></b>"
+msgid_plural "<b><i>%1 matches (%3 checked) found in folder %2</i></b>"
+msgstr[0] "<b><i>Kataloogis %2 leiti üks vaste</i></b>"
+msgstr[1] "<b><i>Kataloogis %2 leiti %1 vastet</i></b>"
+
+#: plugin_search.cpp:1563
+#, fuzzy, kde-format
+#| msgid "<b><i>One match found in project %2 (%3)</i></b>"
+#| msgid_plural "<b><i>%1 matches found in project %2 (%3)</i></b>"
+msgid "<b><i>%1 match found in project %2 (%3)</i></b>"
+msgid_plural "<b><i>%1 matches (%4 checked) found in project %2 (%3)</i></b>"
+msgstr[0] "<b><i>Projektis %2 (%3) leiti üks vaste</i></b>"
+msgstr[1] "<b><i>Projektis %2 (%3) leiti %1 vastet</i></b>"
+
+#: plugin_search.cpp:1572
+#, fuzzy, kde-format
+#| msgid ""
+#| "<b><i>One match found in all open projects (common parent: %2)</i></b>"
+#| msgid_plural ""
+#| "<b><i>%1 matches found in all open projects (common parent: %2)</i></b>"
+msgid "<b><i>%1 match found in all open projects (common parent: %2)</i></b>"
+msgid_plural ""
+"<b><i>%1 matches (%3 checked) found in all open projects (common parent: "
+"%2)</i></b>"
+msgstr[0] ""
+"<b><i>Kõigis avatud projektides (ühine eellane %2) leiti üks vaste</i></b>"
+msgstr[1] ""
+"<b><i>Kõigis avatud projektides (ühine eellane %2) leiti %1 vastet</i></b>"
+
+#: plugin_search.cpp:1716
+#, fuzzy, kde-format
+#| msgid "Continuing from first match"
+msgid "Starting from first match"
+msgstr "Jätkatakse esimese sobivuse juurest"
+
+#: plugin_search.cpp:1726
+#, kde-format
+msgid "Next from cursor"
+msgstr ""
+
+#: plugin_search.cpp:1736
+#, kde-format
+msgid "Continuing from first match"
+msgstr "Jätkatakse esimese sobivuse juurest"
+
+#: plugin_search.cpp:1831
+#, kde-format
+msgid "Continuing from last match"
+msgstr "Jätkatakse viimase sobivuse juurest"
+
+#: plugin_search.cpp:2028
+#, kde-format
+msgid "Add..."
+msgstr "Lisa..."
+
+#: plugin_search.cpp:2033
+#, kde-format
+msgid "Beginning of line"
+msgstr "Rea algus"
+
+#: plugin_search.cpp:2034
+#, kde-format
+msgid "End of line"
+msgstr "Rea lõpp"
+
+#: plugin_search.cpp:2036
+#, kde-format
+msgid "Any single character (excluding line breaks)"
+msgstr "Suvaline üksikmärk (välja arvatud reavahetused)"
+
+#: plugin_search.cpp:2038
+#, kde-format
+msgid "One or more occurrences"
+msgstr "Üks või rohkem esinemist"
+
+#: plugin_search.cpp:2039
+#, kde-format
+msgid "Zero or more occurrences"
+msgstr "Null või rohkem esinemist"
+
+#: plugin_search.cpp:2040
+#, kde-format
+msgid "Zero or one occurrences"
+msgstr "Null või üks esinemine"
+
+#: plugin_search.cpp:2041
+#, kde-format
+msgid "<a> through <b> occurrences"
+msgstr "<a> kuni <b> esinemist"
+
+#: plugin_search.cpp:2043
+#, kde-format
+msgid "Group, capturing"
+msgstr "Hõlmav grupp"
+
+#: plugin_search.cpp:2044
+#, kde-format
+msgid "Or"
+msgstr "või"
+
+#: plugin_search.cpp:2045
+#, kde-format
+msgid "Set of characters"
+msgstr "Märgikogum"
+
+#: plugin_search.cpp:2046
+#, kde-format
+msgid "Negative set of characters"
+msgstr "Negatiivne märgikogum"
+
+#: plugin_search.cpp:2047
+#, kde-format
+msgid "Group, non-capturing"
+msgstr "Mittehõlmav grupp"
+
+#: plugin_search.cpp:2048
+#, kde-format
+msgid "Lookahead"
+msgstr "Ettevaade"
+
+#: plugin_search.cpp:2049
+#, kde-format
+msgid "Negative lookahead"
+msgstr "Negatiivne ettevaade"
+
+#: plugin_search.cpp:2052
+#, kde-format
+msgid "Line break"
+msgstr "Reavahetus"
+
+#: plugin_search.cpp:2053
+#, kde-format
+msgid "Tab"
+msgstr "Tabeldusmärk"
+
+#: plugin_search.cpp:2054
+#, kde-format
+msgid "Word boundary"
+msgstr "Sõnapiire"
+
+#: plugin_search.cpp:2055
+#, kde-format
+msgid "Not word boundary"
+msgstr "Mitte-sõnapiire"
+
+#: plugin_search.cpp:2056
+#, kde-format
+msgid "Digit"
+msgstr "Arv"
+
+#: plugin_search.cpp:2057
+#, kde-format
+msgid "Non-digit"
+msgstr "Mittearv"
+
+#: plugin_search.cpp:2058
+#, kde-format
+msgid "Whitespace (excluding line breaks)"
+msgstr "Tühimärk (välja arvatud reavahetused)"
+
+#: plugin_search.cpp:2059
+#, kde-format
+msgid "Non-whitespace (excluding line breaks)"
+msgstr "Mitte-tühimärk (välja arvatud reavahetused)"
+
+#: plugin_search.cpp:2060
+#, kde-format
+msgid "Word character (alphanumerics plus '_')"
+msgstr "Sõnamärk (tärgid ja '_')"
+
+#: plugin_search.cpp:2061
+#, kde-format
+msgid "Non-word character"
+msgstr "Mitte-sõnamärk"
+
+#: plugin_search.cpp:2109
+#, kde-format
+msgid "In Current Project"
+msgstr "Aktiivses projektis"
+
+#: plugin_search.cpp:2117
+#, kde-format
+msgid "In All Open Projects"
+msgstr "Kõigis avatud projektides"
+
+#: plugin_search.cpp:2179
+#, kde-format
+msgid "Usage: grep [pattern to search for in folder]"
+msgstr "Kasutamine: grep [kataloogis otsitav muster]"
+
+#: plugin_search.cpp:2182
+#, kde-format
+msgid "Usage: newGrep [pattern to search for in folder]"
+msgstr "Kasutamine: newGrep [kataloogis otsitav muster]"
+
+#: plugin_search.cpp:2186 plugin_search.cpp:2189
+#, kde-format
+msgid "Usage: search [pattern to search for in open files]"
+msgstr "Kasutamine: search [avatud failides otsitav muster]"
+
+#: plugin_search.cpp:2193
+#, kde-format
+msgid "Usage: pgrep [pattern to search for in current project]"
+msgstr "Kasutamine: pgrep [aktiivses projektis otsitav muster]"
+
+#: plugin_search.cpp:2196
+#, kde-format
+msgid "Usage: newPGrep [pattern to search for in current project]"
+msgstr "Kasutamine: newPGrep [aktiivses projektis otsitav muster]"
+
+#. i18n: ectx: property (toolTip), widget (QToolButton, newTabButton)
+#: search.ui:19
+#, kde-format
+msgid "Add new search tab"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QToolButton, newTabButton)
+#. i18n: ectx: property (text), widget (QToolButton, displayOptions)
+#: search.ui:22 search.ui:170
+#, kde-format
+msgid "..."
+msgstr "..."
+
+#. i18n: ectx: property (text), widget (QLabel, findLabel)
+#: search.ui:29
+#, kde-format
+msgid "Find:"
+msgstr "Otsing:"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, searchButton)
+#. i18n: ectx: property (text), widget (QPushButton, searchButton)
+#: search.ui:49 search.ui:52
+#, kde-format
+msgid "Search"
+msgstr "Otsi"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, nextButton)
+#. i18n: ectx: property (text), widget (QPushButton, nextButton)
+#: search.ui:96 search.ui:99
+#, kde-format
+msgid "Next"
+msgstr "Järgmine"
+
+#. i18n: ectx: property (text), widget (QPushButton, stopButton)
+#: search.ui:137
+#, kde-format
+msgid "Stop"
+msgstr "Peata"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, searchPlaceCombo)
+#: search.ui:149
+#, kde-format
+msgid "In Current File"
+msgstr "aktiivses failis"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, searchPlaceCombo)
+#: search.ui:154
+#, kde-format
+msgid "in Open Files"
+msgstr "avatud failides"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, searchPlaceCombo)
+#: search.ui:159
+#, kde-format
+msgid "in Folder"
+msgstr "kataloogis"
+
+#. i18n: ectx: property (toolTip), widget (QToolButton, displayOptions)
+#: search.ui:167
+#, fuzzy, kde-format
+#| msgid "Se&arch:"
+msgid "Show search options"
+msgstr "Ot&si"
+
+#. i18n: ectx: property (text), widget (QLabel, replaceLabel)
+#: search.ui:180
+#, kde-format
+msgid "Replace:"
+msgstr "Asendus:"
+
+#. i18n: ectx: property (text), widget (QPushButton, replaceButton)
+#: search.ui:200
+#, kde-format
+msgid "Replace"
+msgstr "Asenda"
+
+#. i18n: ectx: property (text), widget (QPushButton, replaceCheckedBtn)
+#: search.ui:210
+#, fuzzy, kde-format
+#| msgid "Replace checked"
+msgid "Replace Checked"
+msgstr "Asenda märgitud"
+
+#. i18n: ectx: property (toolTip), widget (QToolButton, matchCase)
+#: search.ui:217
+#, fuzzy, kde-format
+#| msgid "Match Case"
+msgid "Match case"
+msgstr "Tõstutundlik"
+
+#. i18n: ectx: property (toolTip), widget (QToolButton, useRegExp)
+#: search.ui:233
+#, kde-format
+msgid "Use regular expressions"
+msgstr "Regulaaravaldiste kasutamine"
+
+#. i18n: ectx: property (toolTip), widget (QToolButton, expandResults)
+#: search.ui:262
+#, kde-format
+msgid "Expand results"
+msgstr "Tulemuste laiendamine"
+
+#. i18n: ectx: property (text), widget (QLabel, folderLabel)
+#: search.ui:372
+#, kde-format
+msgid "Folder:"
+msgstr "Kataloog:"
+
+#. i18n: ectx: property (toolTip), widget (QToolButton, folderUpButton)
+#: search.ui:390
+#, kde-format
+msgid "Go one folder up."
+msgstr "Üks kataloog ülespoole."
+
+#. i18n: ectx: property (toolTip), widget (QToolButton, currentFolderButton)
+#: search.ui:397
+#, kde-format
+msgid "Use the current document's path."
+msgstr "Aktiivse dokumendi asukoha kasutamine."
+
+#. i18n: ectx: property (text), widget (QLabel, filterLabel)
+#: search.ui:406
+#, kde-format
+msgid "Filter:"
+msgstr "Filter:"
+
+#. i18n: ectx: property (text), item, widget (KComboBox, filterCombo)
+#: search.ui:428
+#, kde-format
+msgid "*"
+msgstr "*"
+
+#. i18n: ectx: property (text), widget (QLabel, excludeLabel)
+#: search.ui:436
+#, kde-format
+msgid "Exclude:"
+msgstr "Jäetakse välja:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, recursiveCheckBox)
+#: search.ui:457
+#, kde-format
+msgid "Recursive"
+msgstr "Rekursiivselt"
+
+#. i18n: ectx: property (text), widget (QCheckBox, hiddenCheckBox)
+#: search.ui:467
+#, kde-format
+msgid "Include hidden"
+msgstr "Kaasa arvatud peidetud failid"
+
+#. i18n: ectx: property (text), widget (QCheckBox, symLinkCheckBox)
+#: search.ui:474
+#, kde-format
+msgid "Follow symbolic links"
+msgstr "Nimeviitade järgimine"
+
+#. i18n: ectx: property (text), widget (QCheckBox, binaryCheckBox)
+#: search.ui:481
+#, kde-format
+msgid "Include binary files"
+msgstr "Kaasa arvatud binaarfailid"
+
+#. i18n: ectx: Menu (edit)
+#: ui.rc:6
+#, kde-format
+msgid "&Edit"
+msgstr "&Redigeerimine"
+
+#. i18n: ectx: Menu (search_more)
+#: ui.rc:9
+#, fuzzy, kde-format
+#| msgid "Search"
+msgid "Search More"
+msgstr "Otsi"
+
+#, fuzzy
+#~| msgid "F&older"
+#~ msgid "Folder"
+#~ msgstr "Katal&oog"
+
+#~ msgid "F&older"
+#~ msgstr "Katal&oog"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Marek Laane"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "bald@smail.ee"
+
+#~ msgid "Search & replace in files"
+#~ msgstr "Failides otsimine ja asendamine"
+
+#~ msgid "stop"
+#~ msgstr "Peata"
+
+#~ msgid "Select all 9999 matches"
+#~ msgstr "Vali kõik 9999 vastet"
+
+#~ msgid "Select all"
+#~ msgstr "Vali kõik"
+
+#~ msgid "Select %1 match"
+#~ msgid_plural "Select all %1 matches"
+#~ msgstr[0] "Vali %1 vaste"
+#~ msgstr[1] "Vali kõik %1 vastet"
+
+#, fuzzy
+#~| msgid ""
+#~| "Comma separated list of file types to search in. example: \"*.cpp,*.h\"\n"
+#~| "NOTE: Put a minus sign ('-') in front of the list to make it into an "
+#~| "exclude list. example: \"-*.o,*.obj\""
+#~ msgid ""
+#~ "Comma separated list of file types to search in. example: \"*.cpp,*.h\"\n"
+#~ "NOTE: Put a minus sign ('-') in front of an element to exclude those "
+#~ "files and directories. example: \"*.cpp,*.h,-build*\""
+#~ msgstr ""
+#~ "Komadega eraldatud otsitavate failitüüpide loend. Näide:  \"*.cpp,*.h\"\n"
+#~ "MÄRKUS: aseta loendi ette miinusmärk (-), et muuta see välistavaks. "
+#~ "Näide: \"-*.o,*.obj\""
+
+#~ msgid "Options"
+#~ msgstr "Valikud"
+
+#~ msgid "Find in open files plugin"
+#~ msgstr "Avatud failides otsimise plugin"
+
+#~ msgid "File"
+#~ msgstr "Fail"
+
+#~ msgid "Text"
+#~ msgstr "Tekst"
+
+#~ msgid "Line"
+#~ msgstr "Rida"

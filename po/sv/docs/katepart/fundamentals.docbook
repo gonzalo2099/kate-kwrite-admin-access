@@ -1,0 +1,986 @@
+<chapter id="on-screen-fundamentals">
+<title
+>En del grundläggande information</title>
+
+<para
+>&kwrite; och många andra tillämpningar av &katepart; är mycket lätta att använda. Alla som har använt en texteditor bör inte ha några problem. </para>
+
+<sect1 id="drag-and-drop">
+<title
+>Drag och släpp</title>
+
+<para
+>&katepart; använder &kde;:s drag och släpp protokoll. Filer kan dras och släppas på &katepart; från skrivbordet, filhanteraren &dolphin;, eller någon &FTP;-plats som öppnats i ett av &dolphin;s fönster. </para>
+</sect1>
+
+<sect1 id="keybindings"
+> <!--60 shortcuts here and 4.4.63 has 89 lueck
+missing ctrl+6,7,8,9,T,Home,End
+ctrl+shift+O,Home,End,PgUp,Left,Right,PgDown
+Shift+Home
+-->
+<title
+>Genvägar</title>
+
+<para
+>Många av snabbtangenterna kan anpassas via menyn <link linkend="settings-help-menu"
+>Inställningar</link
+>. Normalt hanterar &katepart; följande snabbtangenter:</para>
+<informaltable>
+<tgroup cols="2">
+<tbody>
+
+<row
+><entry
+><para
+><keycombo
+action="simul"
+><keycap
+>Insert</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Växla mellan lägena infoga och ersätt. I läget infoga lägger editorn till alla tecken som skrivs in till texten medan all data knuffas framåt till höger om textmarkören. Läget ersätt gör att varje tecken som skrivs in ersätter tecknet omedelbart till höger om textmarkören.</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo action="simul"
+><keycap
+>Vänsterpil</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Flytta markören ett tecken åt vänster. </para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo action="simul"
+><keycap
+>Högerpil</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Flytta markören ett tecken åt höger. </para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo action="simul"
+><keycap
+>Uppåtpil</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Flytta markören en rad uppåt. </para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo action="simul"
+><keycap
+>Neråtpil</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Flytta markören en rad neråt. </para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo action="simul"
+><keycap
+>Page Up</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Flytta markören en sida uppåt. </para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo action="simul"
+>&Alt;<keycap
+>Page Up</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Föregående bokmärke</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo action="simul"
+><keycap
+>Page Down</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Flytta markören en sida neråt. </para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo action="simul"
+>&Alt;<keycap
+>Page Down</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Nästa bokmärke</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+><keycap
+>Backsteg</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Ta bort tecknet till vänster om markören. </para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+><keycap
+>Home</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Flytta markören till början av raden. </para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+><keycap
+>End</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Flytta markören till slutet av raden. </para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+><keycap
+>Ta bort</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Ta bort tecknet till höger om markören (eller all markerad text).</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo action="simul"
+>&Shift; <keycap
+>retur</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Infoga nyrad inklusive inledande tecken på nuvarande rad som inte är bokstäver eller siffror. Det är t.ex. användbart för att skriva kommentarer i koden: I slutet av raden <quote
+>// någon text</quote
+> tryck på snabbtangenten så börjar den nästa raden redan med <quote
+>// </quote
+>. Du behöver alltså inte skriva in kommentartecknen i början av varje ny rad med kommentarer.</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo action="simul"
+><keycap
+>Skift</keycap
+><keycap
+>vänsterpil</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Markera text ett tecken åt vänster. </para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo action="simul"
+><keycap
+>Skift</keycap
+><keycap
+>högerpil</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Markera text ett tecken åt höger. </para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+><keycap
+>F1</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Hjälp</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+><keycap
+>Skift</keycap
+><keycap
+>F1</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Vad är det här?</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+><keycap
+>F3</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+><link linkend="edit-find-next"
+>Sök igen</link
+></para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+><keycap
+>Skift</keycap
+><keycap
+>F3</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+><link linkend="edit-find-previous"
+>Sök föregående</link
+></para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+><link linkend="edit-find-selected"
+>Sök markering</link
+></para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;&Shift;<keycap
+>H</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+><link linkend="edit-find-selected-backwards"
+>Sök markering bakåt</link
+></para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>A</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Markera alla</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>Skift</keycap
+><keycap
+>A</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Avmarkera</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>Skift</keycap
+><keycap
+>B</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Blockmarkeringsläge</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>B</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Lägg till ett bokmärke</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>C</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Kopiera den markerade texten till klippbordet. </para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>D</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Kommentera</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>Skift</keycap
+><keycap
+>D</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Avkommentera</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>F1</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+><link linkend="edit-find"
+>Sök</link
+></para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>G</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Gå till rad...</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Indentera markering</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>Skift</keycap
+><keycap
+>I</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Avindentera markering</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>J</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Kombinera rader</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+><link linkend="file-new"
+>Nytt</link
+> dokument</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+><link linkend="file-open"
+>Öppna ett dokument</link
+> </para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>P</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+><link linkend="file-print"
+>Skriv ut</link
+> </para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Avsluta. Stäng aktiv kopia av editorn </para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>R</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+><link linkend="edit-replace"
+>Ersätt</link
+></para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Utför kommandot <link linkend="file-save"
+><guilabel
+>Spara</guilabel
+></link
+>.</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>U</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Stora bokstäver</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>Skift</keycap
+><keycap
+>U</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Små bokstäver</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;&Alt;<keycap
+>U</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Inledande stor bokstav</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Klistrar in klippbordets text på raden som redigeras. </para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>W</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+><link linkend="file-close"
+>Stäng</link
+> </para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>X</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Klipp ut den markerade texten, och kopiera den till klippbordet. </para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+><link linkend="edit-undo"
+>Ångra</link
+></para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>Skift</keycap
+><keycap
+>Z</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+><link linkend="edit-redo"
+>Gör om</link
+></para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>-</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Fäll ihop en lokal nivå</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>Skift</keycap
+><keycap
+>-</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Fäll ihop toppnivå</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>+</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Expandera en lokal nivå</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>Skift</keycap
+><keycap
+>+</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Expandera toppnivå</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+><keysym
+>Meta</keysym
+>&Ctrl;<keycap
+>V</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>VI-inmatningsläge</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+>&Ctrl;<keycap
+>Mellanslag</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Utför kodkomplettering</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+><keycap
+>F5</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+><link linkend="file-reload"
+>Återställ</link
+></para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+><keycap
+>F6</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Visa/Dölj ikonkant</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+><keycap
+>F7</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Byt till kommandorad</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+><keycap
+>F9</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Visa/Dölj vikmarkörer</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+><keycap
+>F10</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Dynamisk radbrytning</para
+></entry>
+</row>
+<row>
+<entry
+><para
+><keycombo
+action="simul"
+><keycap
+>F11</keycap
+></keycombo
+></para
+></entry>
+<entry
+><para
+>Visa/Dölj radnummer</para
+></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</sect1>
+</chapter>

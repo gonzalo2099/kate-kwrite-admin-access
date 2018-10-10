@@ -1,0 +1,202 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Jean Cayron <jean.cayron@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: katekonsoleplugin\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2018-01-27 03:11+0100\n"
+"PO-Revision-Date: 2008-12-31 19:01+0100\n"
+"Last-Translator: Jean Cayron <jean.cayron@gmail.com>\n"
+"Language-Team: Walloon <linux@walon.org>\n"
+"Language: wa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 0.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kateconsole.cpp:67
+#, kde-format
+msgid "You do not have enough karma to access a shell or terminal emulation"
+msgstr ""
+"Vos n' avoz pont d' karma assez po pleur awè accès a on shell oudonbén on "
+"terminå"
+
+#: kateconsole.cpp:99 kateconsole.cpp:465
+#, kde-format
+msgid "Terminal"
+msgstr "Terminå"
+
+#: kateconsole.cpp:129
+#, fuzzy, kde-format
+#| msgid "Terminal"
+msgid "Kate Terminal"
+msgstr "Terminå"
+
+#: kateconsole.cpp:138
+#, fuzzy, kde-format
+#| msgid "&Pipe to Terminal"
+msgctxt "@action"
+msgid "&Pipe to Terminal"
+msgstr "&Puper e terminå"
+
+#: kateconsole.cpp:142
+#, fuzzy, kde-format
+#| msgid "S&ynchronize Terminal with Current Document"
+msgctxt "@action"
+msgid "S&ynchronize Terminal with Current Document"
+msgstr "&Sincronijhî l' terminå avou l' documint do moumint"
+
+#: kateconsole.cpp:146
+#, kde-format
+msgctxt "@action"
+msgid "Run Current Document"
+msgstr ""
+
+#: kateconsole.cpp:151
+#, fuzzy, kde-format
+#| msgid "&Focus Terminal"
+msgctxt "@action"
+msgid "&Focus Terminal"
+msgstr "&Focusse sol terminå"
+
+#: kateconsole.cpp:269
+#, kde-format
+msgid ""
+"Do you really want to pipe the text to the console? This will execute any "
+"contained commands with your user rights."
+msgstr ""
+"Voloz vormint puper l' tecse el console? Çoula enondrè telminme kéne comande "
+"avou vos droets d' uzeu."
+
+#: kateconsole.cpp:270
+#, kde-format
+msgid "Pipe to Terminal?"
+msgstr "Puper e terminå ?"
+
+#: kateconsole.cpp:271
+#, kde-format
+msgid "Pipe to Terminal"
+msgstr "Puper e terminå"
+
+#: kateconsole.cpp:293
+#, fuzzy, kde-format
+#| msgid "Sorry, can not cd into '%1'"
+msgid "Sorry, cannot cd into '%1'"
+msgstr "Dji rgrete, dji n' sai cd dins « %1 »"
+
+#: kateconsole.cpp:314
+#, kde-format
+msgid "Not a local file: '%1'"
+msgstr ""
+
+#: kateconsole.cpp:348
+#, fuzzy, kde-format
+#| msgid ""
+#| "Do you really want to pipe the text to the console? This will execute any "
+#| "contained commands with your user rights."
+msgid ""
+"Do you really want to Run the document ?\n"
+"This will execute the following command,\n"
+"with your user rights, in the terminal:\n"
+"'%1'"
+msgstr ""
+"Voloz vormint puper l' tecse el console? Çoula enondrè telminme kéne comande "
+"avou vos droets d' uzeu."
+
+#: kateconsole.cpp:352
+#, fuzzy, kde-format
+#| msgid "Pipe to Terminal?"
+msgid "Run in Terminal?"
+msgstr "Puper e terminå ?"
+
+#: kateconsole.cpp:353
+#, kde-format
+msgid "Run"
+msgstr ""
+
+#: kateconsole.cpp:369 kateconsole.cpp:385
+#, kde-format
+msgid "Defocus Terminal"
+msgstr "Fini focusse sol terminå"
+
+#: kateconsole.cpp:378
+#, kde-format
+msgid "Focus Terminal"
+msgstr "Focusse sol terminå"
+
+#: kateconsole.cpp:409
+#, kde-format
+msgid ""
+"&Automatically synchronize the terminal with the current document when "
+"possible"
+msgstr ""
+"Sincronijhî otom&aticmint l' terminå avou l' documint do moumint cwand c' "
+"est possibe"
+
+#: kateconsole.cpp:413 kateconsole.cpp:434
+#, fuzzy, kde-format
+#| msgid "Pipe to Terminal"
+msgid "Run in terminal"
+msgstr "Puper e terminå"
+
+#: kateconsole.cpp:415
+#, kde-format
+msgid "&Remove extension"
+msgstr ""
+
+#: kateconsole.cpp:420
+#, kde-format
+msgid "Prefix:"
+msgstr ""
+
+#: kateconsole.cpp:428
+#, kde-format
+msgid "&Show warning next time"
+msgstr ""
+
+#: kateconsole.cpp:430
+#, kde-format
+msgid ""
+"The next time '%1' is executed, make sure a warning window will pop up, "
+"displaying the command to be sent to terminal, for review."
+msgstr ""
+
+#: kateconsole.cpp:444
+#, kde-format
+msgid "Set &EDITOR environment variable to 'kate -b'"
+msgstr ""
+
+#: kateconsole.cpp:447
+#, kde-format
+msgid ""
+"Important: The document has to be closed to make the console application "
+"continue"
+msgstr ""
+
+#: kateconsole.cpp:470
+#, kde-format
+msgid "Terminal Settings"
+msgstr "Tchuzes do terminå"
+
+#. i18n: ectx: Menu (tools)
+#: ui.rc:6
+#, kde-format
+msgid "&Tools"
+msgstr "&Usteyes"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Djan Cayron"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "jean.cayron@gmail.com"
+
+#~ msgid "Konsole"
+#~ msgstr "Konsole"
+
+#~ msgid "Embedded Konsole"
+#~ msgstr "Ravalêye Konsole"

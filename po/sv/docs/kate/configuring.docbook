@@ -1,0 +1,323 @@
+<chapter id="configuring-kate">
+<chapterinfo>
+<authorgroup>
+<author
+>&Anders.Lund; &Anders.Lund.mail;</author>
+<othercredit role="translator"
+> <firstname
+>Johan</firstname
+> <surname
+>Thelmén</surname
+> <affiliation
+><address
+><email
+>jth@home.se</email
+></address
+></affiliation
+> <contrib
+>Översättare</contrib
+></othercredit
+> 
+</authorgroup>
+</chapterinfo>
+<title
+>Anpassa &kate;</title>
+
+<sect1 id="configuring-overview">
+<title
+>Översikt</title>
+<para>
+<indexterm>
+<primary
+>anpassa</primary>
+<secondary
+>inställning</secondary>
+<tertiary
+>inställningar</tertiary
+></indexterm>
+<anchor id="find"/> <anchor id="find-again"/> <anchor id="replace"/> <anchor id="undo"/> <anchor id="redo"/> &kate; erbjuder flera sätt att justera programmet så att det beter sig som önskas. De viktigaste är: </para>
+
+<variablelist>
+<varlistentry>
+<term id="configure"
+>Inställningsdialogrutan</term>
+<listitem
+><para
+>Det huvudsakliga inställningsverktyget, som låter dig anpassa programmet &kate;, editorkomponenten och användning av insticksprogram.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term id="settings"
+>Menyn <guimenu
+>Inställningar</guimenu
+></term>
+<listitem
+><para
+>Låter dig ändra ofta använda inställningar, och att starta inställningsdialogrutor.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+>Menyn <guimenu
+>Visa</guimenu
+></term>
+<listitem
+><para
+>Låter dig dela det nuvarande fönstret, samt visa ikoner och radnummer för dokumentet som redigeras för närvarande.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Den inbyggda terminalen använder inställningarna som definieras i systeminställningarna, och kan också anpassas genom att klicka med <mousebutton
+>höger</mousebutton
+> musknapp för att visa en sammanhangsberoende meny.</para>
+
+</sect1>
+
+<sect1 id="configuring-kate-configdialog">
+<title
+>Den huvudsakliga inställningsdialogrutan</title>
+
+<mediaobject>
+<imageobject>
+<imagedata format="PNG" fileref="configdialog01.png"/>
+</imageobject>
+</mediaobject>
+
+<para
+>Inställningsdialogrutan för &kate; visar ett träd med grupper till vänster, och en inställningssida som motsvarar den valda gruppen till höger.</para>
+
+<para
+>Inställningarna är uppdelade i två grupper, närmare bestämt <itemizedlist>
+<listitem
+><para
+><link linkend="config-dialog"
+>Inställning av programmet</link>
+</para
+></listitem>
+<listitem
+><para
+><link linkend="config-dialog-editor"
+>Inställning av editorkomponenten</link
+></para
+></listitem>
+
+</itemizedlist>
+
+</para>
+
+</sect1>
+
+<sect1 id="config-dialog">
+<title
+>Inställning av programmet &kate;</title>
+<para
+>Den här gruppen innehåller sidor för att anpassa det huvudsakliga &kate;-programmet.</para>
+
+<sect2 id="config-dialog-general">
+<title
+>Allmänt</title>
+<para
+>Den här sidan innehåller ett fåtal globala alternativ för &kate;.</para>
+
+<variablelist>
+
+<varlistentry>
+<term
+><anchor id="config-general-behavior"/>
+<guilabel
+>Uppträdande</guilabel
+></term>
+<listitem>
+<variablelist>
+
+<varlistentry>
+<term
+><anchor id="config-dialog-general-warn-mod"/>
+<guilabel
+>Varna om filer ändras av främmande processer</guilabel
+></term>
+<listitem
+><para
+>När aktiverad, underrättar &kate; dig om filer som ändrats utanför programmet så fort huvudfönstret får inmatningsfokus. Du kommer att kunna hantera flera ändrade filer samtidigt. Du kan ladda om, spara eller kasta ändrade filer i grupper.</para>
+<para
+>Om inte aktiverad, frågar &kate; dig om en åtgärd när en externt ändrad fil får fokus inne i programmet.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+</listitem>
+</varlistentry
+><!-- /behavior group -->
+
+<varlistentry>
+<term
+><anchor id="config-general-meta-data"/>
+<guilabel
+>Metainformation</guilabel
+></term>
+ <listitem>
+
+<variablelist>
+<varlistentry>
+<term
+><anchor id="config-general-keep-meta-information"/>
+<guilabel
+>Behåll metainformation mellan sessioner</guilabel
+></term>
+<listitem
+><para
+>När aktiverad, lagrar &kate; metadata som bokmärken och sessionsinställningar också när du stänger dokument. Data används om dokumentet är oförändrat när det öppnas igen.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><anchor id="config-general-delete-meta-information-after"/>
+<guilabel
+>Ta bort oanvänd metainformation efter</guilabel
+></term>
+<listitem
+><para
+>Ställ in maximalt antal dagar som metainformation behålls för tidigare öppnade filer. Det hjälper till att hålla databasen med metainformation på en rimlig storlek.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+</listitem>
+</varlistentry
+><!-- /meta data group -->
+
+</variablelist>
+</sect2>
+
+<sect2 id="config-dialog-sessions">
+<title
+>Sessioner</title>
+
+<para
+>Den här sidan innehåller alternativ som hör ihop med att <link linkend="fundamentals-using-sessions"
+>använda sessioner</link
+>.</para>
+
+<variablelist>
+
+<varlistentry>
+<term
+><anchor id="config-dialog-sessions-elements"/>
+<guilabel
+>Sessionselement</guilabel
+></term>
+<listitem>
+<variablelist>
+<!--FIXME Maximum number of entries in recent file list-->
+<varlistentry>
+<term
+><guilabel
+>Inkludera fönsterinställningar</guilabel
+></term>
+<listitem
+><para
+>Om aktiverad, sparar &kate; fönsterinställningen med varje session.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry
+><!-- /elements of sessions -->
+
+<varlistentry>
+<term
+><anchor id="config-dialog-sessions-startup-behavior"/>
+<guilabel
+>Beteende vid programstart</guilabel
+></term>
+<listitem>
+<para
+>Välj hur du vill att &kate; ska bete sig vid start. Inställningen kan överskridas genom att ange vad som ska göras på <link linkend="command-line-options"
+>kommandoraden</link
+>.</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Starta ny session</guilabel
+></term>
+<listitem
+><para
+>Med det här alternativet startar &kate; en ny namnlös session när programmet startas.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Ladda senast använda session</guilabel
+></term>
+<listitem
+><para
+>&kate; använder den senast öppnade sessionen vid start. Det är bra om du alltid vill använda samma session, eller sällan byta.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Välj en session manuellt</guilabel
+></term>
+<listitem
+><para
+>&kate; visar en liten dialogruta som låter dig välja sessionen du föredrar, eller ladda standardsessionen om ingen har sparats. Det är förvalt beteende. Bra om du ofta använder många olika sessioner.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry
+><!-- /startup behavior -->
+
+</variablelist>
+<para
+>Alla ändringar av sessionens information (öppnade filer, och om aktiverat, fönsterinställning) sparas alltid.Om aktiverad, sparar &kate; fönsterinställningen med varje session.</para>
+
+</sect2>
+
+<sect2 id="config-dialog-plugins">
+<title
+>Insticksprogram</title>
+
+<para
+>Den här sidan tillhandahåller en lista med installerade insticksprogram för programmet &kate;. Varje insticksprogram representeras med namn och en kort beskrivning. Du kan markera kryssrutan vid ett objekt för att aktivera insticksprogrammet det representerar. </para>
+
+<para
+>Om ett insticksprogram tillhandahåller inställningsalternativ, visas en sida för att komma åt dem som en underliggande sida till denna.</para>
+
+<para
+>För mer information om de tillgängliga insticksprogrammen, se <xref linkend="plugins"/>.</para>
+
+</sect2>
+
+<sect2 id="config-dialog-editor">
+<title
+>Inställning av editorkomponenten</title>
+
+<para
+>För mer information om den här delen av inställningsdialogrutan, se avsnittet <ulink url="help:/katepart/config-dialog.html"
+>Inställning av editorkomponenten i handboken för &katepart;</ulink
+>.</para>
+
+</sect2>
+
+<sect2 id="config-variables">
+<title
+>Anpassa med dokumentvariabler</title>
+
+<para
+>För information om att använda dokumentvariabler med &kate;, se avsnittet <ulink url="help:/katepart/config-variables.html"
+>Anpassa med dokumentvariabler i handboken för &katepart;</ulink
+>.</para>
+
+</sect2>
+
+</sect1>
+
+</chapter>

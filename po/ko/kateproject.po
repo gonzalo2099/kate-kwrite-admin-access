@@ -1,0 +1,217 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Shinjo Park <kde@peremen.name>, 2012, 2013, 2014, 2015, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2017-11-17 03:18+0100\n"
+"PO-Revision-Date: 2016-12-05 20:37+0100\n"
+"Last-Translator: Shinjo Park <kde@peremen.name>\n"
+"Language-Team: Korean <kde@peremen.name>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 2.0\n"
+
+#: kateproject.cpp:338
+#, kde-format
+msgid "<untracked>"
+msgstr "<추적 안 됨>"
+
+#: kateprojectcompletion.cpp:55
+#, kde-format
+msgid "Project Completion"
+msgstr "프로젝트 완성"
+
+#: kateprojectconfigpage.cpp:37
+#, kde-format
+msgctxt "Groupbox title"
+msgid "Autoload Repositories"
+msgstr "자동으로 저장소 불러오기"
+
+#: kateprojectconfigpage.cpp:39
+#, kde-format
+msgid ""
+"Project plugin is able to autoload repository working copies when there is "
+"no .kateproject file defined yet."
+msgstr ""
+"프로젝트 플러그인은 .kateproject 파일이 정의되지 않아도 자동으로 작업 사본을 "
+"불러올 수 있습니다."
+
+#: kateprojectconfigpage.cpp:42
+#, kde-format
+msgid "&Git"
+msgstr "Git(&G)"
+
+#: kateprojectconfigpage.cpp:45
+#, kde-format
+msgid "&Subversion"
+msgstr "서브버전(&S)"
+
+#: kateprojectconfigpage.cpp:47
+#, kde-format
+msgid "&Mercurial"
+msgstr "Mercurial(&M)"
+
+#: kateprojectconfigpage.cpp:65 kateprojectpluginview.cpp:147
+#, kde-format
+msgid "Projects"
+msgstr "프로젝트"
+
+#: kateprojectconfigpage.cpp:70
+#, kde-format
+msgctxt "Groupbox title"
+msgid "Projects Properties"
+msgstr "프로젝트 속성"
+
+#: kateprojectinfoview.cpp:38
+#, kde-format
+msgid "Terminal"
+msgstr "터미널"
+
+#: kateprojectinfoview.cpp:43
+#, kde-format
+msgid "Code Index"
+msgstr "코드 색인"
+
+#: kateprojectinfoview.cpp:48
+#, kde-format
+msgid "Code Analysis"
+msgstr "코드 분석"
+
+#: kateprojectinfoview.cpp:53
+#, kde-format
+msgid "Notes"
+msgstr "메모"
+
+#: kateprojectinfoviewcodeanalysis.cpp:38
+#, kde-format
+msgid "Start Analysis..."
+msgstr "분석 시작..."
+
+#: kateprojectinfoviewcodeanalysis.cpp:51 kateprojectinfoviewindex.cpp:43
+#, kde-format
+msgid "File"
+msgstr "파일"
+
+#: kateprojectinfoviewcodeanalysis.cpp:51 kateprojectinfoviewindex.cpp:43
+#, kde-format
+msgid "Line"
+msgstr "줄"
+
+#: kateprojectinfoviewcodeanalysis.cpp:51
+#, kde-format
+msgid "Severity"
+msgstr "심각도"
+
+#: kateprojectinfoviewcodeanalysis.cpp:51
+#, kde-format
+msgid "Message"
+msgstr "메시지"
+
+#: kateprojectinfoviewcodeanalysis.cpp:219
+#, kde-format
+msgid "Analysis finished."
+msgstr "분석 완료됨."
+
+#: kateprojectinfoviewcodeanalysis.cpp:224
+#, kde-format
+msgid "Analysis failed!"
+msgstr "분석 실패!"
+
+#: kateprojectinfoviewindex.cpp:43
+#, kde-format
+msgid "Name"
+msgstr "이름"
+
+#: kateprojectinfoviewindex.cpp:43
+#, kde-format
+msgid "Kind"
+msgstr "종류"
+
+#: kateprojectinfoviewindex.cpp:44 kateprojectview.cpp:54
+#, kde-format
+msgid "Search"
+msgstr "찾기"
+
+#: kateprojectinfoviewindex.cpp:155
+#, kde-format
+msgid "The index could not be created. Please install 'ctags'."
+msgstr "색인을 만들 수 없습니다. 'ctags'를 설치하십시오."
+
+#: kateprojectpluginview.cpp:55
+#, kde-format
+msgid "Kate Project Manager"
+msgstr "Kate 프로젝트 관리자"
+
+#: kateprojectpluginview.cpp:94
+#, kde-format
+msgid "Project"
+msgstr "프로젝트"
+
+#: kateprojectpluginview.cpp:97 kateprojectpluginview.cpp:520
+#, kde-format
+msgid "Lookup: %1"
+msgstr "찾아보기: %1"
+
+#: kateprojectpluginview.cpp:148
+#, kde-format
+msgid "Current Project"
+msgstr "현재 프로젝트"
+
+#: kateprojecttreeviewcontextmenu.cpp:72
+#, kde-format
+msgid "Copy Filename"
+msgstr "파일 이름 복사"
+
+#: kateprojecttreeviewcontextmenu.cpp:78
+#, kde-format
+msgid "Open With"
+msgstr "다음으로 열기"
+
+#: kateprojecttreeviewcontextmenu.cpp:108
+#, kde-format
+msgid "Git:"
+msgstr "Git:"
+
+#. i18n: ectx: Menu (projects)
+#: ui.rc:6
+#, kde-format
+msgid "&Projects"
+msgstr "프로젝트(&P)"
+
+#~ msgid "Please install 'cppcheck'."
+#~ msgstr "'cppcheck'를 설치하십시오."
+
+#~ msgid "Follow Location"
+#~ msgstr "위치 따라가기"
+
+#~ msgid "Git Tools"
+#~ msgstr "Git 도구"
+
+#~ msgid "Launch gitk"
+#~ msgstr "gitk 실행"
+
+#~ msgid "Launch qgit"
+#~ msgstr "qgit 실행"
+
+#~ msgid "Launch git-cola"
+#~ msgstr "git-cola 실행"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Shinjo Park"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "kde@peremen.name"
+
+#~ msgid "Hello World"
+#~ msgstr "Hello World"
+
+#~ msgid "Example kate plugin"
+#~ msgstr "Kate 플러그인 예제"

@@ -1,0 +1,220 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Yuri Efremov <yur.arh@gmail.com>, 2013.
+# Alexander Lakhin <exclusion@gmail.com>, 2013.
+# Alexander Potashev <aspotashev@gmail.com>, 2015, 2016.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2017-11-17 03:18+0100\n"
+"PO-Revision-Date: 2016-08-11 23:19+0300\n"
+"Last-Translator: Alexander Potashev <aspotashev@gmail.com>\n"
+"Language-Team: Russian <kde-russian@lists.kde.ru>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 2.0\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Environment: kde\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#: kateproject.cpp:338
+#, kde-format
+msgid "<untracked>"
+msgstr "<неотслеживаемые>"
+
+#: kateprojectcompletion.cpp:55
+#, kde-format
+msgid "Project Completion"
+msgstr "Завершение проекта"
+
+#: kateprojectconfigpage.cpp:37
+#, kde-format
+msgctxt "Groupbox title"
+msgid "Autoload Repositories"
+msgstr "Автоматическая загрузка репозиториев"
+
+#: kateprojectconfigpage.cpp:39
+#, kde-format
+msgid ""
+"Project plugin is able to autoload repository working copies when there is "
+"no .kateproject file defined yet."
+msgstr ""
+"Модуль проектов позволяет загружать рабочие копии репозиториев в случае, "
+"если файл .kateproject не был найден."
+
+#: kateprojectconfigpage.cpp:42
+#, kde-format
+msgid "&Git"
+msgstr "&Git"
+
+#: kateprojectconfigpage.cpp:45
+#, kde-format
+msgid "&Subversion"
+msgstr "&Subversion"
+
+#: kateprojectconfigpage.cpp:47
+#, kde-format
+msgid "&Mercurial"
+msgstr "&Mercurial"
+
+#: kateprojectconfigpage.cpp:65 kateprojectpluginview.cpp:147
+#, kde-format
+msgid "Projects"
+msgstr "Проекты"
+
+#: kateprojectconfigpage.cpp:70
+#, kde-format
+msgctxt "Groupbox title"
+msgid "Projects Properties"
+msgstr "Настройка поддержки проектов"
+
+#: kateprojectinfoview.cpp:38
+#, kde-format
+msgid "Terminal"
+msgstr "Терминал"
+
+#: kateprojectinfoview.cpp:43
+#, kde-format
+msgid "Code Index"
+msgstr "Индекс кода"
+
+#: kateprojectinfoview.cpp:48
+#, kde-format
+msgid "Code Analysis"
+msgstr "Анализ кода"
+
+#: kateprojectinfoview.cpp:53
+#, kde-format
+msgid "Notes"
+msgstr "Примечания"
+
+#: kateprojectinfoviewcodeanalysis.cpp:38
+#, kde-format
+msgid "Start Analysis..."
+msgstr "Начать анализ..."
+
+#: kateprojectinfoviewcodeanalysis.cpp:51 kateprojectinfoviewindex.cpp:43
+#, kde-format
+msgid "File"
+msgstr "Файл"
+
+#: kateprojectinfoviewcodeanalysis.cpp:51 kateprojectinfoviewindex.cpp:43
+#, kde-format
+msgid "Line"
+msgstr "Строка"
+
+#: kateprojectinfoviewcodeanalysis.cpp:51
+#, kde-format
+msgid "Severity"
+msgstr ""
+
+#: kateprojectinfoviewcodeanalysis.cpp:51
+#, kde-format
+msgid "Message"
+msgstr "Сообщение"
+
+#: kateprojectinfoviewcodeanalysis.cpp:219
+#, kde-format
+msgid "Analysis finished."
+msgstr "Анализ завершён."
+
+#: kateprojectinfoviewcodeanalysis.cpp:224
+#, kde-format
+msgid "Analysis failed!"
+msgstr "Не удалось завершить анализ."
+
+#: kateprojectinfoviewindex.cpp:43
+#, kde-format
+msgid "Name"
+msgstr "Имя"
+
+#: kateprojectinfoviewindex.cpp:43
+#, kde-format
+msgid "Kind"
+msgstr "Тип"
+
+#: kateprojectinfoviewindex.cpp:44 kateprojectview.cpp:54
+#, kde-format
+msgid "Search"
+msgstr "Поиск"
+
+#: kateprojectinfoviewindex.cpp:155
+#, kde-format
+msgid "The index could not be created. Please install 'ctags'."
+msgstr "Не удалось создать индекс, установите «ctags»."
+
+#: kateprojectpluginview.cpp:55
+#, kde-format
+msgid "Kate Project Manager"
+msgstr "Диспетчер проектов Kate"
+
+#: kateprojectpluginview.cpp:94
+#, kde-format
+msgid "Project"
+msgstr "Проект"
+
+#: kateprojectpluginview.cpp:97 kateprojectpluginview.cpp:520
+#, kde-format
+msgid "Lookup: %1"
+msgstr ""
+
+#: kateprojectpluginview.cpp:148
+#, kde-format
+msgid "Current Project"
+msgstr "Текущий проект"
+
+#: kateprojecttreeviewcontextmenu.cpp:72
+#, kde-format
+msgid "Copy Filename"
+msgstr "Копировать имя файла"
+
+#: kateprojecttreeviewcontextmenu.cpp:78
+#, kde-format
+msgid "Open With"
+msgstr "Открыть с помощью..."
+
+#: kateprojecttreeviewcontextmenu.cpp:108
+#, kde-format
+msgid "Git:"
+msgstr "Git:"
+
+#. i18n: ectx: Menu (projects)
+#: ui.rc:6
+#, kde-format
+msgid "&Projects"
+msgstr "&Проекты"
+
+#~ msgid "Please install 'cppcheck'."
+#~ msgstr "Для анализа кода необходимо установить программу «cppcheck»."
+
+#~ msgid "Git Tools"
+#~ msgstr "Инструменты Git"
+
+#~ msgid "Launch gitk"
+#~ msgstr "Запустить gitk"
+
+#~ msgid "Launch qgit"
+#~ msgstr "Запустить qgit"
+
+#~ msgid "Launch git-cola"
+#~ msgstr "Запустить git-cola"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Юрий Ефремов"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "yur.arh@gmail.com"
+
+#~ msgid "Hello World"
+#~ msgstr "Привет, мир"
+
+#~ msgid "Example kate plugin"
+#~ msgstr "Пример модуля Kate"

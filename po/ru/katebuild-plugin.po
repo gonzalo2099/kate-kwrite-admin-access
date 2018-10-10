@@ -1,0 +1,507 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Artem Sereda <overmind88@gmail.com>, 2010.
+# Alexander Potashev <aspotashev@gmail.com>, 2010, 2011, 2015.
+# Yury G. Kudryashov <urkud.urkud@gmail.com>, 2012.
+# Yuri Efremov <yur.arh@gmail.com>, 2013.
+# Alexander Lakhin <exclusion@gmail.com>, 2013, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2018-01-23 03:14+0100\n"
+"PO-Revision-Date: 2015-05-05 15:08+0300\n"
+"Last-Translator: Alexander Potashev <aspotashev@gmail.com>\n"
+"Language-Team: Russian <kde-russian@lists.kde.ru>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 2.0\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Environment: kde\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#. i18n: ectx: attribute (title), widget (QWidget, errs)
+#: build.ui:27
+#, kde-format
+msgid "Output"
+msgstr "Вывод"
+
+#. i18n: ectx: property (text), widget (QLabel, showLabel)
+#: build.ui:35
+#, kde-format
+msgid "Show:"
+msgstr "Показывать:"
+
+#. i18n: ectx: property (text), widget (QPushButton, buildAgainButton)
+#. i18n: ectx: property (text), widget (QPushButton, buildAgainButton2)
+#: build.ui:100 build.ui:125
+#, kde-format
+msgid "Build again"
+msgstr "Собрать заново"
+
+#. i18n: ectx: property (text), widget (QPushButton, cancelBuildButton)
+#. i18n: ectx: property (text), widget (QPushButton, cancelBuildButton2)
+#: build.ui:107 build.ui:132
+#, kde-format
+msgid "Cancel"
+msgstr "Отменить"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, errTreeWidget)
+#: build.ui:163
+#, kde-format
+msgctxt "Header for the file name column"
+msgid "File"
+msgstr "Файл"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, errTreeWidget)
+#: build.ui:168
+#, kde-format
+msgctxt "Header for the line number column"
+msgid "Line"
+msgstr "Строка"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, errTreeWidget)
+#: build.ui:173
+#, kde-format
+msgctxt "Header for the error message column"
+msgid "Message"
+msgstr "Сообщение"
+
+#: plugin_katebuild.cpp:99
+#, kde-format
+msgid "Kate Build Plugin"
+msgstr "Модуль для сборки ПО"
+
+#: plugin_katebuild.cpp:105
+#, kde-format
+msgid "Build Output"
+msgstr "Вывод сборки"
+
+#: plugin_katebuild.cpp:108
+#, kde-format
+msgid "Select Target..."
+msgstr "Выбрать цель..."
+
+#: plugin_katebuild.cpp:112
+#, kde-format
+msgid "Build Default Target"
+msgstr "Собрать цель по умолчанию"
+
+#: plugin_katebuild.cpp:116
+#, kde-format
+msgid "Build Previous Target"
+msgstr "Собрать предыдущую цель"
+
+#: plugin_katebuild.cpp:120
+#, kde-format
+msgid "Stop"
+msgstr "Завершить"
+
+#: plugin_katebuild.cpp:125
+#, kde-format
+msgid "Next Error"
+msgstr "Следующая ошибка"
+
+#: plugin_katebuild.cpp:131
+#, kde-format
+msgid "Previous Error"
+msgstr "Предыдущая ошибка"
+
+#: plugin_katebuild.cpp:140
+#, kde-format
+msgctxt "Tab label"
+msgid "Target Settings"
+msgstr "Параметры цели"
+
+#: plugin_katebuild.cpp:217 plugin_katebuild.cpp:829
+#, kde-format
+msgid "Target Set"
+msgstr "Набор целей"
+
+# BUGME: split (verb/noun) --aspotashev
+#: plugin_katebuild.cpp:218 plugin_katebuild.cpp:239 plugin_katebuild.cpp:244
+#: plugin_katebuild.cpp:984
+#, fuzzy, kde-format
+#| msgid "Build"
+msgid "build"
+msgstr "Сборка"
+
+# BUGME: split (verb/noun) --aspotashev
+#: plugin_katebuild.cpp:219 plugin_katebuild.cpp:240 plugin_katebuild.cpp:987
+#, fuzzy, kde-format
+#| msgid "Clean"
+msgid "clean"
+msgstr "Очистка"
+
+#: plugin_katebuild.cpp:220
+#, fuzzy, kde-format
+#| msgid "Config"
+msgid "config"
+msgstr "Конфигурация"
+
+#: plugin_katebuild.cpp:224 plugin_katebuild.cpp:242 plugin_katebuild.cpp:990
+#, kde-format
+msgid "quick"
+msgstr ""
+
+#: plugin_katebuild.cpp:272 plugin_katebuild.cpp:928 plugin_katebuild.cpp:939
+#: plugin_katebuild.cpp:960 plugin_katebuild.cpp:962
+#, kde-format
+msgid "Project Plugin Targets"
+msgstr "Цели, созданные модулем"
+
+#: plugin_katebuild.cpp:389
+#, kde-format
+msgctxt "The same word as 'make' uses to mark an error."
+msgid "error"
+msgstr "ошибка"
+
+#: plugin_katebuild.cpp:391
+#, kde-format
+msgctxt "The same word as 'ld' uses to mark an ..."
+msgid "undefined reference"
+msgstr "неопределённые ссылки"
+
+#: plugin_katebuild.cpp:400
+#, kde-format
+msgctxt "The same word as 'make' uses to mark a warning."
+msgid "warning"
+msgstr "предупреждение"
+
+#: plugin_katebuild.cpp:452
+#, kde-format
+msgid "There is no file or directory specified for building."
+msgstr "Не были указаны файл или каталог для сборки"
+
+#: plugin_katebuild.cpp:456
+#, kde-format
+msgid ""
+"The file \"%1\" is not a local file. Non-local files cannot be compiled."
+msgstr ""
+"Файл «%1» не является локальным файлом, поэтому он не может быть "
+"скомпилирован."
+
+#: plugin_katebuild.cpp:502
+#, kde-format
+msgid "Failed to run \"%1\". exitStatus = %2"
+msgstr "Выполнить «%1» не удалось (код выхода %2)."
+
+#: plugin_katebuild.cpp:520
+#, kde-format
+msgid "Building <b>%1</b> cancelled"
+msgstr "Сборка цели <b>%1</b> отменена"
+
+#: plugin_katebuild.cpp:579
+#, kde-format
+msgid "Already building..."
+msgstr ""
+
+#: plugin_katebuild.cpp:588
+#, kde-format
+msgid "No target available for building."
+msgstr ""
+
+#: plugin_katebuild.cpp:601
+#, fuzzy, kde-format
+#| msgid "There is no file or directory specified for building."
+msgid "There is no local file or directory specified for building."
+msgstr "Не были указаны файл или каталог для сборки"
+
+#: plugin_katebuild.cpp:623
+#, kde-format
+msgid "Building target <b>%1</b> ..."
+msgstr "Сборка цели <b>%1</b>..."
+
+#: plugin_katebuild.cpp:636
+#, kde-kuit-format
+msgctxt "@info"
+msgid "<title>Make Results:</title><nl/>%1"
+msgstr ""
+
+#: plugin_katebuild.cpp:654
+#, kde-format
+msgid "Building <b>%1</b> completed."
+msgstr "Сборка <b>%1</b> завершена."
+
+#: plugin_katebuild.cpp:673
+#, kde-format
+msgid "Found one error."
+msgid_plural "Found %1 errors."
+msgstr[0] "Обнаружена %1 ошибка."
+msgstr[1] "Обнаружены %1 ошибки."
+msgstr[2] "Обнаружено %1 ошибок."
+msgstr[3] "Обнаружена одна ошибка."
+
+#: plugin_katebuild.cpp:674
+#, kde-format
+msgid "Building <b>%1</b> had errors."
+msgstr "При сборке <b>%1</b> произошли ошибки."
+
+#: plugin_katebuild.cpp:677
+#, kde-format
+msgid "Found one warning."
+msgid_plural "Found %1 warnings."
+msgstr[0] "Обнаружено %1 предупреждение."
+msgstr[1] "Обнаружены %1 предупреждения."
+msgstr[2] "Обнаружено %1 предупреждений."
+msgstr[3] "Обнаружено одно предупреждение."
+
+#: plugin_katebuild.cpp:678
+#, fuzzy, kde-format
+#| msgid "Building <b>%1</b> had errors."
+msgid "Building <b>%1</b> had warnings."
+msgstr "При сборке <b>%1</b> произошли ошибки."
+
+#: plugin_katebuild.cpp:683
+#, kde-format
+msgid "Build failed."
+msgstr "При сборке произошли ошибки."
+
+#: plugin_katebuild.cpp:686
+#, kde-format
+msgid "Build completed without problems."
+msgstr "Сборка завершена без ошибок."
+
+# BUGME: split (verb/noun) --aspotashev
+#: plugin_katebuild.cpp:830
+#, kde-format
+msgid "Build"
+msgstr "Сборка"
+
+# BUGME: split (verb/noun) --aspotashev
+#: plugin_katebuild.cpp:831
+#, kde-format
+msgid "Clean"
+msgstr "Очистка"
+
+#: plugin_katebuild.cpp:832
+#, kde-format
+msgid "Config"
+msgstr "Конфигурация"
+
+#: plugin_katebuild.cpp:833
+#, kde-format
+msgid "ConfigClean"
+msgstr "Очистка конфигурации"
+
+#: plugin_katebuild.cpp:871
+#, kde-format
+msgid "Only Errors"
+msgstr "Только ошибки"
+
+#: plugin_katebuild.cpp:874
+#, kde-format
+msgid "Errors and Warnings"
+msgstr "Ошибки и предупреждения"
+
+#: plugin_katebuild.cpp:877
+#, kde-format
+msgid "Parsed Output"
+msgstr "Разобранный вывод"
+
+#: plugin_katebuild.cpp:880
+#, kde-format
+msgid "Full Output"
+msgstr "Полный вывод"
+
+#. i18n: ectx: property (windowTitle), widget (QDialog, SelectTargetUi)
+#: SelectTargetUi.ui:14
+#, fuzzy, kde-format
+#| msgid "Delete selected target"
+msgid "Select build target"
+msgstr "Удалить выбранную цель"
+
+#. i18n: ectx: property (text), widget (QLabel, u_label)
+#: SelectTargetUi.ui:29
+#, kde-format
+msgid "Filter"
+msgstr "Фильтр:"
+
+#: TargetHtmlDelegate.cpp:57
+#, kde-format
+msgctxt "T as in Target set"
+msgid "<B>T:</B> %1"
+msgstr "<B>НЦ:</B> %1"
+
+#: TargetHtmlDelegate.cpp:60
+#, kde-format
+msgctxt "D as in working Directory"
+msgid "<B>Dir:</B> %1"
+msgstr "<B>Кат.:</B> %1"
+
+#: TargetHtmlDelegate.cpp:117
+#, kde-format
+msgid "Leave empty to use the directory of the current document."
+msgstr "Оставьте поле пустым для использования каталога текущего документа."
+
+#: TargetHtmlDelegate.cpp:122
+#, kde-format
+msgid ""
+"Use:\n"
+"\"%f\" for current file\n"
+"\"%d\" for directory of current file\n"
+"\"%n\" for current file name without suffix"
+msgstr ""
+"Используйте:\n"
+"«%f» для текущего файла.\n"
+"«%d» для каталога текущего файла.\n"
+"«%n» для названия текущего файла без суффикса."
+
+#: TargetModel.cpp:294
+#, kde-format
+msgid "Check the check-box to make the command the default for the target-set."
+msgstr ""
+
+#: TargetModel.cpp:354
+#, kde-format
+msgid "Command/Target-set Name"
+msgstr "Наборы целей"
+
+#: TargetModel.cpp:357
+#, kde-format
+msgid "Working Directory / Command"
+msgstr "Рабочий каталог / команда"
+
+#: targets.cpp:30
+#, kde-format
+msgid "Active target-set:"
+msgstr "Текущий набор целей:"
+
+#: targets.cpp:32
+#, kde-format
+msgid "Select active target set"
+msgstr "Выберите текущий набор целей"
+
+#: targets.cpp:37
+#, kde-format
+msgid "Create new set of targets"
+msgstr "Создать набор целей"
+
+#: targets.cpp:41
+#, fuzzy, kde-format
+#| msgid "Copy set of targets"
+msgid "Copy command or target set"
+msgstr "Скопировать набор целей"
+
+#: targets.cpp:45
+#, kde-format
+msgid "Delete current set of targets"
+msgstr "Удалить текущий набор целей"
+
+#: targets.cpp:50
+#, kde-format
+msgid "Add new target"
+msgstr "Добавить цель"
+
+#: targets.cpp:54
+#, kde-format
+msgid "Build selected target"
+msgstr "Собрать выбранную цель"
+
+#. i18n: ectx: Menu (Build Menubar)
+#: ui.rc:6
+#, kde-format
+msgid "&Build"
+msgstr "С&борка"
+
+#: UrlInserter.cpp:42
+#, fuzzy, kde-format
+#| msgid "Inset path"
+msgid "Insert path"
+msgstr "Вставить путь"
+
+#: UrlInserter.cpp:64
+#, kde-format
+msgid "Select directory to insert"
+msgstr "Выбор пути для вставки"
+
+#~ msgid "Next Set of Targets"
+#~ msgstr "Следующий набор целей"
+
+#~ msgid "No previous target to build."
+#~ msgstr "Предыдущей цели для сборки нет"
+
+#~ msgid "No target set as default target."
+#~ msgstr "Цель по умолчанию для сборки не определена."
+
+#~ msgid "No target set as clean target."
+#~ msgstr "Цель для очистки не определена."
+
+#~ msgid "Target \"%1\" not found for building."
+#~ msgstr "Цель «%1» для сборки не найдена."
+
+#~ msgid "Really delete target %1?"
+#~ msgstr "Вы действительно хотите удалить цель %1?"
+
+#~ msgid "Nothing built yet."
+#~ msgstr "Пока ещё ничего не собрано."
+
+#~ msgid "Target Set %1"
+#~ msgstr "Набор целей %1"
+
+#~ msgid "Target"
+#~ msgstr "Цель"
+
+#~ msgid "Target:"
+#~ msgstr "Цель:"
+
+#~ msgid "from"
+#~ msgstr "из"
+
+#~ msgid "Command:"
+#~ msgstr "Команда:"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Артём Середа,Александр Поташев"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "overmind88@gmail.com,aspotashev@gmail.com"
+
+#~ msgid "Sets of Targets"
+#~ msgstr "Наборы целей"
+
+#~ msgid "Make Results"
+#~ msgstr "Результаты make"
+
+#~ msgid "Warnings"
+#~ msgstr "Предупреждения"
+
+#~ msgid "Others"
+#~ msgstr "Другие"
+
+#~ msgid "Quick Compile"
+#~ msgstr "Быстрая компиляция"
+
+#~ msgid "The custom command is empty."
+#~ msgstr "Пользовательская команда пуста."
+
+#~ msgid "New"
+#~ msgstr "Создать"
+
+#~ msgid "Copy"
+#~ msgstr "Копировать"
+
+#~ msgid "Delete"
+#~ msgstr "Удалить"
+
+#~ msgid "Quick compile"
+#~ msgstr "Быстрая компиляция:"
+
+#~ msgid "Run make"
+#~ msgstr "Запустить make"
+
+#~ msgid "Build command:"
+#~ msgstr "Команда сборки:"
+
+#~ msgid "..."
+#~ msgstr "..."
+
+#~ msgid "Break"
+#~ msgstr "Остановить"
